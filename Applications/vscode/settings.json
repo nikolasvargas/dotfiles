@@ -1,0 +1,22 @@
+{
+    "window.zoomLevel": -1,
+    "editor.fontSize": 14,
+    "editor.renderWhitespace": "boundary",
+    
+    "terminal.integrated.fontFamily": "Meslo LG L for Powerline",
+    "terminal.integrated.fontSize": 14,
+    
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressUpdateNotice": false,
+        "suppressWelcomeNotice": true
+    },
+    
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "Solarized Dark"
+}

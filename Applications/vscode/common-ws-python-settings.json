@@ -1,0 +1,8 @@
+{
+    "python.pythonPath": "/usr/local/bin/python3.6",
+    "python.linting.pylintPath": "/usr/local/bin/pylint",
+    "python.linting.enabled": true,
+    "python.formatting.provider": "autopep8",
+    "python.formatting.autopep8Path": "/usr/local/bin/autopep8",
+    "python.formatting.autopep8Args": ["-aa"]
+}
