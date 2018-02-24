@@ -134,6 +134,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+set path+=**
 
 "" Directories for swp files
 set nobackup
@@ -330,6 +331,9 @@ set autoread
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
 
+"" Select All
+noremap <C-a> <esc>ggVG<CR>
+
 "" Git
 noremap <Leader>ga :Gwrite<CR>
 noremap <Leader>gc :Gcommit<CR>
@@ -476,7 +480,7 @@ let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
 
 " syntastic
-let g:syntastic_python_checkers=['python', 'flake8']
+let g:syntastic_python_checkers=['python3', 'flake8']
 
 " vim-airline
 let g:airline#extensions#virtualenv#enabled = 1
