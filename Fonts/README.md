@@ -2,15 +2,15 @@
 ---------------------
 
 You can copy and paste these commands to your terminal. Comments are fine too.
-::
-    # clone
-    git clone https://github.com/powerline/fonts.git --depth=1
-    # install
-    cd fonts
-    ./install.sh
-    # clean-up a bit
-    cd ..
-    rm -rf fonts
+.. code-block::
+# clone
+git clone https://github.com/powerline/fonts.git --depth=1
+# install
+cd fonts
+./install.sh
+# clean-up a bit
+cd ..
+rm -rf fonts
 
 Uninstall
 ---------
