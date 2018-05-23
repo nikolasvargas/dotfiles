@@ -1,3 +1,5 @@
+" vim-bootstrap b990cad
+
 "*****************************************************************************
 "" Vim-PLug core
 "*****************************************************************************
@@ -5,10 +7,10 @@ if has('vim_starting')
   set nocompatible               " Be iMproved
 endif
 
-let vimplug_exists=expand('~/.vim/autoload/plug.vim')
+let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
-let g:vim_bootstrap_langs = "python"
-let g:vim_bootstrap_editor = "vim"				" nvim or vim
+let g:vim_bootstrap_langs = "html,javascript,python"
+let g:vim_bootstrap_editor = "nvim"				" nvim or vim
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -17,14 +19,14 @@ if !filereadable(vimplug_exists)
   endif
   echo "Installing Vim-Plug..."
   echo ""
-  silent !\curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   let g:not_finish_vimplug = "yes"
 
   autocmd VimEnter * PlugInstall
 endif
 
 " Required:
-call plug#begin(expand('~/.vim/plugged'))
+call plug#begin(expand('~/.config/nvim/plugged'))
 
 "*****************************************************************************
 "" Plug install packages
@@ -74,14 +76,23 @@ Plug 'honza/vim-snippets'
 
 "" Color
 Plug 'tomasr/molokai'
-Plug 'altercation/vim-colors-solarized'
 
 "*****************************************************************************
 "" Custom bundles
 "*****************************************************************************
-" personal bundles
-"" YouCompleteme to auto-complete (just uncomment to install)
-""" Plug 'Valloric/YouCompleteme'
+
+" html
+"" HTML Bundle
+Plug 'hail2u/vim-css3-syntax'
+Plug 'gorodinskiy/vim-coloresque'
+Plug 'tpope/vim-haml'
+Plug 'mattn/emmet-vim'
+
+
+" javascript
+"" Javascript Bundle
+Plug 'jelera/vim-javascript-syntax'
+
 
 " python
 "" Python Bundle
@@ -93,8 +104,8 @@ Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 "*****************************************************************************
 
 "" Include user's extra bundle
-if filereadable(expand("~/.vimrc.local.bundles"))
-  source ~/.vimrc.local.bundles
+if filereadable(expand("~/.config/nvim/local_bundles.vim"))
+  source ~/.config/nvim/local_bundles.vim
 endif
 
 call plug#end()
@@ -112,10 +123,13 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 set bomb
 set binary
-set ttyfast
+
 
 "" Fix backspace indent
 set backspace=indent,eol,start
+
+"" enable mouse scroll inside vim
+set mouse=a
 
 "" Tabs. May be overriten by autocmd rules
 set tabstop=4
@@ -149,7 +163,7 @@ else
 endif
 
 " session management
-let g:session_directory = "~/.vim/session"
+let g:session_directory = "~/.config/nvim/session"
 let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
@@ -163,7 +177,7 @@ set number
 
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
-    colorscheme solarized
+  colorscheme molokai
 endif
 
 set mousemodel=popup
@@ -180,26 +194,14 @@ else
   let g:CSApprox_loaded = 1
 
   " IndentLine
-  let g:indentLine_enabled = 1
+  let g:indentLine_enabled = 0
   let g:indentLine_concealcursor = 0
   let g:indentLine_char = '┆'
   let g:indentLine_faster = 1
 
   
-  if $COLORTERM == 'gnome-terminal'
-    set term=gnome-256color
-  else
-    if $TERM == 'xterm'
-      set term=xterm-256color
-    endif
-  endif
-  
 endif
 
-
-if &term =~ '256color'
-  set t_ut=
-endif
 
 
 "" Disable the blinking cursor.
@@ -229,9 +231,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-" let g:airline_theme = 'powerlineish'
-let g:airline_theme = 'solarized'
-let g:airline_solarized_bg='dark'
+let g:airline_theme = 'powerlineish'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -260,10 +260,10 @@ let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize = 40
+let g:NERDTreeWinSize = 50
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
-nnoremap <silent> <F3> :NERDTreeToggle<CR>
+nnoremap <silent> <C-n> :NERDTreeToggle<CR>
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
@@ -459,6 +459,23 @@ nnoremap <Leader>o :.Gbrowse<CR>
 "" Custom configs
 "*****************************************************************************
 
+" html
+" for html files, 2 spaces
+autocmd Filetype html setlocal ts=4 sw=4 expandtab
+
+"" ignore all of tidy's warnings
+let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
+
+" javascript
+let g:javascript_enable_domhtmlcss = 1
+
+" vim-javascript
+augroup vimrc-javascript
+  autocmd!
+  autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab softtabstop=4
+augroup END
+
+
 " python
 " vim-python
 augroup vimrc-python
@@ -500,8 +517,8 @@ let python_highlight_all = 1
 "*****************************************************************************
 
 "" Include user's local vim config
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
+if filereadable(expand("~/.config/nvim/local_init.vim"))
+  source ~/.config/nvim/local_init.vim
 endif
 
 "*****************************************************************************

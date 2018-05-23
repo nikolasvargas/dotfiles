@@ -3,7 +3,7 @@
 
 - Powerline fonts installed
 - zsh + iTerm2 its look prettier :)
-- rename vimrc.vim to .vimrc in your home path
+- copy/move init.vim to ~/.config/nvim/ path
 
 Iterm2
 ------
