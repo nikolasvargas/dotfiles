@@ -47,6 +47,7 @@ Plug 'scrooloose/syntastic'
 Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
+Plug 'ctrlpvim/ctrlp.vim'
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
@@ -92,7 +93,8 @@ Plug 'mattn/emmet-vim'
 " javascript
 "" Javascript Bundle
 Plug 'jelera/vim-javascript-syntax'
-
+"" Json Bundle
+Plug 'elzr/vim-json'
 
 " python
 "" Python Bundle
@@ -146,8 +148,8 @@ set hidden
 "" Searching
 set hlsearch
 set incsearch
-set ignorecase
 set smartcase
+set ignorecase
 set path+=**
 
 "" Directories for swp files
@@ -267,7 +269,7 @@ nnoremap <silent> <C-n> :NERDTreeToggle<CR>
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
-let Grep_Default_Options = '-IR'
+let Grep_Default_Options = '-iR'
 let Grep_Skip_Files = '*.log *.db'
 let Grep_Skip_Dirs = '.git node_modules'
 
@@ -278,6 +280,7 @@ let g:vimshell_prompt =  '$ '
 " terminal emulation
 if g:vim_bootstrap_editor == 'nvim'
   nnoremap <silent> <leader>sh :terminal<CR>
+  tnoremap <Esc> <C-\><C-n>
 else
   nnoremap <silent> <leader>sh :VimShellCreate<CR>
 endif
@@ -461,7 +464,7 @@ nnoremap <Leader>o :.Gbrowse<CR>
 
 " html
 " for html files, 2 spaces
-autocmd Filetype html setlocal ts=4 sw=4 expandtab
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
 
 "" ignore all of tidy's warnings
 let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
@@ -472,7 +475,7 @@ let g:javascript_enable_domhtmlcss = 1
 " vim-javascript
 augroup vimrc-javascript
   autocmd!
-  autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab softtabstop=4
+  autocmd FileType javascript set tabstop=2|set shiftwidth=2|set expandtab softtabstop=4
 augroup END
 
 
@@ -480,7 +483,7 @@ augroup END
 " vim-python
 augroup vimrc-python
   autocmd!
-  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
+  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 colorcolumn=79
       \ formatoptions+=croq softtabstop=4
       \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
