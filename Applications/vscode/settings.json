@@ -1,22 +1,37 @@
 {
-    "window.zoomLevel": -1,
-    "editor.fontSize": 14,
+    "editor.fontSize": 12,
+    "editor.fontFamily": "Inconsolata-g for Powerline",
     "editor.renderWhitespace": "boundary",
-    
-    "terminal.integrated.fontFamily": "Meslo LG L for Powerline",
-    "terminal.integrated.fontSize": 14,
-    
-    "gitlens.advanced.messages": {
-        "suppressCommitHasNoPreviousCommitWarning": false,
-        "suppressCommitNotFoundWarning": false,
-        "suppressFileNotUnderSourceControlWarning": false,
-        "suppressGitVersionWarning": false,
-        "suppressLineUncommittedWarning": false,
-        "suppressNoRepositoryWarning": false,
-        "suppressUpdateNotice": false,
-        "suppressWelcomeNotice": true
+    "editor.renderLineHighlight": "none",
+    "editor.minimap.enabled": false,
+    "editor.codeLens": false,
+    "editor.wordWrap": "off",
+    "editor.detectIndentation": true,
+
+    "terminal.integrated.lineHeight": 1.1,
+    "terminal.integrated.fontFamily": "Meslo LG L for PowerLine",
+
+    "workbench.colorTheme": "Dark+ (contrast)",
+    "workbench.statusBar.visible": true,
+    "workbench.activityBar.visible": false,
+    "workbench.colorCustomizations": {
+        "terminal.background": "#000000",
+        "terminal.foreground": "#DDDDDD",
     },
-    
-    "workbench.iconTheme": "vscode-icons",
-    "workbench.colorTheme": "Solarized Dark"
+
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.designer.cs": true,
+        "**/*.xib": true
+    },
+
+    "diffEditor.ignoreTrimWhitespace": false,
+
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
 }
