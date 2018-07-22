@@ -1,23 +1,86 @@
 {
-    "editor.fontSize": 12,
+    "editor.fontSize": 14,
     "editor.fontFamily": "Inconsolata-g for Powerline",
     "editor.renderWhitespace": "boundary",
     "editor.renderLineHighlight": "none",
+    "editor.wordWrap": "off",
     "editor.minimap.enabled": false,
     "editor.codeLens": false,
-    "editor.wordWrap": "off",
     "editor.detectIndentation": true,
+
+    "workbench.colorTheme": "DesertEx",
+    "workbench.statusBar.visible": true,
+    "workbench.activityBar.visible": true,
+    "workbench.colorCustomizations": {
+        "terminal.background": "#000000",
+        "terminal.foreground": "#DDDDDD",
+        "statusBar.background": "#8FBCBB",
+        "statusBar.noFolderBackground": "#8FBCBB",
+        "statusBar.debuggingBackground": "#8FBCBB",
+        "statusBar.foreground": "#434C5E"
+    },
 
     "terminal.integrated.lineHeight": 1.1,
     "terminal.integrated.fontFamily": "Meslo LG L for PowerLine",
 
-    "workbench.colorTheme": "Dark+ (contrast)",
-    "workbench.statusBar.visible": true,
-    "workbench.activityBar.visible": false,
-    "workbench.colorCustomizations": {
-        "terminal.background": "#000000",
-        "terminal.foreground": "#DDDDDD",
+    "vim.leader": ",",
+    "vim.hlsearch": true,
+    "vim.statusBarColorControl": true,
+    "vim.statusBarColors": {
+        "normal": ["#8FBCBB", "#434C5E"],
+        "insert": "#BF616A",
+        "visual": "#B48EAD",
+        "visualline": "#B48EAD",
+        "visualblock": "#A3BE8C",
+        "replace": "#D08770"
     },
+
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [">"],
+            "commands": ["editor.action.indentLines"]
+        },
+        {
+            "before": ["<"],
+            "commands": ["editor.action.outdentLines"]
+        },
+    ],
+
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "j"],
+            "after": ["<Esc>"]
+        },
+    ],
+
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["<leader>","e"],
+            "commands": [
+                "workbench.action.quickOpen",
+            ]
+        },
+        {
+            "before": ["<leader>", "<space>"],
+            "commands": [
+                ":noh"
+            ]
+        },
+        {
+            "before": ["g", "f"],
+            "commands": [
+                "workbench.action.navigateBack"
+            ]
+        },
+        {
+            "before": ["<C-l>"],
+            "after": ["<C-w>", "<C-l>"]
+        },
+        {
+            "before": ["<C-h>"],
+            "after": ["<C-w>", "<C-h>"]
+        },
+    ],
 
     "files.exclude": {
         "**/.git": true,
