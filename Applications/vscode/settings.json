@@ -1,7 +1,8 @@
 {
     "editor.fontSize": 14,
     "editor.fontFamily": "Inconsolata-g for Powerline",
-    "editor.renderWhitespace": "boundary",
+    "editor.renderWhitespace": "none",
+    "editor.renderIndentGuides": false,
     "editor.renderLineHighlight": "none",
     "editor.wordWrap": "off",
     "editor.minimap.enabled": false,
@@ -10,24 +11,27 @@
 
     "workbench.colorTheme": "DesertEx",
     "workbench.statusBar.visible": true,
-    "workbench.activityBar.visible": true,
+    "workbench.activityBar.visible": false,
     "workbench.colorCustomizations": {
+        "editor.background": "#111111",
+        "statusBar.background": "#1B1D1E",
+        "statusBar.noFolderBackground": "#1B1D1E",
+        "statusBar.debuggingBackground": "#1B1D1E",
         "terminal.background": "#000000",
-        "terminal.foreground": "#DDDDDD",
-        "statusBar.background": "#8FBCBB",
-        "statusBar.noFolderBackground": "#8FBCBB",
-        "statusBar.debuggingBackground": "#8FBCBB",
-        "statusBar.foreground": "#434C5E"
+        "terminal.foreground": "#DDDDDD"
     },
 
     "terminal.integrated.lineHeight": 1.1,
     "terminal.integrated.fontFamily": "Meslo LG L for PowerLine",
+    "terminal.integrated.rendererType": "canvas",
 
     "vim.leader": ",",
     "vim.hlsearch": true,
-    "vim.statusBarColorControl": true,
+    "vim.ignorecase": true,
+    "vim.smartcase": true,
+    "vim.statusBarColorControl": false,
     "vim.statusBarColors": {
-        "normal": ["#8FBCBB", "#434C5E"],
+        "normal": "#1B1D1E",
         "insert": "#BF616A",
         "visual": "#B48EAD",
         "visualline": "#B48EAD",
@@ -43,21 +47,21 @@
         {
             "before": ["<"],
             "commands": ["editor.action.outdentLines"]
-        },
+        }
     ],
 
     "vim.insertModeKeyBindings": [
         {
             "before": ["j", "j"],
             "after": ["<Esc>"]
-        },
+        }
     ],
 
     "vim.normalModeKeyBindings": [
         {
             "before": ["<leader>","e"],
             "commands": [
-                "workbench.action.quickOpen",
+                "workbench.action.quickOpen"
             ]
         },
         {
@@ -79,7 +83,7 @@
         {
             "before": ["<C-h>"],
             "after": ["<C-w>", "<C-h>"]
-        },
+        }
     ],
 
     "files.exclude": {
@@ -96,5 +100,5 @@
 
     "gitlens.advanced.messages": {
         "suppressShowKeyBindingsNotice": true
-    },
+    }
 }
