@@ -11,7 +11,7 @@
 
     "workbench.colorTheme": "DesertEx",
     "workbench.statusBar.visible": true,
-    "workbench.activityBar.visible": false,
+    "workbench.activityBar.visible": true,
     "workbench.colorCustomizations": {
         "editor.background": "#111111",
         "statusBar.background": "#1B1D1E",
@@ -21,8 +21,8 @@
         "terminal.foreground": "#DDDDDD"
     },
 
-    "terminal.integrated.lineHeight": 1.1,
-    "terminal.integrated.fontFamily": "Meslo LG L for PowerLine",
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontFamily": "Inconsolata-g for Powerline",
     "terminal.integrated.rendererType": "canvas",
 
     "vim.leader": ",",
