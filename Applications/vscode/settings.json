@@ -1,19 +1,21 @@
 {
     "editor.fontSize": 14,
-    "editor.fontFamily": "Inconsolata-g for Powerline",
+    "editor.lineHeight": 19,
     "editor.renderWhitespace": "none",
     "editor.renderIndentGuides": false,
     "editor.renderLineHighlight": "none",
     "editor.wordWrap": "off",
     "editor.minimap.enabled": false,
     "editor.codeLens": false,
-    "editor.detectIndentation": true,
+    "editor.detectIndentation": false,
 
     "workbench.colorTheme": "DesertEx",
     "workbench.statusBar.visible": true,
     "workbench.activityBar.visible": true,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.colorCustomizations": {
-        "editor.background": "#111111",
+        "editor.background": "#000000",
+        "editorLineNumber.foreground": "#CBCB2B",
         "statusBar.background": "#1B1D1E",
         "statusBar.noFolderBackground": "#1B1D1E",
         "statusBar.debuggingBackground": "#1B1D1E",
@@ -30,14 +32,6 @@
     "vim.ignorecase": true,
     "vim.smartcase": true,
     "vim.statusBarColorControl": false,
-    "vim.statusBarColors": {
-        "normal": "#1B1D1E",
-        "insert": "#BF616A",
-        "visual": "#B48EAD",
-        "visualline": "#B48EAD",
-        "visualblock": "#A3BE8C",
-        "replace": "#D08770"
-    },
 
     "vim.visualModeKeyBindingsNonRecursive": [
         {
@@ -83,6 +77,14 @@
         {
             "before": ["<C-h>"],
             "after": ["<C-w>", "<C-h>"]
+        },
+        {
+            "before": ["<C-j>"],
+            "after": ["<C-w>", "<C-j>"]
+        },
+        {
+            "before": ["<C-k>"],
+            "after": ["<C-w>", "<C-k>"]
         }
     ],
 
@@ -92,7 +94,6 @@
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "**/*.designer.cs": true,
         "**/*.xib": true
     },
 
