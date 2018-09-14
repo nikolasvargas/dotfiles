@@ -67,6 +67,7 @@ endif
 
 "" Color
 Plug 'tomasr/molokai'
+Plug 'altercation/vim-colors-solarized'
 
 "*****************************************************************************
 "" Custom bundles
@@ -171,10 +172,11 @@ let g:session_command_aliases = 1
 syntax on
 set ruler
 set number
+set background=dark
 
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
-  colorscheme molokai
+  colorscheme solarized
 endif
 
 set mousemodel=popup
@@ -227,7 +229,8 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'simple'
+let g:airline_theme = 'solarized'
+let g:airline_solarized_bg='dark'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
