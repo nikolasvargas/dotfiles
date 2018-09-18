@@ -179,6 +179,12 @@ if !exists('g:not_finish_vimplug')
   colorscheme solarized
 endif
 
+if exists('$TERM_PROGRAM')
+  if($TERM_PROGRAM == 'vscode')
+      colorscheme default
+  endif
+endif
+
 set mousemodel=popup
 set t_Co=256
 set guioptions=egmrti
