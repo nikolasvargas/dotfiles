@@ -176,7 +176,7 @@ set background=dark
 
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
-  colorscheme solarized
+  colorscheme distinguished
 endif
 
 if exists('$TERM_PROGRAM')
@@ -235,7 +235,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'solarized'
+let g:airline_theme = 'badcat'
 let g:airline_solarized_bg='dark'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
@@ -265,7 +265,7 @@ let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 50
-let g:NERDTreeWinPos ='right'
+let g:NERDTreeWinPos ='left'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
@@ -475,6 +475,7 @@ let g:javascript_enable_domhtmlcss = 1
 augroup vimrc-javascript
   autocmd!
   autocmd FileType javascript set tabstop=2|set shiftwidth=2|set expandtab softtabstop=4
+        \ colorcolumn=79
 augroup END
 
 
