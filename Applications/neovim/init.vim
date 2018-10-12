@@ -67,6 +67,7 @@ endif
 
 "" Color
 Plug 'tomasr/molokai'
+Plug 'crusoexia/vim-monokai'
 Plug 'altercation/vim-colors-solarized'
 
 "*****************************************************************************
@@ -176,7 +177,7 @@ set background=dark
 
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
-  colorscheme distinguished
+  colorscheme monokai
 endif
 
 if exists('$TERM_PROGRAM')
@@ -264,7 +265,7 @@ let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize = 50
+let g:NERDTreeWinSize = 30
 let g:NERDTreeWinPos ='left'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
@@ -474,7 +475,7 @@ let g:javascript_enable_domhtmlcss = 1
 " vim-javascript
 augroup vimrc-javascript
   autocmd!
-  autocmd FileType javascript set tabstop=2|set shiftwidth=2|set expandtab softtabstop=4
+  autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=4
         \ colorcolumn=79
 augroup END
 
