@@ -5,7 +5,7 @@ endif
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
 let g:vim_bootstrap_langs = "html,javascript,python,rust"
-let g:vim_bootstrap_editor = "nvim"				" nvim or vim
+let g:vim_bootstrap_editor = "nvim"        " nvim or vim
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -66,7 +66,6 @@ if v:version >= 704
 endif
 
 "" Color
-Plug 'tomasr/molokai'
 Plug 'crusoexia/vim-monokai'
 Plug 'altercation/vim-colors-solarized'
 
@@ -81,10 +80,11 @@ Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-haml'
 Plug 'mattn/emmet-vim'
 
-
 " javascript
 "" Javascript Bundle
 Plug 'jelera/vim-javascript-syntax'
+Plug 'mxw/vim-jsx'
+Plug 'ternjs/tern_for_vim'
 "" Json Bundle
 Plug 'elzr/vim-json'
 
@@ -99,7 +99,6 @@ Plug 'racer-rust/vim-racer'
 
 " Rust.vim
 Plug 'rust-lang/rust.vim'
-
 
 "*****************************************************************************
 "*****************************************************************************
@@ -206,8 +205,6 @@ else
   let g:indentLine_faster = 1
 
 endif
-
-
 
 "" Disable the blinking cursor.
 set gcr=a:blinkon0
@@ -461,6 +458,9 @@ nnoremap <Leader>o :.Gbrowse<CR>
 "*****************************************************************************
 "" Custom configs
 "*****************************************************************************
+"-- AUTOCOMPLETION --
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 
 " html
 " for html files, 2 spaces
@@ -471,6 +471,8 @@ let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
 
 " javascript
 let g:javascript_enable_domhtmlcss = 1
+" javascript jsx
+let g:jsx_ext_required = 1
 
 " vim-javascript
 augroup vimrc-javascript
@@ -478,7 +480,6 @@ augroup vimrc-javascript
   autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=4
         \ colorcolumn=79
 augroup END
-
 
 " python
 " vim-python
@@ -506,6 +507,7 @@ let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "0"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
+let g:jedi#use_splits_not_buffers = "right"
 
 "" Remove preview docstring window on top
 """ https://github.com/davidhalter/jedi-vim/blob/master/doc/jedi-vim.txti

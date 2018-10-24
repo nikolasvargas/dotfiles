@@ -7,8 +7,8 @@ endif
 
 let vimplug_exists=expand('~/.vim/autoload/plug.vim')
 
-let g:vim_bootstrap_langs = "python,javascript,html"
-let g:vim_bootstrap_editor = "vim"				" nvim or vim
+let g:vim_bootstrap_langs = "python,javascript,html,rust"
+let g:vim_bootstrap_editor = "vim"         " nvim or vim
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -29,6 +29,8 @@ call plug#begin(expand('~/.vim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
@@ -67,7 +69,7 @@ if v:version >= 704
 endif
 
 "" Color
-Plug 'tomasr/molokai'
+Plug 'crusoexia/vim-monokai'
 Plug 'altercation/vim-colors-solarized'
 
 "*****************************************************************************
@@ -81,6 +83,8 @@ Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 " javascript
 "" Javascript Bundle
 Plug 'jelera/vim-javascript-syntax'
+Plug 'mxw/vim-jsx'
+Plug 'ternjs/tern_for_vim'
 "" Json Bundle
 Plug 'elzr/vim-json'
 
@@ -90,6 +94,14 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-haml'
 Plug 'mattn/emmet-vim'
+
+" rust
+" Vim racer
+Plug 'racer-rust/vim-racer'
+
+" Rust.vim
+Plug 'rust-lang/rust.vim'
+
 "*****************************************************************************
 "*****************************************************************************
 
@@ -164,10 +176,17 @@ let g:session_command_aliases = 1
 syntax on
 set ruler
 set number
+set background=dark
 
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
-    colorscheme molokai
+    colorscheme monokai
+endif
+
+if exists('$TERM_PROGRAM')
+  if($TERM_PROGRAM == 'vscode')
+      colorscheme default
+  endif
 endif
 
 set mousemodel=popup
@@ -189,7 +208,7 @@ else
   let g:indentLine_char = '┆'
   let g:indentLine_faster = 1
 
-  
+
   if $COLORTERM == 'gnome-terminal'
     set term=gnome-256color
   else
@@ -197,14 +216,12 @@ else
       set term=xterm-256color
     endif
   endif
-  
-endif
 
+endif
 
 if &term =~ '256color'
   set t_ut=
 endif
-
 
 "" Disable the blinking cursor.
 set gcr=a:blinkon0
@@ -233,7 +250,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'simple'
+let g:airline_theme = 'badcat'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -339,6 +356,11 @@ nnoremap <leader>ss :SaveSession<Space>
 nnoremap <leader>sd :DeleteSession<CR>
 nnoremap <leader>sc :CloseSession<CR>
 
+"" Tabs
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
+nnoremap <silent> <S-t> :tabnew<CR>
+
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
 
@@ -438,6 +460,10 @@ nnoremap <Leader>o :.Gbrowse<CR>
 "*****************************************************************************
 "" Custom configs
 "*****************************************************************************
+"-- AUTOCOMPLETION --
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
 " html
 " for html files, 2 spaces
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
@@ -447,13 +473,14 @@ let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
 
 " javascript
 let g:javascript_enable_domhtmlcss = 1
+" javascript jsx
+let g:jsx_ext_required = 1
 
 " vim-javascript
 augroup vimrc-javascript
   autocmd!
   autocmd FileType javascript set tabstop=2|set shiftwidth=2|set expandtab softtabstop=4
 augroup NED
-
 
 " python
 " vim-python
@@ -463,6 +490,13 @@ augroup vimrc-python
       \ formatoptions+=croq softtabstop=4
       \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
+
+" rust
+" Vim racer
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " jedi-vim
 let g:jedi#popup_on_dot = 0
@@ -474,6 +508,7 @@ let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "0"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
+let g:jedi#use_splits_not_buffers = "right"
 
 "" Remove preview docstring window on top
 """ https://github.com/davidhalter/jedi-vim/blob/master/doc/jedi-vim.txti
