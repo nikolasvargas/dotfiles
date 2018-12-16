@@ -176,7 +176,7 @@ set background=dark
 
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
-  colorscheme monokai
+  colorscheme distinguished
 endif
 
 if exists('$TERM_PROGRAM')
