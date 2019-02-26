@@ -1,8 +1,6 @@
 {
     "editor.fontSize": 14,
-    "editor.lineHeight": 18,
-    "editor.fontFamily": "Hack",
-    "editor.renderWhitespace": "none",
+    "editor.renderWhitespace": "boundary",
     "editor.renderLineHighlight": "gutter",
     "editor.wordWrap": "off",
     "editor.renderIndentGuides": false,
@@ -11,32 +9,44 @@
     "editor.detectIndentation": true,
     "editor.trimAutoWhitespace": true,
     "editor.rulers": [79],
-
-    "workbench.colorTheme": "Monokai",
     "workbench.statusBar.visible": true,
-    "workbench.activityBar.visible": false,
+    "workbench.activityBar.visible": true,
     "workbench.sideBar.location": "left",
     "workbench.editor.enablePreview": false,
+    "workbench.colorTheme": "DesertEx",
     "workbench.colorCustomizations": {
-        "editor.background": "#000000",
-        "sideBar.background": "#111111",
-        "sideBarSectionHeader.background": "#1B1D1E",
-        "statusBar.background": "#1B1B1B",
-        "statusBar.noFolderBackground": "#1B1B1B",
-        "statusBar.debuggingBackground": "#1B1B1B",
-        "terminal.background": "#000000",
-        "terminal.foreground": "#DDDDDD"
+        "activityBar.background": "#111",
+        "editor.background": "#000",
+        "sideBar.background": "#1B1B1B",
+        "terminal.background": "#000",
+        "terminal.foreground": "#DDD",
+        "statusBar.background": "#3349FF",
+        "statusBar.noFolderBackground": "#3349FF",
+        "statusBar.debuggingBackground": "#3349FF"
     },
 
     "terminal.integrated.fontSize": 14,
-    "terminal.integrated.fontFamily": "Inconsolata-g for Powerline",
     "terminal.integrated.rendererType": "canvas",
 
     "vim.leader": ",",
     "vim.hlsearch": true,
     "vim.ignorecase": true,
     "vim.smartcase": true,
-    "vim.statusBarColorControl": false,
+
+    "vim.statusBarColorControl": true,
+    "vim.statusBarColors.normal": "#3349FF",
+    "vim.statusBarColors.insert": "#F04100",
+    "vim.statusBarColors.visual": "#0BA938",
+    "vim.statusBarColors.visualline": "#0BA938",
+    "vim.statusBarColors.visualblock": "#0BA938",
+    "vim.statusBarColors.replace": "#D08770",
+
+    "vim.handleKeys": { 
+        "<C-f>": false,
+        "<C-w>": false,
+        "<C-a>": false,
+        "<C-b>": false
+    },
 
     "vim.visualModeKeyBindingsNonRecursive": [
         {
@@ -46,6 +56,10 @@
         {
             "before": ["<"],
             "commands": ["editor.action.outdentLines"]
+        },
+        {
+            "before": ["g","d"],
+            "commands": ["actions.find"]
         }
     ],
 
@@ -59,21 +73,15 @@
     "vim.normalModeKeyBindings": [
         {
             "before": ["<leader>","e"],
-            "commands": [
-                "workbench.action.quickOpen"
-            ]
+            "commands": ["workbench.action.quickOpen"]
         },
         {
             "before": ["<leader>", "<space>"],
-            "commands": [
-                ":noh"
-            ]
+            "commands": [":noh"]
         },
         {
             "before": ["g", "f"],
-            "commands": [
-                "workbench.action.navigateBack"
-            ]
+            "commands": ["workbench.action.navigateBack"]
         },
         {
             "before": ["<C-l>"],
@@ -102,9 +110,5 @@
         "**/*.xib": true
     },
 
-    "diffEditor.ignoreTrimWhitespace": false,
-
-    "gitlens.advanced.messages": {
-        "suppressShowKeyBindingsNotice": true
-    }
+    "diffEditor.ignoreTrimWhitespace": false
 }
