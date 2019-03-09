@@ -73,6 +73,9 @@ Plug 'altercation/vim-colors-solarized'
 "" Custom bundles
 "*****************************************************************************
 
+" c
+Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
+
 " html
 "" HTML Bundle
 Plug 'hail2u/vim-css3-syntax'
@@ -99,6 +102,9 @@ Plug 'racer-rust/vim-racer'
 
 " Rust.vim
 Plug 'rust-lang/rust.vim'
+
+" EditorConfig
+Plug 'editorconfig/editorconfig-vim'
 
 "*****************************************************************************
 "*****************************************************************************
@@ -172,6 +178,7 @@ let g:session_command_aliases = 1
 syntax on
 set ruler
 set number
+set nowrap
 set background=dark
 
 let no_buffers_menu=1
@@ -181,7 +188,7 @@ endif
 
 if exists('$TERM_PROGRAM')
   if($TERM_PROGRAM == 'vscode')
-      colorscheme default
+      colorscheme distinguished
   endif
 endif
 
@@ -233,7 +240,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'badcat'
+let g:airline_theme = 'durant'
 let g:airline_solarized_bg='dark'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
@@ -461,6 +468,10 @@ nnoremap <Leader>o :.Gbrowse<CR>
 "-- AUTOCOMPLETION --
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
+
+" c
+autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
 
 " html
 " for html files, 2 spaces
