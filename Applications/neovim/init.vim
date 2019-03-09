@@ -182,8 +182,12 @@ set nowrap
 set background=dark
 
 let no_buffers_menu=1
+if (has("termguicolors"))
+    set termguicolors
+endif
+
 if !exists('g:not_finish_vimplug')
-  colorscheme distinguished
+  colorscheme spacemacs-theme
 endif
 
 if exists('$TERM_PROGRAM')
