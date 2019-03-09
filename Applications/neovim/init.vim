@@ -244,7 +244,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'durant'
+let g:airline_theme = 'base16_spacemacs'
 let g:airline_solarized_bg='dark'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
@@ -272,9 +272,10 @@ let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycach
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
-let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize = 30
-let g:NERDTreeWinPos ='left'
+let g:NERDTreeMapOpenInTabSilent='<RightMouse>'
+let g:NERDTreeWinSize=30
+let g:NERDTreeWinPos='left'
+let g:NERDTreeShowHidden=1
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
@@ -480,6 +481,9 @@ autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
 " html
 " for html files, 2 spaces
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
+
+" Emmet config
+let g:user_emmet_leader_key=','
 
 "" ignore all of tidy's warnings
 let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
