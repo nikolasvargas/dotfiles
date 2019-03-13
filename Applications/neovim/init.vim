@@ -68,6 +68,7 @@ endif
 "" Color
 Plug 'crusoexia/vim-monokai'
 Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
 
 "*****************************************************************************
 "" Custom bundles
@@ -180,14 +181,29 @@ set ruler
 set number
 set nowrap
 set background=dark
+colorscheme gruvbox
 
 let no_buffers_menu=1
+
 if (has("termguicolors"))
     set termguicolors
 endif
 
-if !exists('g:not_finish_vimplug')
-  colorscheme spacemacs-theme
+if g:colors_name == 'spacemacs-theme'
+"" SPACEMACS THEME CONFIG
+    let g:airline_theme = 'base16_spacemacs'
+elseif g:colors_name == 'gruvbox'
+"" GRUVBOX THEME CONFIG
+    let g:gruvbox_contrast_dark = "hard"
+    let g:airline_theme = 'gruvbox'
+elseif g:colors_name == 'solarized'
+"" SOLARIZED THEME CONFIG
+    set background=light
+    let g:airline_theme = 'solarized'
+    let g:airline_solarized_bg = 'light'
+elseif g:colors_name == 'distinguished'
+"" SOLARIZED THEME CONFIG
+    let g:airline_theme = 'badcat'
 endif
 
 if exists('$TERM_PROGRAM')
@@ -244,8 +260,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'base16_spacemacs'
-let g:airline_solarized_bg='dark'
+"let g:airline_theme = 'base16_spacemacs'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
