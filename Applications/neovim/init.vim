@@ -69,8 +69,11 @@ endif
 Plug 'crusoexia/vim-monokai'
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
+Plug 'liuchengxu/space-vim-dark'
+Plug 'nikolasvargas/cobalt.vim'
+Plug 'nikolasvargas/spacemacs-theme'
 
-"*****************************************************************************
+"***************************************************************************rr
 "" Custom bundles
 "*****************************************************************************
 
@@ -181,7 +184,7 @@ set ruler
 set number
 set nowrap
 set background=dark
-colorscheme gruvbox
+colorscheme cobalt
 
 let no_buffers_menu=1
 
@@ -189,17 +192,19 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-if g:colors_name == 'spacemacs-theme'
+if g:colors_name == 'spacemacs-theme' || g:colors_name == 'space-vim-dark'
     let g:airline_theme = 'base16_spacemacs'
 elseif g:colors_name == 'gruvbox'
-    let g:gruvbox_contrast_dark = "hard"
+    " set background=light
     let g:airline_theme = 'gruvbox'
 elseif g:colors_name == 'solarized'
     set background=light
     let g:airline_theme = 'solarized'
-    let g:airline_solarized_bg = 'light'
+    let g:airline_solarized_bg = 'dark'
 elseif g:colors_name == 'distinguished'
     let g:airline_theme = 'badcat'
+elseif g:colors_name == 'cobalt'
+    let g:airline_theme = 'papercolor'
 endif
 
 if exists('$TERM_PROGRAM')
@@ -256,7 +261,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-"let g:airline_theme = 'base16_spacemacs'
+"let g:airline_theme = 'random'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -353,6 +358,8 @@ set autoread
 "*****************************************************************************
 "" Mappings
 "*****************************************************************************
+"" enter jj for Escape Insert Mode
+imap jj <Esc>
 
 "" Split
 noremap <Leader>h :<C-u>split<CR>
