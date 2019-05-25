@@ -181,7 +181,8 @@ let g:session_command_aliases = 1
 "*****************************************************************************
 syntax on
 set ruler
-set number
+set number relativenumber
+set numberwidth=7
 set nowrap
 set background=dark
 colorscheme cobalt
@@ -209,7 +210,7 @@ endif
 
 if exists('$TERM_PROGRAM')
   if($TERM_PROGRAM == 'vscode')
-      colorscheme distinguished
+      colorscheme default
   endif
 endif
 
