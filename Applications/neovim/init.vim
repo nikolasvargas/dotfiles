@@ -26,43 +26,42 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-scripts/grep.vim'
-Plug 'vim-scripts/CSApprox'
-Plug 'bronson/vim-trailing-whitespace'
-Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/syntastic'
-Plug 'Yggdroot/indentLine'
-Plug 'avelino/vim-bootstrap-updater'
-Plug 'sheerun/vim-polyglot'
+Plug 'scrooloose/nerdtree' "nerdtree is awesome
+Plug 'tpope/vim-commentary' "visual select and comment stuff out
+Plug 'tpope/vim-fugitive' "best Git wrapper of all time
+Plug 'vim-airline/vim-airline' "improved statusline
+Plug 'vim-airline/vim-airline-themes' "improved status line themes
+Plug 'vim-scripts/grep.vim' "<leader> + f for use and grep whatever.
+Plug 'vim-scripts/CSApprox' "provide better colorscheme color support
+Plug 'bronson/vim-trailing-whitespace' "FixWhiteSpace for trainling whitespace!
+Plug 'Raimondi/delimitMate' "provide automatic closing of quotes, parenthesis, brackets, etc...
+Plug 'scrooloose/syntastic' "syntax checking
+Plug 'Yggdroot/indentLine' "vertical indentline
+Plug 'avelino/vim-bootstrap-updater' "just for update vim-boostrap
+Plug 'sheerun/vim-polyglot' "collection of language packs
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-  Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf.vim' "async command-line finder
 endif
 let g:make = 'gmake'
 if exists('make')
         let g:make = 'make'
 endif
-Plug 'Shougo/vimproc.vim', {'do': g:make}
+Plug 'Shougo/vimproc.vim', {'do': g:make} "idk
 
 "" Vim-Session
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc' "pack of miscellaneous common plugin scripts
+Plug 'xolox/vim-session' "save and restore your vim-sessions, if you want
 
 if v:version >= 703
-  Plug 'Shougo/vimshell.vim'
+  Plug 'Shougo/vimshell.vim' "provide shell snippets help-commands tab when using vimshell
 endif
 
 if v:version >= 704
   "" Snippets
-  Plug 'SirVer/ultisnips'
+  Plug 'SirVer/ultisnips' "provide snippets solution. better with *.py files
 endif
 
 "" Color
@@ -108,7 +107,7 @@ Plug 'racer-rust/vim-racer'
 Plug 'rust-lang/rust.vim'
 
 " EditorConfig
-Plug 'editorconfig/editorconfig-vim'
+Plug 'editorconfig/editorconfig-vim' "for respect .editorconfig rules
 
 "*****************************************************************************
 "*****************************************************************************
@@ -401,7 +400,7 @@ noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 "" fzf.vim
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc
 let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 
 " The Silver Searcher
