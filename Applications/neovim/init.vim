@@ -29,6 +29,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 Plug 'scrooloose/nerdtree' "nerdtree is awesome
 Plug 'tpope/vim-commentary' "visual select and comment stuff out
 Plug 'tpope/vim-fugitive' "best Git wrapper of all time
+Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline' "improved statusline
 Plug 'vim-airline/vim-airline-themes' "improved status line themes
 Plug 'vim-scripts/grep.vim' "<leader> + f for use and grep whatever.
