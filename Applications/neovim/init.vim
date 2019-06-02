@@ -68,9 +68,10 @@ endif
 Plug 'crusoexia/vim-monokai'
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
-Plug 'liuchengxu/space-vim-dark'
+Plug 'liuchengxu/space-vim-theme'
 Plug 'nikolasvargas/cobalt.vim'
 Plug 'nikolasvargas/spacemacs-theme'
+Plug 'NLKNguyen/papercolor-theme'
 
 "***************************************************************************rr
 "" Custom bundles
@@ -181,10 +182,10 @@ let g:session_command_aliases = 1
 syntax on
 set ruler
 set number relativenumber
-set numberwidth=7
+set numberwidth=6
 set nowrap
-set background=dark
-colorscheme cobalt
+set background=light
+colorscheme gruvbox
 
 let no_buffers_menu=1
 
@@ -192,18 +193,21 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-if g:colors_name == 'spacemacs-theme' || g:colors_name == 'space-vim-dark'
+if g:colors_name == 'spacemacs-theme' || g:colors_name == 'space-vim-theme'
     let g:airline_theme = 'base16_spacemacs'
 elseif g:colors_name == 'gruvbox'
-    " set background=light
+    set background=light
     let g:airline_theme = 'gruvbox'
 elseif g:colors_name == 'solarized'
     set background=light
     let g:airline_theme = 'solarized'
-    let g:airline_solarized_bg = 'dark'
+    let g:airline_solarized_bg = 'light'
 elseif g:colors_name == 'distinguished'
     let g:airline_theme = 'badcat'
 elseif g:colors_name == 'cobalt'
+    let g:airline_theme = 'papercolor'
+elseif g:colors_name == 'PaperColor'
+    set background=light
     let g:airline_theme = 'papercolor'
 endif
 
@@ -300,7 +304,7 @@ nnoremap <silent> <F3> :NERDTreeToggle<CR>
 nnoremap <silent> <leader>f :Rgrep<CR>
 let Grep_Default_Options = '-iR'
 let Grep_Skip_Files = '*.log *.db'
-let Grep_Skip_Dirs = '.git node_modules'
+let Grep_Skip_Dirs = '.git node_modules venv env'
 
 " vimshell.vim
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
