@@ -1,11 +1,9 @@
-if has('vim_starting')
-  set nocompatible               " Be iMproved
-endif
-
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
 let g:vim_bootstrap_langs = "html,javascript,python,rust"
 let g:vim_bootstrap_editor = "nvim"        " nvim or vim
+
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -37,7 +35,6 @@ Plug 'vim-scripts/CSApprox' "provide better colorscheme color support
 Plug 'bronson/vim-trailing-whitespace' "FixWhiteSpace for trainling whitespace!
 Plug 'Raimondi/delimitMate' "provide automatic closing of quotes, parenthesis, brackets, etc...
 Plug 'scrooloose/syntastic' "syntax checking
-Plug 'Yggdroot/indentLine' "vertical indentline
 Plug 'avelino/vim-bootstrap-updater' "just for update vim-boostrap
 Plug 'sheerun/vim-polyglot' "collection of language packs
 if isdirectory('/usr/local/opt/fzf')
@@ -185,18 +182,20 @@ set ruler
 set number relativenumber
 set numberwidth=6
 set nowrap
-set background=light
-colorscheme gruvbox
 
-let no_buffers_menu=1
-
+set t_Co=256
 if (has("termguicolors"))
     set termguicolors
 endif
 
+colorscheme gruvbox
+
+let no_buffers_menu=1
+
 if g:colors_name == 'spacemacs-theme' || g:colors_name == 'space-vim-theme'
     let g:airline_theme = 'base16_spacemacs'
 elseif g:colors_name == 'gruvbox'
+    let g:gruvbox_contrast_light = 'soft'
     set background=light
     let g:airline_theme = 'gruvbox'
 elseif g:colors_name == 'solarized'
@@ -219,7 +218,6 @@ if exists('$TERM_PROGRAM')
 endif
 
 set mousemodel=popup
-set t_Co=256
 set guioptions=egmrti
 set gfn=Monospace\ 10
 
@@ -231,12 +229,18 @@ if has("gui_running")
 else
   let g:CSApprox_loaded = 1
 
-  " IndentLine
-  let g:indentLine_enabled = 0
-  let g:indentLine_concealcursor = 0
-  let g:indentLine_char = '┆'
-  let g:indentLine_faster = 1
+  if $COLORTERM == 'gnome-terminal'
+    set term=gnome-256color
+  else
+    if $TERM == 'xterm'
+      set term=xterm-256color
+    endif
+  endif
 
+endif
+
+if &term =~ '256color'
+    set t_ut=
 endif
 
 "" Disable the blinking cursor.
@@ -251,7 +255,6 @@ set modeline
 set modelines=10
 
 set title
-set titleold="Terminal"
 set titlestring=%F
 
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
@@ -566,7 +569,6 @@ let g:airline#extensions#virtualenv#enabled = 1
 " Default highlight is better than polyglot
 let g:polyglot_disabled = ['python']
 let python_highlight_all = 1
-
 
 "*****************************************************************************
 "*****************************************************************************
