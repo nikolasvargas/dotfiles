@@ -63,14 +63,7 @@ if v:version >= 704
 endif
 
 "" Color
-Plug 'crusoexia/vim-monokai'
-Plug 'altercation/vim-colors-solarized'
-Plug 'morhetz/gruvbox'
-Plug 'liuchengxu/space-vim-theme'
-Plug 'nikolasvargas/cobalt.vim'
-Plug 'nikolasvargas/spacemacs-theme'
-Plug 'NLKNguyen/papercolor-theme'
-
+Plug 'flazz/vim-colorschemes'
 "***************************************************************************rr
 "" Custom bundles
 "*****************************************************************************
@@ -188,28 +181,37 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-colorscheme gruvbox
+
+"*********************
+" LIGHT THEMES       *
+"*********************
+"colorscheme ashen
+"colorscheme coda
+"colorscheme codepaper
+"colorscheme colorzone
+"colorscheme kaltex
+"colorscheme mac_classic
+
+"*********************
+" DARK THEMES        *
+"*********************
+"colorscheme abra
+"colorscheme af
+"colorscheme base
+"colorscheme blazer
+"colorscheme darkrobot
+"colorscheme desertink
+colorscheme chroma
+"colorscheme cobalt
+"colorscheme cobalt2
+"colorscheme contrastneed
+"colorscheme cyberpunk
+"colorscheme django
+"colorscheme doriath
+"colorscheme jellybeans
+"colorscheme znake
 
 let no_buffers_menu=1
-
-if g:colors_name == 'spacemacs-theme' || g:colors_name == 'space-vim-theme'
-    let g:airline_theme = 'base16_spacemacs'
-elseif g:colors_name == 'gruvbox'
-    let g:gruvbox_contrast_light = 'soft'
-    set background=light
-    let g:airline_theme = 'gruvbox'
-elseif g:colors_name == 'solarized'
-    set background=light
-    let g:airline_theme = 'solarized'
-    let g:airline_solarized_bg = 'light'
-elseif g:colors_name == 'distinguished'
-    let g:airline_theme = 'badcat'
-elseif g:colors_name == 'cobalt'
-    let g:airline_theme = 'papercolor'
-elseif g:colors_name == 'PaperColor'
-    set background=light
-    let g:airline_theme = 'papercolor'
-endif
 
 if exists('$TERM_PROGRAM')
   if($TERM_PROGRAM == 'vscode')
