@@ -63,7 +63,7 @@ if v:version >= 704
 endif
 
 "" Color
-Plug 'flazz/vim-colorschemes'
+Plug 'nikolasvargas/vim-colorschemes'
 "***************************************************************************rr
 "" Custom bundles
 "*****************************************************************************
@@ -198,10 +198,10 @@ endif
 "colorscheme abra
 "colorscheme af
 "colorscheme base
-"colorscheme blazer
+colorscheme blazer
 "colorscheme darkrobot
 "colorscheme desertink
-colorscheme chroma
+"colorscheme chroma
 "colorscheme cobalt
 "colorscheme cobalt2
 "colorscheme contrastneed
