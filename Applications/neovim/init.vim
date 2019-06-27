@@ -198,10 +198,10 @@ endif
 "colorscheme abra
 "colorscheme af
 "colorscheme base
-colorscheme blazer
+"colorscheme blazer
 "colorscheme darkrobot
 "colorscheme desertink
-"colorscheme chroma
+colorscheme chroma
 "colorscheme cobalt
 "colorscheme cobalt2
 "colorscheme contrastneed
@@ -212,12 +212,6 @@ colorscheme blazer
 "colorscheme znake
 
 let no_buffers_menu=1
-
-if exists('$TERM_PROGRAM')
-  if($TERM_PROGRAM == 'vscode')
-      colorscheme default
-  endif
-endif
 
 set mousemodel=popup
 set guioptions=egmrti
@@ -271,7 +265,8 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-"let g:airline_theme = 'random'
+let g:airline_theme = 'minimalist'
+" let g:airline_theme = 'peaksea'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
