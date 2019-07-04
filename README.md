@@ -1,9 +1,6 @@
 # dotfiles
 
-:construction:  WIP forever
+:construction: :construction: :construction: :construction: :construction: :construction: :construction: :construction: :construction: :construction: :construction: :construction:
 
-## vim/nvim Requirements
+## nvim always
 ---------------
-
-- zsh (https://github.com/robbyrussell/oh-my-zsh)
-- node (https://github.com/nodejs/node)
