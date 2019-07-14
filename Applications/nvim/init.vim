@@ -3,7 +3,7 @@ let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 let g:vim_bootstrap_langs = "html,javascript,python,rust"
 let g:vim_bootstrap_editor = "nvim"        " nvim or vim
 
-" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -175,6 +175,7 @@ set ruler
 set number relativenumber
 set numberwidth=6
 set nowrap
+set background=dark
 
 set t_Co=256
 if (has("termguicolors"))
@@ -197,18 +198,11 @@ endif
 "*********************
 "colorscheme abra
 "colorscheme af
-"colorscheme base
+colorscheme base
 "colorscheme blazer
-"colorscheme darkrobot
-"colorscheme desertink
-colorscheme chroma
+"colorscheme chroma
 "colorscheme cobalt
-"colorscheme cobalt2
 "colorscheme contrastneed
-"colorscheme cyberpunk
-"colorscheme django
-"colorscheme doriath
-"colorscheme jellybeans
 "colorscheme znake
 
 let no_buffers_menu=1
@@ -265,7 +259,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'minimalist'
+let g:airline_theme = 'base16'
 " let g:airline_theme = 'peaksea'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
@@ -305,7 +299,7 @@ nnoremap <silent> <F3> :NERDTreeToggle<CR>
 nnoremap <silent> <leader>f :Rgrep<CR>
 let Grep_Default_Options = '-iR'
 let Grep_Skip_Files = '*.log *.db'
-let Grep_Skip_Dirs = '.git .tox node_modules venv env'
+let Grep_Skip_Dirs = '.git node_modules venv env .tox'
 
 " vimshell.vim
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
@@ -549,7 +543,7 @@ let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "0"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
-let g:jedi#use_splits_not_buffers = "right"
+let g:jedi#use_splits_not_buffers = "winwidth"
 
 "" Remove preview docstring window on top
 """ https://github.com/davidhalter/jedi-vim/blob/master/doc/jedi-vim.txti
