@@ -173,7 +173,7 @@ let g:session_command_aliases = 1
 syntax on
 set ruler
 set number relativenumber
-set numberwidth=6
+set numberwidth=5
 set nowrap
 set background=dark
 
@@ -188,7 +188,6 @@ endif
 "*********************
 "colorscheme ashen
 "colorscheme coda
-"colorscheme codepaper
 "colorscheme colorzone
 "colorscheme kaltex
 "colorscheme mac_classic
@@ -198,9 +197,9 @@ endif
 "*********************
 "colorscheme abra
 "colorscheme af
-colorscheme base
+"colorscheme base
 "colorscheme blazer
-"colorscheme chroma
+colorscheme chroma
 "colorscheme cobalt
 "colorscheme contrastneed
 "colorscheme znake
@@ -259,12 +258,12 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'base16'
-" let g:airline_theme = 'peaksea'
+let g:airline_theme = 'hybrid'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_skip_empty_sections = 1
+let g:airline_powerline_fonts = 1
 
 "*****************************************************************************
 "" Abbreviations
@@ -543,7 +542,7 @@ let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "0"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
-let g:jedi#use_splits_not_buffers = "winwidth"
+let g:jedi#use_splits_not_buffers = "right"
 
 "" Remove preview docstring window on top
 """ https://github.com/davidhalter/jedi-vim/blob/master/doc/jedi-vim.txti
@@ -578,33 +577,33 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
-if !exists('g:airline_powerline_fonts')
-  let g:airline#extensions#tabline#left_sep = ' '
-  let g:airline#extensions#tabline#left_alt_sep = '|'
-  let g:airline_left_sep          = '▶'
-  let g:airline_left_alt_sep      = '»'
-  let g:airline_right_sep         = '◀'
-  let g:airline_right_alt_sep     = '«'
-  let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
-  let g:airline#extensions#readonly#symbol   = '⊘'
-  let g:airline#extensions#linecolumn#prefix = '¶'
-  let g:airline#extensions#paste#symbol      = 'ρ'
-  let g:airline_symbols.linenr    = '␊'
-  let g:airline_symbols.branch    = '⎇'
-  let g:airline_symbols.paste     = 'ρ'
-  let g:airline_symbols.paste     = 'Þ'
-  let g:airline_symbols.paste     = '∥'
-  let g:airline_symbols.whitespace = 'Ξ'
-else
-  let g:airline#extensions#tabline#left_sep = ''
-  let g:airline#extensions#tabline#left_alt_sep = ''
+" if !exists('g:airline_powerline_fonts')
+"   let g:airline#extensions#tabline#left_sep = ' '
+"   let g:airline#extensions#tabline#left_alt_sep = '|'
+"   let g:airline_left_sep          = '▶'
+"   let g:airline_left_alt_sep      = '»'
+"   let g:airline_right_sep         = '◀'
+"   let g:airline_right_alt_sep     = '«'
+"   let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
+"   let g:airline#extensions#readonly#symbol   = '⊘'
+"   let g:airline#extensions#linecolumn#prefix = '¶'
+"   let g:airline#extensions#paste#symbol      = 'ρ'
+"   let g:airline_symbols.linenr    = '␊'
+"   let g:airline_symbols.branch    = '⎇'
+"   let g:airline_symbols.paste     = 'ρ'
+"   let g:airline_symbols.paste     = 'Þ'
+"   let g:airline_symbols.paste     = '∥'
+"   let g:airline_symbols.whitespace = 'Ξ'
+" else
+"   let g:airline#extensions#tabline#left_sep = ''
+"   let g:airline#extensions#tabline#left_alt_sep = ''
 
-  " powerline symbols
-  let g:airline_left_sep = ''
-  let g:airline_left_alt_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_right_alt_sep = ''
-  let g:airline_symbols.branch = ''
-  let g:airline_symbols.readonly = ''
-  let g:airline_symbols.linenr = ''
-endif
+"   " powerline symbols
+"   let g:airline_left_sep = ''
+"   let g:airline_left_alt_sep = ''
+"   let g:airline_right_sep = ''
+"   let g:airline_right_alt_sep = ''
+"   let g:airline_symbols.branch = ''
+"   let g:airline_symbols.readonly = ''
+"   let g:airline_symbols.linenr = ''
+" endif
