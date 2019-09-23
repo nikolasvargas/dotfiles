@@ -25,7 +25,6 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 Plug 'scrooloose/nerdtree' "nerdtree is awesome
 Plug 'tpope/vim-commentary' "visual select and comment stuff out
 Plug 'tpope/vim-fugitive' "best Git wrapper of all time
-Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline' "improved statusline
 Plug 'vim-airline/vim-airline-themes' "improved status line themes
 Plug 'vim-scripts/grep.vim' "<leader> + f for use and grep whatever.
@@ -61,7 +60,7 @@ if v:version >= 704
 endif
 
 "" Color
-Plug 'nikolasvargas/vim-colorschemes'
+Plug 'lifepillar/vim-solarized8'
 "***************************************************************************rr
 "" Custom bundles
 "*****************************************************************************
@@ -166,65 +165,25 @@ let g:session_command_aliases = 1
 "*****************************************************************************
 syntax on
 set ruler
-set number relativenumber
-set numberwidth=5
+set number
+set numberwidth=4
 set nowrap
 set background=dark
 
 set t_Co=256
+set t_ut=
+
 if (has("termguicolors"))
     set termguicolors
 endif
 
-
-"*********************
-" LIGHT THEMES       *
-"*********************
-"colorscheme ashen
-"colorscheme coda
-"colorscheme colorzone
-"colorscheme kaltex
-"colorscheme mac_classic
-
-"*********************
-" DARK THEMES        *
-"*********************
-"colorscheme abra
-"colorscheme af
-"colorscheme base
-"colorscheme blazer
-colorscheme chroma
-"colorscheme cobalt
-"colorscheme contrastneed
-"colorscheme znake
+colorscheme solarized8_high
 
 let no_buffers_menu=1
 
 set mousemodel=popup
 set guioptions=egmrti
-set gfn=Monospace\ 10
-
-if has("gui_running")
-  if has("gui_mac") || has("gui_macvim")
-    set guifont=Menlo:h12
-    set transparency=7
-  endif
-else
-  let g:CSApprox_loaded = 1
-
-  if $COLORTERM == 'gnome-terminal'
-    set term=gnome-256color
-  else
-    if $TERM == 'xterm'
-      set term=xterm-256color
-    endif
-  endif
-
-endif
-
-if &term =~ '256color'
-    set t_ut=
-endif
+" set gfn=Monospace\ 10
 
 "" Disable the blinking cursor.
 set gcr=a:blinkon0
@@ -252,7 +211,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'hybrid'
+let g:airline_theme = 'solarized'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
