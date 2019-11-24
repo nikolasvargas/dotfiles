@@ -1,6 +1,6 @@
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
-let g:vim_bootstrap_langs = "html,javascript,python,rust"
+let g:vim_bootstrap_langs = "html,javascript,python,rust,scala"
 let g:vim_bootstrap_editor = "nvim"        " nvim or vim
 
 if !filereadable(vimplug_exists)
@@ -60,22 +60,25 @@ if v:version >= 704
 endif
 
 "" Color
-Plug 'lifepillar/vim-solarized8'
+Plug 'morhetz/gruvbox'
+Plug 'jaredgorski/spacecamp'
 "***************************************************************************rr
 "" Custom bundles
 "*****************************************************************************
-" html
+" EditorConfig
+Plug 'editorconfig/editorconfig-vim' "for respect .editorconfig rules
+
 "" HTML Bundle
 Plug 'hail2u/vim-css3-syntax'
 Plug 'nikolasvargas/vim-coloresque'
 Plug 'tpope/vim-haml'
 Plug 'mattn/emmet-vim'
 
-" javascript
 "" Javascript Bundle
 Plug 'jelera/vim-javascript-syntax'
 Plug 'mxw/vim-jsx'
 Plug 'ternjs/tern_for_vim'
+
 "" Json Bundle
 Plug 'elzr/vim-json'
 
@@ -84,15 +87,15 @@ Plug 'elzr/vim-json'
 Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
-" rust
+" Rust
 " Vim racer
 Plug 'racer-rust/vim-racer'
 
 " Rust.vim
 Plug 'rust-lang/rust.vim'
 
-" EditorConfig
-Plug 'editorconfig/editorconfig-vim' "for respect .editorconfig rules
+" Scala
+Plug 'derekwyatt/vim-scala'
 
 "*****************************************************************************
 "*****************************************************************************
@@ -165,8 +168,6 @@ let g:session_command_aliases = 1
 "*****************************************************************************
 syntax on
 set ruler
-set number
-set numberwidth=4
 set nowrap
 set background=dark
 
@@ -177,7 +178,9 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-colorscheme solarized8_high
+let g:gruvbox_contrast_light='soft'
+let g:gruvbox_contrast_dark='hard'
+colorscheme spacecamp
 
 let no_buffers_menu=1
 
@@ -199,19 +202,19 @@ set modelines=10
 set title
 set titlestring=%F
 
-set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
+set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-if exists("*fugitive#statusline")
-  set statusline+=%{fugitive#statusline()}
-endif
+" if exists("*fugitive#statusline")
+"   set statusline+=%{fugitive#statusline()}
+" endif
 
 " vim-airline
-let g:airline_theme = 'solarized'
+let g:airline_theme = 'hybrid'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -272,7 +275,7 @@ if !exists('*s:setupWrapping')
   function s:setupWrapping()
     set wrap
     set wm=2
-    set textwidth=0
+    set textwidth=120
   endfunction
 endif
 

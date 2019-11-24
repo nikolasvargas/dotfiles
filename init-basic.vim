@@ -39,10 +39,9 @@ set fileformats=unix,dos,mac
 "" Visual Settings
 syntax on
 set ruler
-set number
-set numberwidth=4
 set nowrap
 set background=dark
+colorscheme koehler
 
 "" Disable the blinking cursor.
 set gcr=a:blinkon0
