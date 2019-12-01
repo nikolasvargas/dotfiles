@@ -54,14 +54,13 @@ if v:version >= 703
   Plug 'Shougo/vimshell.vim' "provide shell snippets help-commands tab when using vimshell
 endif
 
-if v:version >= 704
-  "" Snippets
-  Plug 'SirVer/ultisnips' "provide snippets solution. better with *.py files
-endif
+" if v:version >= 704
+"   "" Snippets
+"   Plug 'SirVer/ultisnips' "provide snippets solution. better with *.py files
+" endif
 
 "" Color
 Plug 'morhetz/gruvbox'
-Plug 'jaredgorski/spacecamp'
 "***************************************************************************rr
 "" Custom bundles
 "*****************************************************************************
@@ -174,13 +173,17 @@ set background=dark
 set t_Co=256
 set t_ut=
 
+set lcs+=space:·
+nmap <F12> :set invlist<CR>
+imap <F12> <ESC>:set invlist<CR>a
+
 if (has("termguicolors"))
     set termguicolors
 endif
 
 let g:gruvbox_contrast_light='soft'
 let g:gruvbox_contrast_dark='hard'
-colorscheme spacecamp
+colorscheme gruvbox
 
 let no_buffers_menu=1
 
