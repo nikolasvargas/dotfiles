@@ -54,13 +54,14 @@ if v:version >= 703
   Plug 'Shougo/vimshell.vim' "provide shell snippets help-commands tab when using vimshell
 endif
 
-" if v:version >= 704
-"   "" Snippets
-"   Plug 'SirVer/ultisnips' "provide snippets solution. better with *.py files
-" endif
+if v:version >= 704
+  "" Snippets
+  Plug 'SirVer/ultisnips' "provide snippets solution. better with *.py files
+endif
 
 "" Color
 Plug 'morhetz/gruvbox'
+Plug 'tomasr/molokai'
 "***************************************************************************rr
 "" Custom bundles
 "*****************************************************************************
@@ -168,22 +169,20 @@ let g:session_command_aliases = 1
 syntax on
 set ruler
 set nowrap
+" set cursorline
 set background=dark
 
 set t_Co=256
 set t_ut=
 
-set lcs+=space:·
-nmap <F12> :set invlist<CR>
-imap <F12> <ESC>:set invlist<CR>a
-
 if (has("termguicolors"))
     set termguicolors
 endif
 
-let g:gruvbox_contrast_light='soft'
+let g:gruvbox_contrast_light='medium'
 let g:gruvbox_contrast_dark='hard'
-colorscheme gruvbox
+" let g:molokai_original=1
+colorscheme molokai
 
 let no_buffers_menu=1
 
@@ -392,6 +391,8 @@ let g:syntastic_style_warning_symbol = '⚠'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_aggregate_errors = 1
 
+noremap <leader>m :SyntasticToggleMode<CR>
+
 " Disable visualbell
 set noerrorbells visualbell t_vb=
 if has('autocmd')
@@ -490,6 +491,9 @@ au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+" Scala
+autocmd Filetype scala setlocal ts=2 sw=2 expandtab
 
 " jedi-vim
 let g:jedi#popup_on_dot = 0
