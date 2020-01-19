@@ -1,0 +1,2 @@
+alias img="sxiv"
+alias i3conf="nvim ~/.config/i3/config"
