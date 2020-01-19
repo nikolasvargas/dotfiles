@@ -1,6 +1,6 @@
 Installation:
 -------------
- -> apt install i3, i3blocks, i3lock
+ -> apt install i3, i3blocks, i3lock, xorg
  -> apt install xfce4-terminal, zsh # basic terminal setup
  -> apt install sxiv, feh # image viewer & background display control
  -> apt install pulseaudio, pulseaudio-utils, pavucontrol # audio control
@@ -9,8 +9,18 @@ Installation:
  -> apt install network-manager # network service manager
  -> apt install thunar # file manager
  -> apt install xfce4-notifyd # Notification service
+ -> apt install neovim git
+ -> apt install firefox
+
+Install whatever login display manager
+--------------------------------------
+ -> apt install slim (does not need any dependency)
 
 Additionally:
 -------------
 enable screen lock script
 chmod +x ~/.config/i3/scripts/lock
+
+virtual machine? Install these additional packages for a better experience
+apt-install virtualbox-dkms virtualbox-guest-dkms virtualbox-guest-x11
+
