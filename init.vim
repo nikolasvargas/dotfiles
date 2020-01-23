@@ -61,7 +61,6 @@ endif
 
 "" Color
 Plug 'morhetz/gruvbox'
-Plug 'tomasr/molokai'
 "***************************************************************************rr
 "" Custom bundles
 "*****************************************************************************
@@ -99,7 +98,7 @@ Plug 'derekwyatt/vim-scala'
 
 "*****************************************************************************
 "*****************************************************************************
-
+"
 "" Include user's extra bundle
 if filereadable(expand("~/.config/nvim/local_bundles.vim"))
   source ~/.config/nvim/local_bundles.vim
@@ -181,8 +180,7 @@ endif
 
 let g:gruvbox_contrast_light='medium'
 let g:gruvbox_contrast_dark='hard'
-" let g:molokai_original=1
-colorscheme molokai
+colorscheme default
 
 let no_buffers_menu=1
 
@@ -216,7 +214,7 @@ nnoremap N Nzzzv
 " endif
 
 " vim-airline
-let g:airline_theme = 'hybrid'
+let g:airline_theme = 'term'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -473,14 +471,13 @@ let g:jsx_ext_required = 1
 augroup vimrc-javascript
   autocmd!
   autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=4
-        \ colorcolumn=79
 augroup END
 
 " python
 " vim-python
 augroup vimrc-python
   autocmd!
-  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 colorcolumn=79
+  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
       \ formatoptions+=croq softtabstop=4
       \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
