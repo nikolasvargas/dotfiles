@@ -115,7 +115,8 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # move workspaces beween screens
-bindsym $mod+Shift+p move workspace to output right
+bindsym $mod+Control+p move workspace to output right
+bindsym $mod+Control+o move workspace to output up
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
