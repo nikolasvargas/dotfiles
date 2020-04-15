@@ -61,6 +61,9 @@ endif
 
 "" Color
 Plug 'morhetz/gruvbox'
+Plug 'sjl/badwolf'
+Plug 'drewtempelmeyer/palenight.vim'
+
 "***************************************************************************rr
 "" Custom bundles
 "*****************************************************************************
@@ -98,8 +101,6 @@ Plug 'derekwyatt/vim-scala'
 
 "*****************************************************************************
 "*****************************************************************************
-"
-"" Include user's extra bundle
 if filereadable(expand("~/.config/nvim/local_bundles.vim"))
   source ~/.config/nvim/local_bundles.vim
 endif
@@ -168,7 +169,8 @@ let g:session_command_aliases = 1
 syntax on
 set ruler
 set nowrap
-" set cursorline
+set number
+set cursorline
 set background=dark
 
 set t_Co=256
@@ -180,7 +182,7 @@ endif
 
 let g:gruvbox_contrast_light='medium'
 let g:gruvbox_contrast_dark='hard'
-colorscheme default
+colorscheme badwolf
 
 let no_buffers_menu=1
 
@@ -214,7 +216,7 @@ nnoremap N Nzzzv
 " endif
 
 " vim-airline
-let g:airline_theme = 'term'
+let g:airline_theme = 'kolor'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -273,7 +275,7 @@ endif
 "*****************************************************************************
 if !exists('*s:setupWrapping')
   function s:setupWrapping()
-    set wrap
+    " set wrap
     set wm=2
     set textwidth=120
   endfunction
@@ -490,20 +492,20 @@ au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " Scala
-autocmd Filetype scala setlocal ts=2 sw=2 expandtab
+autocmd Filetype scala setlocal ts=4 sw=4 expandtab
 
 " jedi-vim
-let g:jedi#popup_on_dot = 0
+let g:jedi#popup_on_dot = 1
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
 let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = "0"
+let g:jedi#show_call_signatures = 1
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
-"let g:jedi#use_splits_not_buffers = "right"
-let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#use_splits_not_buffers = "right"
+" let g:jedi#use_tabs_not_buffers = 1
 
 "" Remove preview docstring window on top
 """ https://github.com/davidhalter/jedi-vim/blob/master/doc/jedi-vim.txti
