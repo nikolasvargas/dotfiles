@@ -170,7 +170,6 @@ syntax on
 set ruler
 set nowrap
 set number
-set cursorline
 set background=dark
 
 set t_Co=256
@@ -237,6 +236,9 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
+
+iabbrev ifmain if __name__ == '__main__':
+iabbrev ifmian if __name__ == '__main__':
 
 "" NERDTree configuration
 let g:NERDTreeChDirMode=2
