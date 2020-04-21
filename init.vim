@@ -25,6 +25,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 Plug 'scrooloose/nerdtree' "nerdtree is awesome
 Plug 'tpope/vim-commentary' "visual select and comment stuff out
 Plug 'tpope/vim-fugitive' "best Git wrapper of all time
+Plug 'tpope/vim-surround' "easily surround strings
 Plug 'vim-airline/vim-airline' "improved statusline
 Plug 'vim-airline/vim-airline-themes' "improved status line themes
 Plug 'vim-scripts/grep.vim' "<leader> + f for use and grep whatever.
@@ -325,6 +326,17 @@ noremap <Leader>v :<C-u>vsplit<CR>
 
 "" Select All
 noremap <C-a> <esc>ggVG<CR>
+
+"" Surround selected word
+"" Use vim-surround plug command ds<char> for remove surround
+xnoremap " <ESC>`>a"<ESC>`<i"<ESC>
+xnoremap ' <ESC>`>a'<ESC>`<i'<ESC>
+xnoremap ( <ESC>`>a)<ESC>`<i(<ESC>
+xnoremap [ <ESC>`>a]<ESC>`<i[<ESC>
+xnoremap <Leader>" <ESC>`>a"<ESC>`<i"<ESC>
+xnoremap <Leader>' <ESC>`>a'<ESC>`<i'<ESC>
+xnoremap <Leader>( <ESC>`>a)<ESC>`<i(<ESC>
+xnoremap <Leader>[ <ESC>`>a]<ESC>`<i[<ESC>
 
 "" Git
 noremap <Leader>ga :Gwrite<CR>
