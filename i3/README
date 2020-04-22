@@ -24,8 +24,8 @@ enable screen lock script:
 -------------------------
 chmod +x ~/.config/i3/scripts/lock
 
-virtual machine? Install these additional packages for a better experience:
----------------------------------------------------------------------------
+virtual machine? Install these additional packages to have a better experience:
+-------------------------------------------------------------------------------
 sudo apt-install virtualbox-dkms virtualbox-guest-dkms virtualbox-guest-x11
 
 install docker (https://docs.docker.com/engine/install/ubuntu/) & enable use without sudo:
