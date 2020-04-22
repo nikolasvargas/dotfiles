@@ -1,26 +1,33 @@
 Installation:
 -------------
- -> apt install i3, i3blocks, i3lock, xorg
- -> apt install xfce4-terminal, zsh # basic terminal setup
- -> apt install sxiv, feh # image viewer & background display control
- -> apt install pulseaudio, pulseaudio-utils, pavucontrol # audio control
- -> apt install scrot, imagemagick, xautolock # screen lock
- -> apt install xfce4-powermanager # for laptop power management
- -> apt install network-manager # network service manager
- -> apt install thunar # file manager
- -> apt install xfce4-notifyd # Notification service
- -> apt install neovim git
- -> apt install firefox
+sudo apt install i3 i3blocks i3lock xorg     # i3 base
+sudo apt install xfce4-terminal curl         # basic terminal setup
+sudo apt install sxiv feh                    # image viewer & background display control
+sudo apt install xfce4-notifyd               # notification service
+sudo apt install network-manager             # network service manager
+sudo apt install xfce4-powermanager acpi     # for laptop power management
+sudo apt install pulseaudio pulseaudio-utils # audio support
+sudo apt install pavucontrol                 # audio control
+sudo apt install scrot imagemagick xautolock # screen lock
+sudo apt install thunar or nautilus          # file manager
+sudo apt install zsh neovim git bat geany    # developer tools
+sudo apt install firefox                     # browser
+sudo apt install gdebi htop                  # operations tools
 
-Install whatever login display manager
---------------------------------------
- -> apt install slim (does not need any dependency)
+Install whatever login display manager:
+---------------------------------------
+sudo apt install slim (does not need any dependency)
 
 Additionally:
 -------------
-enable screen lock script
+enable screen lock script:
+-------------------------
 chmod +x ~/.config/i3/scripts/lock
 
-virtual machine? Install these additional packages for a better experience
-apt-install virtualbox-dkms virtualbox-guest-dkms virtualbox-guest-x11
+virtual machine? Install these additional packages for a better experience:
+---------------------------------------------------------------------------
+sudo apt-install virtualbox-dkms virtualbox-guest-dkms virtualbox-guest-x11
 
+install docker (https://docs.docker.com/engine/install/ubuntu/) & enable use without sudo:
+-----------------------------------------------------------------------------------------
+sudo usermod -aG docker ${USER}               # logout and logon or run su - ${USER}
