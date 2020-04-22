@@ -112,3 +112,20 @@ noremap <C-h> <C-w>h
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
 vmap > >gv
+
+"" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+"" enter jj for Escape Insert Mode
+imap jj <Esc>
+
+"" Surround selected word
+xnoremap " <ESC>`>a"<ESC>`<i"<ESC>
+xnoremap ' <ESC>`>a'<ESC>`<i'<ESC>
+xnoremap ( <ESC>`>a)<ESC>`<i(<ESC>
+xnoremap [ <ESC>`>a]<ESC>`<i[<ESC>
+xnoremap <Leader>" <ESC>`>a"<ESC>`<i"<ESC>
+xnoremap <Leader>' <ESC>`>a'<ESC>`<i'<ESC>
+xnoremap <Leader>( <ESC>`>a)<ESC>`<i(<ESC>
+xnoremap <Leader>[ <ESC>`>a]<ESC>`<i[<ESC>
