@@ -43,6 +43,8 @@ alias xto="xrandr --auto"
 alias xright="xrandr --output eDP-1 --left-of HDMI-1"
 alias xleft="xrandr --output eDP-1 --right-of HDMI-1"
 alias xabove="xrandr --output HDMI-1 --above eDP-1"
+alias rotateleft="xrandr --output HDMI-1 --rotate left"
+alias rotateright="xrandr --output HDMI-1 --rotate right"
 #####################################################
 #To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
