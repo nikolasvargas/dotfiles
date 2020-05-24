@@ -41,7 +41,23 @@ syntax on
 set ruler
 set nowrap
 set background=dark
+set t_Co=256
+set t_ut=
+
+if (has("nvim"))
+    let $NVIM_TUI_ENABLE_TRE_COLOR=1
+endif
+
+if (has("termguicolors"))
+    set termguicolors
+endif
+
 colorscheme koehler
+
+let no_buffers_menu=1
+
+set mousemodel=popup
+set guioptions=egmrti
 
 "" Disable the blinking cursor.
 set gcr=a:blinkon0
@@ -70,7 +86,42 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
 
+iabbrev ifmain if __name__ == '__main__':
+iabbrev ifmian if __name__ == '__main__':
+
+"*****************************************************************************
+"" Autocmd Rules
+"*****************************************************************************
+"" The PC is fast enough, do syntax highlight syncing from start unless 200 lines
+augroup vimrc-sync-fromstart
+  autocmd!
+  autocmd BufEnter * :syntax sync maxlines=200
+augroup END
+
+"" Remember cursor position
+augroup vimrc-remember-cursor-position
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
+"" txt
+augroup vimrc-wrapping
+  autocmd!
+  autocmd BufRead,BufNewFile *.txt call s:setupWrapping()
+augroup END
+
+"" make/cmake
+augroup vimrc-make-cmake
+  autocmd!
+  autocmd FileType make setlocal noexpandtab
+  autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
+augroup END
+
+set autoread
+
+"*****************************************************************************
 "" Mappings
+"*****************************************************************************
 "" Split
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
@@ -129,3 +180,13 @@ xnoremap <Leader>" <ESC>`>a"<ESC>`<i"<ESC>
 xnoremap <Leader>' <ESC>`>a'<ESC>`<i'<ESC>
 xnoremap <Leader>( <ESC>`>a)<ESC>`<i(<ESC>
 xnoremap <Leader>[ <ESC>`>a]<ESC>`<i[<ESC>
+
+"" Move to beginning/end of line
+noremap H ^
+noremap L $
+
+cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+
+"" :w!! to save as sudo
+ca w!! w !sudo tee >/dev/null "%"

@@ -170,19 +170,24 @@ let g:session_command_aliases = 1
 syntax on
 set ruler
 set nowrap
-set number
+" set number
+" set cursorline
 set background=dark
 
 set t_Co=256
 set t_ut=
 
+if (has("nvim"))
+    let $NVIM_TUI_ENABLE_TRE_COLOR=1
+endif
+
 if (has("termguicolors"))
     set termguicolors
 endif
 
-let g:gruvbox_contrast_light='medium'
+let g:gruvbox_contrast_light='soft'
 let g:gruvbox_contrast_dark='hard'
-colorscheme badwolf
+colorscheme goodwolf
 
 let no_buffers_menu=1
 
@@ -216,7 +221,7 @@ nnoremap N Nzzzv
 " endif
 
 " vim-airline
-let g:airline_theme = 'kolor'
+let g:airline_theme = 'hybrid'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -243,14 +248,14 @@ iabbrev ifmian if __name__ == '__main__':
 
 "" NERDTree configuration
 let g:NERDTreeChDirMode=2
-let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', 'venv']
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
-let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent='<RightMouse>'
 let g:NERDTreeWinSize=30
 let g:NERDTreeWinPos='left'
 let g:NERDTreeShowHidden=1
+let g:NERDTreeMinimalUI=1
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
@@ -280,7 +285,7 @@ if !exists('*s:setupWrapping')
   function s:setupWrapping()
     " set wrap
     set wm=2
-    set textwidth=120
+    set textwidth=119
   endfunction
 endif
 
@@ -326,6 +331,10 @@ noremap <Leader>v :<C-u>vsplit<CR>
 
 "" Select All
 noremap <C-a> <esc>ggVG<CR>
+
+"" Move to beginning/end of line
+noremap H ^
+noremap L $
 
 "" Surround selected word
 "" Use vim-surround plug command ds<char> for remove surround
@@ -457,6 +466,9 @@ vnoremap K :m '<-2<CR>gv=gv
 "" Open current line on GitHub
 nnoremap <Leader>o :.Gbrowse<CR>
 
+"" :w!! to save as sudo
+ca w!! w !sudo tee >/dev/null "%"
+
 "*****************************************************************************
 "" Custom configs
 "*****************************************************************************
@@ -505,6 +517,8 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
+let g:racer_cmd = "/home/nikolas/.cargo/bin/cargo"
+
 " Scala
 autocmd Filetype scala setlocal ts=4 sw=4 expandtab
 
@@ -518,7 +532,7 @@ let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = 1
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
-let g:jedi#use_splits_not_buffers = "right"
+" let g:jedi#use_splits_not_buffers = "right"
 " let g:jedi#use_tabs_not_buffers = 1
 
 "" Remove preview docstring window on top
@@ -527,7 +541,7 @@ let g:jedi#use_splits_not_buffers = "right"
 set completeopt-=preview
 
 " syntastic
-let g:syntastic_python_checkers=['python3', 'flake8']
+let g:syntastic_python_checkers=['flake8']
 
 " vim-airline extension for virtualenv
 let g:airline#extensions#virtualenv#enabled = 1
