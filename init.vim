@@ -26,6 +26,7 @@ Plug 'scrooloose/nerdtree' "nerdtree is awesome
 Plug 'tpope/vim-commentary' "visual select and comment stuff out
 Plug 'tpope/vim-fugitive' "best Git wrapper of all time
 Plug 'tpope/vim-surround' "easily surround strings
+Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline' "improved statusline
 Plug 'vim-airline/vim-airline-themes' "improved status line themes
 Plug 'vim-scripts/grep.vim' "<leader> + f for use and grep whatever.
@@ -63,7 +64,6 @@ endif
 "" Color
 Plug 'morhetz/gruvbox'
 Plug 'sjl/badwolf'
-Plug 'drewtempelmeyer/palenight.vim'
 
 "***************************************************************************rr
 "" Custom bundles
@@ -171,7 +171,7 @@ syntax on
 set ruler
 set nowrap
 " set number
-" set cursorline
+set cursorline
 set background=dark
 
 set t_Co=256
@@ -469,6 +469,8 @@ nnoremap <Leader>o :.Gbrowse<CR>
 "" :w!! to save as sudo
 ca w!! w !sudo tee >/dev/null "%"
 
+"" GitGutterToggle
+noremap <Leader>ç :GitGutterToggle<CR>
 "*****************************************************************************
 "" Custom configs
 "*****************************************************************************
@@ -550,6 +552,14 @@ let g:airline#extensions#virtualenv#enabled = 1
 " Default highlight is better than polyglot
 let g:polyglot_disabled = ['python']
 let python_highlight_all = 1
+
+" GitGutter
+" Start disabled
+let g:gitgutter_enabled = 0
+let g:gitgutter_set_sign_backgrounds = 1
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 "*****************************************************************************
 "*****************************************************************************
