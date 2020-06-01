@@ -174,16 +174,16 @@ set nowrap
 set cursorline
 set background=dark
 
-set t_Co=256
-set t_ut=
+" set t_Co=256
+" set t_ut=
 
 if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRE_COLOR=1
 endif
 
-if (has("termguicolors"))
-    set termguicolors
-endif
+" if (has("termguicolors"))
+"     set termguicolors
+" endif
 
 let g:gruvbox_contrast_light='soft'
 let g:gruvbox_contrast_dark='hard'
@@ -193,7 +193,6 @@ let no_buffers_menu=1
 
 set mousemodel=popup
 set guioptions=egmrti
-" set gfn=Monospace\ 10
 
 "" Disable the blinking cursor.
 set gcr=a:blinkon0
@@ -216,17 +215,18 @@ set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-" if exists("*fugitive#statusline")
-"   set statusline+=%{fugitive#statusline()}
-" endif
-
 " vim-airline
 let g:airline_theme = 'hybrid'
+" line number, column number
+let g:airline_section_z = "line %l%#__restore__#%#__accent_bold#/%L %{g:airline_symbols.maxlinenr}%#__restore__#col %1v"
+" Do not draw separators for empty sections
+let g:airline_skip_empty_sections = 1
+
+" vim-airline-extensions
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_skip_empty_sections = 1
-let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#whitespace#enabled = 0
 
 "*****************************************************************************
 "" Abbreviations
@@ -572,8 +572,13 @@ endif
 "*****************************************************************************
 "" Convenience variables
 "*****************************************************************************
-
 " vim-airline
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
+
+" unicode symbols (and some resets also)
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.branch = '⎇ '
