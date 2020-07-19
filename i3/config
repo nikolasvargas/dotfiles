@@ -164,8 +164,11 @@ bar {
 ## BR ABTN2 Keyboard layout
 exec_always "setxkbmap -model abnt2 -layout br -variant abnt2"
 
-#lock system
+# lock system
 bindsym $sup+Control+q exec ~/.config/i3/scripts/lock
+
+# restore display on laptop screen
+bindsym $sup+m exec xrandr --auto
 
 # Lock keys
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
@@ -177,7 +180,7 @@ bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
 bindsym XF86AudioMute exec "pactl set-sink-mute 0 toggle"
 
 # wallpaper
-exec_always feh --bg-scale ~/.config/i3/bg.jpg
+exec_always feh --bg-scale ~/.config/i3/background.jpg
 
 # Network Manager applet
 exec --no-startup-id nm-applet

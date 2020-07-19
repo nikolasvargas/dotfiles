@@ -3,11 +3,7 @@ export PATH=$JAVA_HOME/bin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin:$PATH
 export ZSH="$HOME/.oh-my-zsh"
 
-if [ -d "$ZSH/custom/themes/powerlevel10k" ]; then
-    ZSH_THEME="powerlevel10k/powerlevel10k"
-else
-    ZSH_THEME="minimal"
-fi
+ZSH_THEME="minimal"
 
 plugins=(git)
 
@@ -29,22 +25,37 @@ fi
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias vconf="nvim ~/.config/nvim/init.vim"
-alias dps="docker ps --format \"table {{.ID}}\\t{{.Names}}\\t{{.Command}}\\t{{.Status}}\\t{{.Ports}}\""
+alias batconf="nvim /home/nikolas/.config/bat/config"
+# alias dps="docker ps --format \"table {{.ID}}\\t{{.Names}}\\t{{.Command}}\\t{{.Status}}\\t{{.Ports}}\""
+alias dps="docker ps --format \"table {{.ID}}\\t{{.Names}}\\t{{.Status}}\\t{{.Ports}}\""
 alias dco="docker-compose"
 alias dlf="docker logs -f"
 alias deit="docker exec -it"
 alias grin="grep -Rin"
+alias sv="source ./venv/bin/activate"
 alias v="nvim"
 alias vim="nvim"
+alias weather="curl wttr.in"
+
+########## Django ###########
+#####################################################
+alias pms="python manage.py shell -i ipython"
+alias mkm="python manage.py makemigrations"
+alias mm="python manage.py migrate"
+alias pmr="python manage.py runserver"
+alias pmt="python manage.py test -p '*test.py' -v 2"
+
+########## httpie ###########
+#####################################################
+alias hg="http -f GET"
+alias hp="http -f POST"
 
 ########## DISPLAY ###########
 #####################################################
 alias xto="xrandr --auto"
+alias xh="xrandr --output HDMI-1"
 alias xright="xrandr --output eDP-1 --left-of HDMI-1"
 alias xleft="xrandr --output eDP-1 --right-of HDMI-1"
 alias xabove="xrandr --output HDMI-1 --above eDP-1"
 alias rotateleft="xrandr --output HDMI-1 --rotate left"
 alias rotateright="xrandr --output HDMI-1 --rotate right"
-#####################################################
-#To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

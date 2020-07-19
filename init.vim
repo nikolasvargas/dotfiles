@@ -22,11 +22,10 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-Plug 'scrooloose/nerdtree' "nerdtree is awesome
 Plug 'tpope/vim-commentary' "visual select and comment stuff out
 Plug 'tpope/vim-fugitive' "best Git wrapper of all time
 Plug 'tpope/vim-surround' "easily surround strings
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter' "show git diff on the numbers column
 Plug 'vim-airline/vim-airline' "improved statusline
 Plug 'vim-airline/vim-airline-themes' "improved status line themes
 Plug 'vim-scripts/grep.vim' "<leader> + f for use and grep whatever.
@@ -62,9 +61,8 @@ if v:version >= 704
 endif
 
 "" Color
-Plug 'morhetz/gruvbox'
 Plug 'sjl/badwolf'
-
+Plug 'liuchengxu/space-vim-dark'
 "***************************************************************************rr
 "" Custom bundles
 "*****************************************************************************
@@ -170,24 +168,27 @@ let g:session_command_aliases = 1
 syntax on
 set ruler
 set nowrap
-" set number
-set cursorline
 set background=dark
 
-" set t_Co=256
-" set t_ut=
+set t_Co=256
+set t_ut=
 
 if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRE_COLOR=1
 endif
 
-" if (has("termguicolors"))
-"     set termguicolors
-" endif
+if (has("termguicolors"))
+    set termguicolors
+endif
 
-let g:gruvbox_contrast_light='soft'
-let g:gruvbox_contrast_dark='hard'
-colorscheme goodwolf
+colorscheme space-vim-dark
+
+if g:colors_name == 'space-vim-dark'
+    "" SPACE VIM CONFIG
+    hi Normal     ctermbg=NONE guibg=NONE
+    hi LineNr     ctermbg=NONE guibg=NONE
+    hi SignColumn ctermbg=NONE guibg=NONE
+endif
 
 let no_buffers_menu=1
 
@@ -216,7 +217,7 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " vim-airline
-let g:airline_theme = 'hybrid'
+let g:airline_theme = 'minimalist'
 " line number, column number
 let g:airline_section_z = "line %l%#__restore__#%#__accent_bold#/%L %{g:airline_symbols.maxlinenr}%#__restore__#col %1v"
 " Do not draw separators for empty sections
@@ -245,20 +246,6 @@ cnoreabbrev Qall qall
 
 iabbrev ifmain if __name__ == '__main__':
 iabbrev ifmian if __name__ == '__main__':
-
-"" NERDTree configuration
-let g:NERDTreeChDirMode=2
-let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', 'venv']
-let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-let g:NERDTreeShowBookmarks=1
-let g:NERDTreeMapOpenInTabSilent='<RightMouse>'
-let g:NERDTreeWinSize=30
-let g:NERDTreeWinPos='left'
-let g:NERDTreeShowHidden=1
-let g:NERDTreeMinimalUI=1
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-nnoremap <silent> <F2> :NERDTreeFind<CR>
-nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
@@ -531,7 +518,7 @@ let g:jedi#goto_definitions_command = "<leader>d"
 let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = 1
+let g:jedi#show_call_signatures = 0
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
 " let g:jedi#use_splits_not_buffers = "right"
