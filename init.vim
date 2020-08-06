@@ -62,7 +62,7 @@ endif
 
 "" Color
 Plug 'sjl/badwolf'
-Plug 'liuchengxu/space-vim-dark'
+Plug 'tomasiser/vim-code-dark'
 "***************************************************************************rr
 "" Custom bundles
 "*****************************************************************************
@@ -93,7 +93,7 @@ Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 Plug 'racer-rust/vim-racer'
 
 " Rust.vim
-Plug 'rust-lang/rust.vim'
+" Plug 'rust-lang/rust.vim'
 
 " Scala
 Plug 'derekwyatt/vim-scala'
@@ -168,7 +168,7 @@ let g:session_command_aliases = 1
 syntax on
 set ruler
 set nowrap
-set background=dark
+set nu
 
 set t_Co=256
 set t_ut=
@@ -181,14 +181,24 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-colorscheme space-vim-dark
-
-if g:colors_name == 'space-vim-dark'
-    "" SPACE VIM CONFIG
+let hr = (strftime('%H'))
+if hr >= 18
+    set background=dark
+    colorscheme codedark
+    hi Normal     ctermbg=NONE guibg=NONE
+    hi LineNr     ctermbg=NONE guibg=NONE
+    hi SignColumn ctermbg=NONE guibg=NONE
+elseif hr >= 8
+    set background=light
+    colorscheme shirotelin
+elseif hr >= 0
+    set background=dark
+    colorscheme monokai
     hi Normal     ctermbg=NONE guibg=NONE
     hi LineNr     ctermbg=NONE guibg=NONE
     hi SignColumn ctermbg=NONE guibg=NONE
 endif
+
 
 let no_buffers_menu=1
 
@@ -568,4 +578,4 @@ endif
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.branch = '⎇ '
+let g:airline_symbols.branch = ''
