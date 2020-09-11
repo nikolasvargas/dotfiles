@@ -40,7 +40,8 @@ set fileformats=unix,dos,mac
 syntax on
 set ruler
 set nowrap
-set background=dark
+set nu
+
 set t_Co=256
 set t_ut=
 
@@ -52,7 +53,25 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-colorscheme koehler
+" let hr = (strftime('%H'))
+" if hr >= 18
+"     set background=dark
+"     colorscheme goodwolf
+" elseif hr >= 8
+"     set background=light
+"     colorscheme direwolf
+"     hi Normal     ctermbg=NONE guibg=NONE
+"     hi LineNr     ctermbg=NONE guibg=NONE
+"     hi SignColumn ctermbg=NONE guibg=NONE
+" elseif hr >= 0
+"     set background=dark
+"     colorscheme goodwolf
+" endif
+
+colorscheme direwolf
+hi Normal     ctermbg=NONE guibg=NONE
+hi LineNr     ctermbg=NONE guibg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
 
 let no_buffers_menu=1
 
@@ -186,7 +205,4 @@ noremap H ^
 noremap L $
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <silent> <leader>b :Buffers<CR>
-
-"" :w!! to save as sudo
-ca w!! w !sudo tee >/dev/null "%"
+nnoremap <silent> <leader>b :buffers<CR>

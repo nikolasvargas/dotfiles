@@ -62,7 +62,6 @@ endif
 
 "" Color
 Plug 'sjl/badwolf'
-Plug 'tomasiser/vim-code-dark'
 "***************************************************************************rr
 "" Custom bundles
 "*****************************************************************************
@@ -181,24 +180,25 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-let hr = (strftime('%H'))
-if hr >= 18
-    set background=dark
-    colorscheme codedark
-    hi Normal     ctermbg=NONE guibg=NONE
-    hi LineNr     ctermbg=NONE guibg=NONE
-    hi SignColumn ctermbg=NONE guibg=NONE
-elseif hr >= 8
-    set background=light
-    colorscheme shirotelin
-elseif hr >= 0
-    set background=dark
-    colorscheme monokai
-    hi Normal     ctermbg=NONE guibg=NONE
-    hi LineNr     ctermbg=NONE guibg=NONE
-    hi SignColumn ctermbg=NONE guibg=NONE
-endif
+" let hr = (strftime('%H'))
+" if hr >= 18
+"     set background=dark
+"     colorscheme goodwolf
+" elseif hr >= 8
+"     set background=light
+"     colorscheme direwolf
+"     hi Normal     ctermbg=NONE guibg=NONE
+"     hi LineNr     ctermbg=NONE guibg=NONE
+"     hi SignColumn ctermbg=NONE guibg=NONE
+" elseif hr >= 0
+"     set background=dark
+"     colorscheme goodwolf
+" endif
 
+colorscheme direwolf
+hi Normal     ctermbg=NONE guibg=NONE
+hi LineNr     ctermbg=NONE guibg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
 
 let no_buffers_menu=1
 
@@ -227,7 +227,8 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " vim-airline
-let g:airline_theme = 'minimalist'
+" let g:airline_theme = 'minimalist'
+let g:airline_theme = 'silver'
 " line number, column number
 let g:airline_section_z = "line %l%#__restore__#%#__accent_bold#/%L %{g:airline_symbols.maxlinenr}%#__restore__#col %1v"
 " Do not draw separators for empty sections
