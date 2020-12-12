@@ -22,6 +22,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
+Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary' "visual select and comment stuff out
 Plug 'tpope/vim-fugitive' "best Git wrapper of all time
 Plug 'tpope/vim-surround' "easily surround strings
@@ -60,8 +61,6 @@ if v:version >= 704
   Plug 'SirVer/ultisnips' "provide snippets solution. better with *.py files
 endif
 
-"" Color
-Plug 'sjl/badwolf'
 "***************************************************************************rr
 "" Custom bundles
 "*****************************************************************************
@@ -180,25 +179,11 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-" let hr = (strftime('%H'))
-" if hr >= 18
-"     set background=dark
-"     colorscheme goodwolf
-" elseif hr >= 8
-"     set background=light
-"     colorscheme direwolf
-"     hi Normal     ctermbg=NONE guibg=NONE
-"     hi LineNr     ctermbg=NONE guibg=NONE
-"     hi SignColumn ctermbg=NONE guibg=NONE
-" elseif hr >= 0
-"     set background=dark
-"     colorscheme goodwolf
-" endif
+colorscheme cobalt
 
-colorscheme direwolf
-hi Normal     ctermbg=NONE guibg=NONE
-hi LineNr     ctermbg=NONE guibg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE
+" hi Normal     ctermbg=NONE guibg=NONE
+" hi LineNr     ctermbg=NONE guibg=NONE
+" hi SignColumn ctermbg=NONE guibg=NONE
 
 let no_buffers_menu=1
 
@@ -228,7 +213,7 @@ nnoremap N Nzzzv
 
 " vim-airline
 " let g:airline_theme = 'minimalist'
-let g:airline_theme = 'silver'
+let g:airline_theme = 'kolor'
 " line number, column number
 let g:airline_section_z = "line %l%#__restore__#%#__accent_bold#/%L %{g:airline_symbols.maxlinenr}%#__restore__#col %1v"
 " Do not draw separators for empty sections
@@ -237,8 +222,8 @@ let g:airline_skip_empty_sections = 1
 " vim-airline-extensions
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 0
-let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#whitespace#enabled = 1
 
 "*****************************************************************************
 "" Abbreviations
@@ -378,11 +363,11 @@ noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 "" fzf.vim
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc
-let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'venv/**' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 
 " The Silver Searcher
 if executable('ag')
-  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g -l""'
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
@@ -558,6 +543,20 @@ let g:gitgutter_set_sign_backgrounds = 1
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+
+"" NERDTree configuration
+let g:NERDTreeChDirMode=2
+let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', 'venv']
+let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowBookmarks=1
+" let g:nerdtree_tabs_focus_on_files=1
+let g:NERDTreeMapOpenInTabSilent='<RightMouse>'
+let g:NERDTreeWinSize=30
+let g:NERDTreeWinPos='left'
+let g:NERDTreeShowHidden=1
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+nnoremap <silent> <F2> :NERDTreeFind<CR>
+nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 "*****************************************************************************
 "*****************************************************************************
