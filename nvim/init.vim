@@ -35,7 +35,9 @@ Plug 'bronson/vim-trailing-whitespace' "FixWhiteSpace for trainling whitespace!
 Plug 'Raimondi/delimitMate' "provide automatic closing of quotes, parenthesis, brackets, etc...
 Plug 'scrooloose/syntastic' "syntax checking
 Plug 'avelino/vim-bootstrap-updater' "just for update vim-boostrap
+
 Plug 'sheerun/vim-polyglot' "collection of language packs
+
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
@@ -179,8 +181,9 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-colorscheme cobalt
+colorscheme codedark
 
+" hi ColorColumn cterm=none gui=none guibg=none ctermfg=none
 " hi Normal     ctermbg=NONE guibg=NONE
 " hi LineNr     ctermbg=NONE guibg=NONE
 " hi SignColumn ctermbg=NONE guibg=NONE
@@ -212,8 +215,8 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " vim-airline
-" let g:airline_theme = 'minimalist'
-let g:airline_theme = 'kolor'
+" let g:airline_theme = 'kolor'
+let g:airline_theme = 'minimalist'
 " line number, column number
 let g:airline_section_z = "line %l%#__restore__#%#__accent_bold#/%L %{g:airline_symbols.maxlinenr}%#__restore__#col %1v"
 " Do not draw separators for empty sections
@@ -531,11 +534,6 @@ let g:syntastic_python_checkers=['flake8']
 " vim-airline extension for virtualenv
 let g:airline#extensions#virtualenv#enabled = 1
 
-" Syntax highlight
-" Default highlight is better than polyglot
-let g:polyglot_disabled = ['python']
-let python_highlight_all = 1
-
 " GitGutter
 " Start disabled
 let g:gitgutter_enabled = 0
@@ -549,7 +547,6 @@ let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', 'venv']
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
-" let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent='<RightMouse>'
 let g:NERDTreeWinSize=30
 let g:NERDTreeWinPos='left'
