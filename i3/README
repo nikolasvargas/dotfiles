@@ -1,18 +1,24 @@
 Installation:
 -------------
-sudo apt install i3 i3blocks i3lock xorg     # i3 base
-sudo apt install xfce4-terminal curl         # basic terminal setup
-sudo apt install sxiv feh                    # image viewer & background display control
-sudo apt install xfce4-notifyd               # notification service
-sudo apt install network-manager             # network service manager
-sudo apt install xfce4-powermanager acpi     # for laptop power management
-sudo apt install pulseaudio pulseaudio-utils # audio support
-sudo apt install pavucontrol                 # audio control
-sudo apt install scrot imagemagick xautolock # screen lock
-sudo apt install thunar or nautilus          # file manager
-sudo apt install zsh neovim git bat geany    # developer tools
-sudo apt install firefox                     # browser
-sudo apt install gdebi htop                  # operations tools
+i3 i3blocks i3lock xorg     # i3 base
+xfce4-terminal curl         # basic terminal setup
+sxiv feh                    # image viewer & background display control
+xfce4-notifyd               # notification service
+network-manager             # network service manager
+xfce4-powermanager acpi     # for laptop power management
+pulseaudio pulseaudio-utils # audio support
+pavucontrol                 # audio control
+volumeicon                  # volume applet
+scrot imagemagick xautolock # screen lock
+thunar or nautilus          # file manager
+zsh neovim git bat geany    # developer tools
+firefox                     # browser
+gdebi htop                  # operations tools
+arandr                      # display settings
+
+apt-get install i3 i3blocks i3lock xorg xfce4-terminal curl xfce4-notifyd \
+pavucontrol pulseaudio pulseaudio-utils scrot imagemagick xautolock thunar \
+zsh neovim git bat geany firefox gdebi htop arandr volumeicon
 
 Install whatever login display manager:
 ---------------------------------------
