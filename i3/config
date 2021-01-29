@@ -12,7 +12,7 @@ set $sup Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 9
+font pango:monospace 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -28,7 +28,8 @@ font pango:monospace 9
 floating_modifier $sup
 
 # start a terminal
-bindsym $sup+Return exec i3-sensible-terminal
+# bindsym $sup+Return exec i3-sensible-terminal
+bindsym $sup+Return exec xfce4-terminal
 
 # kill focused window
 bindsym $sup+Shift+q kill
@@ -122,6 +123,7 @@ bindsym $sup+Control+o move workspace to output up
 bindsym $sup+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $sup+Shift+r restart
+
 # exit i3 (logs you out of your X session)
 bindsym $sup+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -151,21 +153,32 @@ mode "resize" {
 
 bindsym $sup+r mode "resize"
 
+# lock system
+bindsym $sup+Control+q exec ~/.config/i3/scripts/lock
+
+# poweroff
+# bindsym $sup+Control+p+o exec --no-startup-id systemctl poweroff -i
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         tray_output primary
-        status_command i3blocks -c ~/.config/i3/i3blocks.conf
+        status_command i3blocks -c ~/.config/i3/i3blocks/i3blocks.conf
 }
+
+# wallpaper
+exec_always feh --bg-scale ~/.config/i3/bg.jpg
+
+# Network Manager applet
+exec --no-startup-id nm-applet
+# Volume Icon
+exec --no-startup-id volumeicon
 
 # Layout
 ## US international Keyboard layout
 #exec_always "setxkbmap -layout us -variant intl"
 ## BR ABTN2 Keyboard layout
 exec_always "setxkbmap -model abnt2 -layout br -variant abnt2"
-
-# lock system
-bindsym $sup+Control+q exec ~/.config/i3/scripts/lock
 
 # restore display on laptop screen
 bindsym $sup+m exec xrandr --auto
@@ -178,9 +191,3 @@ bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
 bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
 bindsym XF86AudioMute exec "pactl set-sink-mute 0 toggle"
-
-# wallpaper
-exec_always feh --bg-scale ~/.config/i3/background.jpg
-
-# Network Manager applet
-exec --no-startup-id nm-applet

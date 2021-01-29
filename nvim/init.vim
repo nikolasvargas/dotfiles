@@ -168,7 +168,8 @@ let g:session_command_aliases = 1
 syntax on
 set ruler
 set nowrap
-set nu
+" set nu
+" set cursorline
 
 set t_Co=256
 set t_ut=
@@ -177,13 +178,12 @@ if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRE_COLOR=1
 endif
 
-if (has("termguicolors"))
-    set termguicolors
-endif
-
 colorscheme codedark
 
-" hi ColorColumn cterm=none gui=none guibg=none ctermfg=none
+set termguicolors
+
+
+hi ColorColumn cterm=none gui=none guibg=none ctermfg=none
 " hi Normal     ctermbg=NONE guibg=NONE
 " hi LineNr     ctermbg=NONE guibg=NONE
 " hi SignColumn ctermbg=NONE guibg=NONE
@@ -215,8 +215,7 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " vim-airline
-" let g:airline_theme = 'kolor'
-let g:airline_theme = 'minimalist'
+let g:airline_theme = 'kolor'
 " line number, column number
 let g:airline_section_z = "line %l%#__restore__#%#__accent_bold#/%L %{g:airline_symbols.maxlinenr}%#__restore__#col %1v"
 " Do not draw separators for empty sections
@@ -548,7 +547,7 @@ let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycach
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeMapOpenInTabSilent='<RightMouse>'
-let g:NERDTreeWinSize=30
+let g:NERDTreeWinSize=40
 let g:NERDTreeWinPos='left'
 let g:NERDTreeShowHidden=1
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
