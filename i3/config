@@ -172,7 +172,7 @@ exec_always feh --bg-scale ~/.config/i3/bg.jpg
 # Network Manager applet
 exec --no-startup-id nm-applet
 # Volume Icon
-exec --no-startup-id volumeicon
+exec --no-startup-id /usr/bin/volumeicon
 
 # Layout
 ## US international Keyboard layout
