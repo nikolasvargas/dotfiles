@@ -169,7 +169,7 @@ syntax on
 set ruler
 set nowrap
 " set nu
-" set cursorline
+set cursorline
 
 set t_Co=256
 set t_ut=
@@ -183,7 +183,7 @@ colorscheme codedark
 set termguicolors
 
 
-hi ColorColumn cterm=none gui=none guibg=none ctermfg=none
+" hi ColorColumn cterm=none gui=none guibg=none ctermfg=none
 " hi Normal     ctermbg=NONE guibg=NONE
 " hi LineNr     ctermbg=NONE guibg=NONE
 " hi SignColumn ctermbg=NONE guibg=NONE
@@ -248,8 +248,8 @@ iabbrev ifmian if __name__ == '__main__':
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
 let Grep_Default_Options = '-iR'
-let Grep_Skip_Files = '*.log *.db'
-let Grep_Skip_Dirs = '.git node_modules venv env .tox'
+let Grep_Skip_Files = '*.log *.db *.pyc'
+let Grep_Skip_Dirs = '.git node_modules venv env .tox __pycache__'
 
 " vimshell.vim
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
@@ -268,7 +268,7 @@ endif
 "*****************************************************************************
 if !exists('*s:setupWrapping')
   function s:setupWrapping()
-    " set wrap
+    set wrap
     set wm=2
     set textwidth=119
   endfunction
@@ -364,8 +364,10 @@ noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 "" fzf.vim
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc
-let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'venv/**' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,venv,__pycache__
+
+let FZF_DIR_EXCLUDE = "-prune -o -path 'venv/**' -prune -o -path '**/__pycache__/**' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o"
+let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' " . FZF_DIR_EXCLUDE . " -type f -print -o -type l -print 2> /dev/null"
 
 " The Silver Searcher
 if executable('ag')
@@ -382,7 +384,8 @@ endif
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>e :FZF -m<CR>
+" nnoremap <silent> <leader>e :FZF -m<CR>
+nnoremap <silent> <leader>e :Files<CR>
 
 " snippets
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -408,9 +411,10 @@ if has('autocmd')
 endif
 
 "" Copy/Paste/Cut
-if has('unnamedplus')
-  set clipboard=unnamed,unnamedplus
-endif
+" if has('unnamedplus')
+"   set clipboard=unnamed,unnamedplus
+" endif
+set clipboard+=unnamedplus
 
 noremap YY "+y<CR>
 noremap <leader>p "+gP<CR>
@@ -510,6 +514,7 @@ let g:racer_cmd = "/home/nikolas/.cargo/bin/cargo"
 autocmd Filetype scala setlocal ts=4 sw=4 expandtab
 
 " jedi-vim
+let g:python3_host_prog = "/usr/bin/python3"
 let g:jedi#popup_on_dot = 1
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
