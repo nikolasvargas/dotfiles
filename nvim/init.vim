@@ -379,13 +379,16 @@ endif
 if executable('rg')
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
   set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --line-number --no-heading --fixed-strings --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
+
+" preview window
+let g:fzf_preview_window = ['up:60%', 'ctrl-/']
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
-" nnoremap <silent> <leader>e :FZF -m<CR>
-nnoremap <silent> <leader>e :Files<CR>
+nnoremap <silent> <leader>e :FZF -m<CR>
+" nnoremap <silent> <leader>e :Files<CR>
 
 " snippets
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -433,7 +436,8 @@ noremap <leader>x :bn<CR>
 noremap <leader>w :bn<CR>
 
 "" Close buffer
-noremap <leader>c :bd<CR>
+" noremap <leader>c :bd<CR>
+noremap <leader>c :bp<bar>sp<bar>bn<bar>bd<CR>
 
 "" Clean search (highlight)
 nnoremap <silent> <leader><space> :noh<cr>
@@ -540,7 +544,7 @@ let g:airline#extensions#virtualenv#enabled = 1
 
 " GitGutter
 " Start disabled
-let g:gitgutter_enabled = 0
+let g:gitgutter_enabled = 1
 let g:gitgutter_set_sign_backgrounds = 1
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
@@ -579,4 +583,5 @@ endif
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.branch = ''
+" let g:airline_symbols.branch = ''
+let g:airline_symbols.branch = ''
