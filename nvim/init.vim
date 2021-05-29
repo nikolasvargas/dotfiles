@@ -518,7 +518,7 @@ let g:racer_cmd = "/home/nikolas/.cargo/bin/cargo"
 autocmd Filetype scala setlocal ts=4 sw=4 expandtab
 
 " jedi-vim
-let g:python3_host_prog = "/usr/bin/python3"
+let g:python3_host_prog = "/usr/bin/python3.8"
 let g:jedi#popup_on_dot = 1
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
@@ -579,9 +579,10 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
+let g:airline#extensions#tabline#enabled = 0
+
 " unicode symbols (and some resets also)
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_symbols.maxlinenr = ''
-" let g:airline_symbols.branch = ''
 let g:airline_symbols.branch = ''
