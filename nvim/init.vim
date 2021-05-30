@@ -1,7 +1,7 @@
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
 let g:vim_bootstrap_langs = "html,javascript,python,rust,scala"
-let g:vim_bootstrap_editor = "nvim"        " nvim or vim
+let g:vim_bootstrap_editor = "nvim"
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -22,16 +22,16 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-Plug 'preservim/nerdtree'
+" Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary' "visual select and comment stuff out
 Plug 'tpope/vim-fugitive' "best Git wrapper of all time
 Plug 'tpope/vim-surround' "easily surround strings
 Plug 'airblade/vim-gitgutter' "show git diff on the numbers column
-Plug 'vim-airline/vim-airline' "improved statusline
-Plug 'vim-airline/vim-airline-themes' "improved status line themes
+" Plug 'vim-airline/vim-airline' "improved statusline
+" Plug 'vim-airline/vim-airline-themes' "improved status line themes
 Plug 'vim-scripts/grep.vim' "<leader> + f for use and grep whatever.
 Plug 'vim-scripts/CSApprox' "provide better colorscheme color support
-Plug 'bronson/vim-trailing-whitespace' "FixWhiteSpace for trainling whitespace!
+Plug 'bronson/vim-trailing-whitespace' "FixWhiteSpace for trailing whitespace!
 Plug 'Raimondi/delimitMate' "provide automatic closing of quotes, parenthesis, brackets, etc...
 Plug 'scrooloose/syntastic' "syntax checking
 Plug 'avelino/vim-bootstrap-updater' "just for update vim-boostrap
@@ -67,7 +67,7 @@ endif
 "" Custom bundles
 "*****************************************************************************
 " EditorConfig
-Plug 'editorconfig/editorconfig-vim' "for respect .editorconfig rules
+Plug 'editorconfig/editorconfig-vim' " .editorconfig rules
 
 "" HTML Bundle
 Plug 'hail2u/vim-css3-syntax'
@@ -178,7 +178,7 @@ if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRE_COLOR=1
 endif
 
-colorscheme codedark
+colorscheme simple-dark
 
 set termguicolors
 
@@ -205,9 +205,10 @@ set modeline
 set modelines=10
 
 set title
-set titlestring=%F
+set titlestring=%f
 
-set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
+" set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
+set statusline=%f%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -215,17 +216,30 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " vim-airline
-let g:airline_theme = 'kolor'
+" let g:airline_theme = 'kolor'
+
 " line number, column number
-let g:airline_section_z = "line %l%#__restore__#%#__accent_bold#/%L %{g:airline_symbols.maxlinenr}%#__restore__#col %1v"
+" let g:airline_section_z = "line %l%#__restore__#%#__accent_bold#/%L %{g:airline_symbols.maxlinenr}%#__restore__#col %1v"
+
 " Do not draw separators for empty sections
-let g:airline_skip_empty_sections = 1
+" let g:airline_skip_empty_sections = 1
 
 " vim-airline-extensions
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#whitespace#enabled = 1
+" let g:airline#extensions#syntastic#enabled = 1
+" let g:airline#extensions#branch#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#whitespace#enabled = 1
+" let g:airline#extensions#virtualenv#enabled = 1
+
+" if !exists('g:airline_symbols')
+"   let g:airline_symbols = {}
+" endif
+
+" unicode symbols (and some resets also)
+" let g:airline_left_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_symbols.maxlinenr = ''
+" let g:airline_symbols.branch = ''
 
 "*****************************************************************************
 "" Abbreviations
@@ -268,7 +282,7 @@ endif
 "*****************************************************************************
 if !exists('*s:setupWrapping')
   function s:setupWrapping()
-    set wrap
+    " set wrap
     set wm=2
     set textwidth=119
   endfunction
@@ -383,7 +397,7 @@ if executable('rg')
 endif
 
 " preview window
-let g:fzf_preview_window = ['up:60%', 'ctrl-/']
+" let g:fzf_preview_window = ['up:60%', 'ctrl-/']
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
@@ -539,9 +553,6 @@ set completeopt-=preview
 " syntastic
 let g:syntastic_python_checkers=['flake8']
 
-" vim-airline extension for virtualenv
-let g:airline#extensions#virtualenv#enabled = 1
-
 " GitGutter
 " Start disabled
 let g:gitgutter_enabled = 1
@@ -551,17 +562,17 @@ highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 "" NERDTree configuration
-let g:NERDTreeChDirMode=2
-let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', 'venv']
-let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-let g:NERDTreeShowBookmarks=1
-let g:NERDTreeMapOpenInTabSilent='<RightMouse>'
-let g:NERDTreeWinSize=40
-let g:NERDTreeWinPos='left'
-let g:NERDTreeShowHidden=1
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-nnoremap <silent> <F2> :NERDTreeFind<CR>
-nnoremap <silent> <F3> :NERDTreeToggle<CR>
+" let g:NERDTreeChDirMode=2
+" let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', 'venv']
+" let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+" let g:NERDTreeShowBookmarks=1
+" let g:NERDTreeMapOpenInTabSilent='<RightMouse>'
+" let g:NERDTreeWinSize=40
+" let g:NERDTreeWinPos='left'
+" let g:NERDTreeShowHidden=1
+" set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+" nnoremap <silent> <F2> :NERDTreeFind<CR>
+" nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 "*****************************************************************************
 "*****************************************************************************
@@ -570,19 +581,3 @@ nnoremap <silent> <F3> :NERDTreeToggle<CR>
 if filereadable(expand("~/.config/nvim/local_init.vim"))
   source ~/.config/nvim/local_init.vim
 endif
-
-"*****************************************************************************
-"" Convenience variables
-"*****************************************************************************
-" vim-airline
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-let g:airline#extensions#tabline#enabled = 0
-
-" unicode symbols (and some resets also)
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.branch = ''

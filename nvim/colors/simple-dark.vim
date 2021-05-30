@@ -26,7 +26,7 @@ if has("gui_running") || &t_Co == 256
     hi Number cterm=NONE ctermfg=255  ctermbg=black gui=NONE guifg=#eeeeee guibg=#0a0a0a
     hi Error cterm=NONE ctermfg=255 ctermbg=DarkGray gui=NONE guifg=#eeeeee guibg=#0a0a0a
     hi ErrorMsg cterm=NONE ctermfg=255 ctermbg=DarkGray gui=NONE guifg=#eeeeee guibg=#0a0a0a
-    hi Search cterm=NONE ctermfg=245 ctermbg=Gray gui=NONE guifg=#8a8a8a guibg=#0a0a0a
+    hi Search cterm=NONE ctermfg=245 ctermbg=Gray gui=NONE guifg=#eeeeee guibg=#353535
     hi IncSearch cterm=reverse ctermfg=255 ctermbg=245 gui=reverse guifg=#eeeeee guibg=#0a0a0a
     hi DiffChange cterm=NONE ctermfg=240 ctermbg=255 gui=NONE guifg=#8a8a8a guibg=#0a0a0a
     hi DiffText cterm=bold ctermfg=255 ctermbg=DarkGray gui=bold guifg=#bcbcbc guibg=#0a0a0a
@@ -43,9 +43,9 @@ if has("gui_running") || &t_Co == 256
     hi StatusLine cterm=bold,reverse ctermfg=245 ctermbg=black gui=bold,reverse guifg=#8a8a8a guibg=#0a0a0a
     hi StatusLineNC cterm=reverse ctermfg=236 ctermbg=black gui=reverse guifg=#303030 guibg=#0a0a0a
     hi Visual cterm=reverse ctermfg=250 ctermbg=black gui=reverse guifg=#bcbcbc guibg=#0a0a0a
-    hi VertSplit cterm=NONE ctermfg=Gray ctermbg=black gui=NONE guifg=#0a0a0a guibg=#0a0a0a
+    hi VertSplit cterm=NONE ctermfg=Gray ctermbg=black gui=NONE guifg=#bcbcbc guibg=#0a0a0a
     hi TermCursor cterm=reverse ctermfg=NONE ctermbg=NONE gui=reverse guifg=NONE guibg=NONE
-    hi ColorColumn  cterm=reverse ctermfg=NONE ctermbg=NONE gui=reverse guifg=NONE guibg=NONE
+    hi ColorColumn cterm=reverse ctermfg=NONE ctermbg=NONE gui=reverse guifg=#1e1e1e guibg=NONE
 else
     hi Normal cterm=NONE ctermfg=Gray ctermbg=Black
     hi Keyword cterm=NONE ctermfg=White ctermbg=Black
@@ -117,7 +117,7 @@ highlight! link WarningMsg Number
 highlight! link iCursor SpecialKey
 highlight! link SpellLocal SpellCap
 highlight! link LineNr Comment
-highlight! link NonText NonText 
+highlight! link NonText NonText
 highlight! link DiffDelete Comment
 highlight! link diffRemoved Comment
 highlight! link PmenuSbar Visual
