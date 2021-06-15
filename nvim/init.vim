@@ -169,7 +169,7 @@ syntax on
 set ruler
 set nowrap
 " set nu
-set cursorline
+" set cursorline
 
 set t_Co=256
 set t_ut=
@@ -178,10 +178,9 @@ if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRE_COLOR=1
 endif
 
-colorscheme simple-dark
+colorscheme codedark
 
 set termguicolors
-
 
 " hi ColorColumn cterm=none gui=none guibg=none ctermfg=none
 " hi Normal     ctermbg=NONE guibg=NONE
@@ -532,6 +531,7 @@ let g:racer_cmd = "/home/nikolas/.cargo/bin/cargo"
 autocmd Filetype scala setlocal ts=4 sw=4 expandtab
 
 " jedi-vim
+let g:python_host_prog = "/usr/local/bin/python2.7"
 let g:python3_host_prog = "/usr/bin/python3.8"
 let g:jedi#popup_on_dot = 1
 let g:jedi#goto_assignments_command = "<leader>g"
@@ -552,6 +552,7 @@ set completeopt-=preview
 
 " syntastic
 let g:syntastic_python_checkers=['flake8']
+
 
 " GitGutter
 " Start disabled
