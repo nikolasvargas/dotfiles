@@ -22,13 +22,10 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-" Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary' "visual select and comment stuff out
 Plug 'tpope/vim-fugitive' "best Git wrapper of all time
 Plug 'tpope/vim-surround' "easily surround strings
 Plug 'airblade/vim-gitgutter' "show git diff on the numbers column
-" Plug 'vim-airline/vim-airline' "improved statusline
-" Plug 'vim-airline/vim-airline-themes' "improved status line themes
 Plug 'vim-scripts/grep.vim' "<leader> + f for use and grep whatever.
 Plug 'vim-scripts/CSApprox' "provide better colorscheme color support
 Plug 'bronson/vim-trailing-whitespace' "FixWhiteSpace for trailing whitespace!
@@ -94,10 +91,6 @@ Plug 'racer-rust/vim-racer'
 
 " Rust.vim
 " Plug 'rust-lang/rust.vim'
-
-" Scala
-Plug 'derekwyatt/vim-scala'
-
 "*****************************************************************************
 "*****************************************************************************
 if filereadable(expand("~/.config/nvim/local_bundles.vim"))
@@ -396,7 +389,7 @@ if executable('rg')
 endif
 
 " preview window
-" let g:fzf_preview_window = ['up:60%', 'ctrl-/']
+let g:fzf_preview_window = ['up:60%', 'ctrl-/']
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
@@ -532,7 +525,8 @@ autocmd Filetype scala setlocal ts=4 sw=4 expandtab
 
 " jedi-vim
 let g:python_host_prog = "/usr/local/bin/python2.7"
-let g:python3_host_prog = "/usr/bin/python3.8"
+" let g:python3_host_prog = "/usr/bin/python3.8"
+let g:python3_host_prog = "/usr/local/bin/python3.9"
 let g:jedi#popup_on_dot = 1
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
@@ -542,7 +536,7 @@ let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = 0
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
-" let g:jedi#use_splits_not_buffers = "right"
+let g:jedi#use_splits_not_buffers = "right"
 " let g:jedi#use_tabs_not_buffers = 1
 
 "" Remove preview docstring window on top
@@ -553,7 +547,6 @@ set completeopt-=preview
 " syntastic
 let g:syntastic_python_checkers=['flake8']
 
-
 " GitGutter
 " Start disabled
 let g:gitgutter_enabled = 1
@@ -562,23 +555,19 @@ highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
-"" NERDTree configuration
-" let g:NERDTreeChDirMode=2
-" let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', 'venv']
-" let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-" let g:NERDTreeShowBookmarks=1
-" let g:NERDTreeMapOpenInTabSilent='<RightMouse>'
-" let g:NERDTreeWinSize=40
-" let g:NERDTreeWinPos='left'
-" let g:NERDTreeShowHidden=1
-" set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-" nnoremap <silent> <F2> :NERDTreeFind<CR>
-" nnoremap <silent> <F3> :NERDTreeToggle<CR>
-
-"*****************************************************************************
-"*****************************************************************************
-
 "" Include user's local vim config
 if filereadable(expand("~/.config/nvim/local_init.vim"))
   source ~/.config/nvim/local_init.vim
+endif
+
+"" Windows clipboard workaround
+let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
+if executable(s:clip)
+    augroup WSLYank
+        autocmd!
+        " WSL 1
+        " autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+        " WSL 2
+        autocmd TextYankPost * if v:event.operator ==# 'y' | call system('cat |' . s:clip, @0) | endif
+    augroup END
 endif
