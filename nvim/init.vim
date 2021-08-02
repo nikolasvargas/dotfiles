@@ -171,7 +171,7 @@ if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRE_COLOR=1
 endif
 
-colorscheme codedark
+colorscheme monokai
 
 set termguicolors
 
@@ -536,7 +536,7 @@ let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = 0
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
-let g:jedi#use_splits_not_buffers = "right"
+" let g:jedi#use_splits_not_buffers = "right"
 " let g:jedi#use_tabs_not_buffers = 1
 
 "" Remove preview docstring window on top
