@@ -186,7 +186,14 @@ set mousemodel=popup
 set guioptions=egmrti
 
 "" Disable the blinking cursor.
-" set gcr=a:blinkon0
+" set guicursor="a:blinkon0"
+" set guicursor=n-v-c:block-nCursor
+" set guicursor=n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20
+highlight Cursor guifg=None guibg=lightgray
+" set guicursor=n-v-c:block-Cursor
+set guicursor=i-ci:ver30-iCursor-blinkwait300-blinkon200-blinkoff150
+" highlight Cursor gui=NONE guifg=bg guibg=fg
+
 set scrolloff=3
 
 "" Status bar
