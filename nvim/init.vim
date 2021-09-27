@@ -22,6 +22,11 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
+"********************************
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'simrat39/rust-tools.nvim'
+"********************************
 Plug 'tpope/vim-commentary' "visual select and comment stuff out
 Plug 'tpope/vim-fugitive' "best Git wrapper of all time
 Plug 'tpope/vim-surround' "easily surround strings
@@ -32,7 +37,6 @@ Plug 'bronson/vim-trailing-whitespace' "FixWhiteSpace for trailing whitespace!
 Plug 'Raimondi/delimitMate' "provide automatic closing of quotes, parenthesis, brackets, etc...
 Plug 'scrooloose/syntastic' "syntax checking
 Plug 'avelino/vim-bootstrap-updater' "just for update vim-boostrap
-
 Plug 'sheerun/vim-polyglot' "collection of language packs
 
 if isdirectory('/usr/local/opt/fzf')
@@ -72,11 +76,6 @@ Plug 'nikolasvargas/vim-coloresque'
 Plug 'tpope/vim-haml'
 Plug 'mattn/emmet-vim'
 
-"" Javascript Bundle
-Plug 'jelera/vim-javascript-syntax'
-Plug 'mxw/vim-jsx'
-Plug 'ternjs/tern_for_vim'
-
 "" Json Bundle
 Plug 'elzr/vim-json'
 
@@ -84,13 +83,6 @@ Plug 'elzr/vim-json'
 "" Python Bundle
 Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
-
-" Rust
-" Vim racer
-Plug 'racer-rust/vim-racer'
-
-" Rust.vim
-" Plug 'rust-lang/rust.vim'
 "*****************************************************************************
 "*****************************************************************************
 if filereadable(expand("~/.config/nvim/local_bundles.vim"))
@@ -162,7 +154,7 @@ syntax on
 set ruler
 set nowrap
 " set nu
-" set cursorline
+set cursorline
 
 set t_Co=256
 set t_ut=
@@ -171,14 +163,9 @@ if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRE_COLOR=1
 endif
 
-colorscheme monokai
+colorscheme codedark
 
 set termguicolors
-
-" hi ColorColumn cterm=none gui=none guibg=none ctermfg=none
-" hi Normal     ctermbg=NONE guibg=NONE
-" hi LineNr     ctermbg=NONE guibg=NONE
-" hi SignColumn ctermbg=NONE guibg=NONE
 
 let no_buffers_menu=1
 
@@ -187,12 +174,9 @@ set guioptions=egmrti
 
 "" Disable the blinking cursor.
 " set guicursor="a:blinkon0"
-" set guicursor=n-v-c:block-nCursor
-" set guicursor=n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20
-highlight Cursor guifg=None guibg=lightgray
-" set guicursor=n-v-c:block-Cursor
-set guicursor=i-ci:ver30-iCursor-blinkwait300-blinkon200-blinkoff150
-" highlight Cursor gui=NONE guifg=bg guibg=fg
+
+set guicursor=
+set guicursor+=i-ci:ver30-iCursor-blinkwait300-blinkon200-blinkoff150
 
 set scrolloff=3
 
@@ -206,8 +190,8 @@ set modelines=10
 set title
 set titlestring=%f
 
-" set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
-set statusline=%f%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
+" set statusline=%f%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
+set statusline=%f%m%r%h%w%=%y\ (line\ %l\/%L,\ col\ %c)
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -351,7 +335,7 @@ noremap <Leader>gc :Gcommit<CR>
 noremap <Leader>gsh :Gpush<CR>
 noremap <Leader>gll :Gpull<CR>
 noremap <Leader>gs :Gstatus<CR>
-noremap <Leader>gb :Gblame<CR>
+noremap <Leader>gb :Git blame<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
 
@@ -396,7 +380,7 @@ if executable('rg')
 endif
 
 " preview window
-let g:fzf_preview_window = ['up:60%', 'ctrl-/']
+let g:fzf_preview_window = ['up:70%', 'ctrl-/']
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
@@ -472,9 +456,6 @@ vnoremap K :m '<-2<CR>gv=gv
 "" Open current line on GitHub
 nnoremap <Leader>o :.Gbrowse<CR>
 
-"" :w!! to save as sudo
-ca w!! w !sudo tee >/dev/null "%"
-
 "" GitGutterToggle
 noremap <Leader>ç :GitGutterToggle<CR>
 "*****************************************************************************
@@ -498,11 +479,6 @@ let g:user_emmet_leader_key=','
 "" ignore all of tidy's warnings
 let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
 
-" javascript
-let g:javascript_enable_domhtmlcss = 1
-" javascript jsx
-let g:jsx_ext_required = 1
-
 " vim-javascript
 augroup vimrc-javascript
   autocmd!
@@ -518,22 +494,16 @@ augroup vimrc-python
       \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
 
-" rust
-" Vim racer
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
-
-let g:racer_cmd = "/home/nikolas/.cargo/bin/cargo"
-
 " Scala
-autocmd Filetype scala setlocal ts=4 sw=4 expandtab
+autocmd Filetype scala setlocal ts=2 sw=2 expandtab
+
+" Groovy
+autocmd Filetype groovy setlocal ts=2 sw=2 expandtab
 
 " jedi-vim
 let g:python_host_prog = "/usr/local/bin/python2.7"
-" let g:python3_host_prog = "/usr/bin/python3.8"
-let g:python3_host_prog = "/usr/local/bin/python3.9"
+let g:python3_host_prog = "/usr/bin/python3.8"
+" let g:python3_host_prog = "/usr/local/bin/python3.9"
 let g:jedi#popup_on_dot = 1
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
@@ -549,7 +519,8 @@ let g:jedi#smart_auto_mappings = 0
 "" Remove preview docstring window on top
 """ https://github.com/davidhalter/jedi-vim/blob/master/doc/jedi-vim.txti
 """ 6.2. `g:jedi#auto_vim_configuration` && 6.5. `g:jedi#auto_close_doc`
-set completeopt-=preview
+" set completeopt-=preview
+set completeopt=menuone,noinsert,noselect
 
 " syntastic
 let g:syntastic_python_checkers=['flake8']
@@ -578,3 +549,53 @@ if executable(s:clip)
         autocmd TextYankPost * if v:event.operator ==# 'y' | call system('cat |' . s:clip, @0) | endif
     augroup END
 endif
+
+"completion-nvim
+let g:completion_enable_snippet = 'UltiSnips'
+let g:completion_enable_auto_hover = 0
+let g:completion_trigger_keyword_length = 3
+let g:completion_timer_cycle = 200
+
+"" LSP CONFIG
+lua << EOF
+local nvim_lsp = require('lspconfig')
+local on_attach = function(client, bufnr)
+    require('completion').on_attach(client)
+
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+    -- Enable completion triggered by <c-x><c-o>
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Mappings.
+    local opts = { noremap=true, silent=true }
+
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+end
+
+nvim_lsp.rust_analyzer.setup({
+    on_attach = on_attach,
+    flags = {
+        debounce_text_changes = 150,
+    }
+})
+EOF
