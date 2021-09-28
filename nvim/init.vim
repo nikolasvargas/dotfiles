@@ -175,7 +175,7 @@ set guioptions=egmrti
 "" Disable the blinking cursor.
 " set guicursor="a:blinkon0"
 
-set guicursor=
+set guicursor=n-v-c:block-blinkwait300-blinkon200-blinkoff150
 set guicursor+=i-ci:ver30-iCursor-blinkwait300-blinkon200-blinkoff150
 
 set scrolloff=3
@@ -555,7 +555,6 @@ let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_enable_auto_hover = 0
 let g:completion_trigger_keyword_length = 3
 let g:completion_timer_cycle = 200
-
 "" LSP CONFIG
 lua << EOF
 local nvim_lsp = require('lspconfig')
@@ -591,11 +590,19 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 end
-
 nvim_lsp.rust_analyzer.setup({
     on_attach = on_attach,
     flags = {
         debounce_text_changes = 150,
     }
 })
+-- local servers = { 'rust_analyzer' }
+-- for _, server in ipairs(servers) do
+--     nvim_lsp[server].setup({
+--         on_attach = on_attach,
+--         flags = {
+--             debounce_text_changes = 150,
+--         }
+--     })
+-- end
 EOF
