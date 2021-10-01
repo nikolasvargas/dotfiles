@@ -2,6 +2,7 @@ let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
 let g:vim_bootstrap_langs = "html,javascript,python,rust,scala"
 let g:vim_bootstrap_editor = "nvim"
+let g:polyglot_disabled = ['vue']
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -70,12 +71,6 @@ endif
 " EditorConfig
 Plug 'editorconfig/editorconfig-vim' " .editorconfig rules
 
-"" HTML Bundle
-Plug 'hail2u/vim-css3-syntax'
-Plug 'nikolasvargas/vim-coloresque'
-Plug 'tpope/vim-haml'
-Plug 'mattn/emmet-vim'
-
 "" Json Bundle
 Plug 'elzr/vim-json'
 
@@ -93,7 +88,6 @@ call plug#end()
 
 " Required:
 filetype plugin indent on
-
 "*****************************************************************************
 "" Basic Setup
 "*****************************************************************************"
@@ -153,8 +147,8 @@ let g:session_command_aliases = 1
 syntax on
 set ruler
 set nowrap
-" set nu
 set cursorline
+" set nu
 
 set t_Co=256
 set t_ut=
@@ -175,7 +169,7 @@ set guioptions=egmrti
 "" Disable the blinking cursor.
 " set guicursor="a:blinkon0"
 
-set guicursor=n-v-c:block-blinkwait300-blinkon200-blinkoff150
+" set guicursor=n-v-c:block-blinkwait300-blinkon200-blinkoff150
 set guicursor+=i-ci:ver30-iCursor-blinkwait300-blinkon200-blinkoff150
 
 set scrolloff=3
@@ -197,33 +191,6 @@ set statusline=%f%m%r%h%w%=%y\ (line\ %l\/%L,\ col\ %c)
 " search will center on the line it's found in.
 nnoremap n nzzzv
 nnoremap N Nzzzv
-
-" vim-airline
-" let g:airline_theme = 'kolor'
-
-" line number, column number
-" let g:airline_section_z = "line %l%#__restore__#%#__accent_bold#/%L %{g:airline_symbols.maxlinenr}%#__restore__#col %1v"
-
-" Do not draw separators for empty sections
-" let g:airline_skip_empty_sections = 1
-
-" vim-airline-extensions
-" let g:airline#extensions#syntastic#enabled = 1
-" let g:airline#extensions#branch#enabled = 1
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#whitespace#enabled = 1
-" let g:airline#extensions#virtualenv#enabled = 1
-
-" if !exists('g:airline_symbols')
-"   let g:airline_symbols = {}
-" endif
-
-" unicode symbols (and some resets also)
-" let g:airline_left_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_symbols.maxlinenr = ''
-" let g:airline_symbols.branch = ''
-
 "*****************************************************************************
 "" Abbreviations
 "*****************************************************************************
@@ -238,9 +205,6 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
-
-iabbrev ifmain if __name__ == '__main__':
-iabbrev ifmian if __name__ == '__main__':
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
@@ -259,7 +223,6 @@ if g:vim_bootstrap_editor == 'nvim'
 else
   nnoremap <silent> <leader>sh :VimShellCreate<CR>
 endif
-
 "*****************************************************************************
 "" Functions
 "*****************************************************************************
@@ -270,7 +233,6 @@ if !exists('*s:setupWrapping')
     set textwidth=119
   endfunction
 endif
-
 "*****************************************************************************
 "" Autocmd Rules
 "*****************************************************************************
@@ -379,13 +341,14 @@ if executable('rg')
   command! -bang -nargs=* Find call fzf#vim#grep('rg --line-number --no-heading --fixed-strings --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
 
+nnoremap <silent> <leader>gr :Rg<CR>
+
 " preview window
-let g:fzf_preview_window = ['up:70%', 'ctrl-/']
+" let g:fzf_preview_window = ['up:70%', 'ctrl-/']
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>e :FZF -m<CR>
-" nnoremap <silent> <leader>e :Files<CR>
 
 " snippets
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -463,18 +426,14 @@ noremap <Leader>ç :GitGutterToggle<CR>
 "*****************************************************************************
 "-- AUTOCOMPLETION --
 filetype plugin on
+
 set omnifunc=syntaxcomplete#Complete
 
-" c
-autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
+" c and cpp
+autocmd FileType c,cpp setlocal tabstop=4 shiftwidth=4 expandtab
 
-" html
-" for html files, 2 spaces
-autocmd Filetype html setlocal ts=2 sw=2 expandtab
-
-" Emmet config
-let g:user_emmet_leader_key=','
+" html, Scala and Groovy
+autocmd Filetype groovy,html,scala setlocal ts=2 sw=2 expandtab
 
 "" ignore all of tidy's warnings
 let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
@@ -483,6 +442,7 @@ let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
 augroup vimrc-javascript
   autocmd!
   autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=4
+  autocmd FileType vue setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
 augroup END
 
 " python
@@ -493,12 +453,6 @@ augroup vimrc-python
       \ formatoptions+=croq softtabstop=4
       \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
-
-" Scala
-autocmd Filetype scala setlocal ts=2 sw=2 expandtab
-
-" Groovy
-autocmd Filetype groovy setlocal ts=2 sw=2 expandtab
 
 " jedi-vim
 let g:python_host_prog = "/usr/local/bin/python2.7"
@@ -555,6 +509,7 @@ let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_enable_auto_hover = 0
 let g:completion_trigger_keyword_length = 3
 let g:completion_timer_cycle = 200
+
 "" LSP CONFIG
 lua << EOF
 local nvim_lsp = require('lspconfig')
@@ -590,19 +545,20 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 end
-nvim_lsp.rust_analyzer.setup({
-    on_attach = on_attach,
-    flags = {
-        debounce_text_changes = 150,
-    }
-})
--- local servers = { 'rust_analyzer' }
--- for _, server in ipairs(servers) do
---     nvim_lsp[server].setup({
---         on_attach = on_attach,
---         flags = {
---             debounce_text_changes = 150,
---         }
---     })
--- end
+
+-- nvim_lsp.rust_analyzer.setup({
+--     on_attach = on_attach,
+--     flags = {
+--         debounce_text_changes = 150,
+--     }
+-- })
+local servers = { 'rust_analyzer', 'vuels'}
+for _, server in ipairs(servers) do
+    nvim_lsp[server].setup({
+        on_attach = on_attach,
+        flags = {
+            debounce_text_changes = 150,
+        }
+    })
+end
 EOF
