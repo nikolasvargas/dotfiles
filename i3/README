@@ -4,6 +4,7 @@ sudo apt install i3 i3blocks i3lock xorg     # i3 base
 sudo apt install xfce4-terminal curl         # basic terminal setup
 sudo apt install sxiv feh                    # image viewer & background display control
 sudo apt install xfce4-notifyd               # notification service
+sudo apt install arandr
 sudo apt install network-manager             # network service manager
 sudo apt install xfce4-powermanager acpi     # for laptop power management
 sudo apt install pulseaudio pulseaudio-utils # audio support
@@ -31,3 +32,19 @@ sudo apt-install virtualbox-dkms virtualbox-guest-dkms virtualbox-guest-x11
 install docker (https://docs.docker.com/engine/install/ubuntu/) & enable use without sudo:
 -----------------------------------------------------------------------------------------
 sudo usermod -aG docker ${USER}               # logout and logon or run su - ${USER}
+
+# easy run
+sudo apt install i3 i3blocks i3lock xorg \
+    xfce4-terminal curl \
+    sxiv feh \
+    xfce4-notifyd \
+    arandr \
+    network-manager \
+    xfce4-powermanager acpi \
+    pulseaudio pulseaudio-utils \
+    pavucontrol \
+    scrot imagemagick xautolock \
+    thunar or nautilus \
+    zsh neovim git bat geany \
+    firefox \
+    gdebi htop
