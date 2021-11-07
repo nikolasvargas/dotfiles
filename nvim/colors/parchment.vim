@@ -21,7 +21,8 @@ let s:yellow =       [11, '#eeee9e']
 let s:pale_blue =    [12, '#cceeff']
 let s:pale_magenta = [13, '#ffeaff']
 let s:pale_cyan =    [14, '#eaffff']
-let s:pale_yellow =  [15, '#ffffea']
+let s:pale_yellow =  [15, '#fbf1c7']
+" let s:pale_yellow =  [15, '#ffffea']
 let s:shadow =       [ 6, '#808075']
 
 " Sets the text color, background color, and attributes for the given
