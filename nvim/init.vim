@@ -39,6 +39,7 @@ Plug 'Raimondi/delimitMate' "provide automatic closing of quotes, parenthesis, b
 Plug 'scrooloose/syntastic' "syntax checking
 Plug 'avelino/vim-bootstrap-updater' "just for update vim-boostrap
 Plug 'sheerun/vim-polyglot' "collection of language packs
+Plug 'morhetz/gruvbox'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -147,8 +148,8 @@ let g:session_command_aliases = 1
 syntax on
 set ruler
 set nowrap
-set cursorline
-" set nu
+" set cursorline
+" set nu rnu
 
 set t_Co=256
 set t_ut=
@@ -157,7 +158,12 @@ if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRE_COLOR=1
 endif
 
-colorscheme codedark
+set background=dark
+
+let g:gruvbox_contrast_light = "soft"
+let g:gruvbox_contrast_dark = "medium"
+
+colorscheme gruvbox
 
 set termguicolors
 
@@ -168,8 +174,7 @@ set guioptions=egmrti
 
 "" Disable the blinking cursor.
 " set guicursor="a:blinkon0"
-
-" set guicursor=n-v-c:block-blinkwait300-blinkon200-blinkoff150
+set guicursor=n-v-c:block-blinkwait300-blinkon200-blinkoff150
 set guicursor+=i-ci:ver30-iCursor-blinkwait300-blinkon200-blinkoff150
 
 set scrolloff=3
@@ -181,11 +186,11 @@ set laststatus=2
 set modeline
 set modelines=10
 
-set title
-set titlestring=%f
+" set title
+" set titlestring=%f
 
-" set statusline=%f%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
-set statusline=%f%m%r%h%w%=%y\ (line\ %l\/%L,\ col\ %c)
+set statusline=%f%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
+" set statusline=%f%m%r%h%w%=%y\ (line\ %l\/%L,\ col\ %c)
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -228,7 +233,7 @@ endif
 "*****************************************************************************
 if !exists('*s:setupWrapping')
   function s:setupWrapping()
-    " set wrap
+    set nowrap
     set wm=2
     set textwidth=119
   endfunction
