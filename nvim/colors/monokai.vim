@@ -44,9 +44,8 @@ let s:grey = { "cterm": 245, "gui": "#8a8a8a" }
 let s:dark_grey = { "cterm": 59, "gui": "#5f5f5f" }
 let s:darker_grey = { "cterm": 238, "gui": "#444444" }
 let s:light_charcoal = { "cterm": 238, "gui": "#2b2b2b" }
-" let s:charcoal = { "cterm": 235, "gui": "#262626" }
 " modified by @nikolasvargas
-let s:charcoal = { "cterm": 235, "gui": "#121212" }
+let s:charcoal = { "cterm": 235, "gui": "#1c1c1b" }
 
 " Git diff colours.
 let s:danger = { "cterm": 197, "gui": "#ff005f" }
@@ -73,7 +72,6 @@ function! Highlight(group, fg, bg, style)
 endfunction
 
 call Highlight("Normal", s:white, s:charcoal, s:none)
-
 call Highlight("Cursor", s:charcoal, s:light_blue, s:none)
 call Highlight("Special", s:purple, s:none, s:none)
 call Highlight("Title", s:white, s:none, s:bold)

@@ -149,7 +149,7 @@ syntax on
 set ruler
 set nowrap
 " set cursorline
-" set nu rnu
+" set nu
 
 set t_Co=256
 set t_ut=
@@ -161,9 +161,9 @@ endif
 set background=dark
 
 let g:gruvbox_contrast_light = "soft"
-let g:gruvbox_contrast_dark = "medium"
+let g:gruvbox_contrast_dark = "hard"
 
-colorscheme gruvbox
+colorscheme monokai
 
 set termguicolors
 
@@ -301,7 +301,7 @@ noremap <Leader>ga :Gwrite<CR>
 noremap <Leader>gc :Gcommit<CR>
 noremap <Leader>gsh :Gpush<CR>
 noremap <Leader>gll :Gpull<CR>
-noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gs :Git<CR>
 noremap <Leader>gb :Git blame<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
@@ -446,8 +446,8 @@ let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
 " vim-javascript
 augroup vimrc-javascript
   autocmd!
-  autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=4
-  autocmd FileType vue setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
+  autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
+  autocmd FileType vue setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2 syntax=javascript
 augroup END
 
 " python
