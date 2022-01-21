@@ -1,7 +1,4 @@
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
-
-let g:vim_bootstrap_langs = "html,javascript,python,rust,scala"
-let g:vim_bootstrap_editor = "nvim"
 let g:polyglot_disabled = ['vue']
 
 if !filereadable(vimplug_exists)
@@ -25,7 +22,14 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "********************************
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+"********************************
 Plug 'simrat39/rust-tools.nvim'
 "********************************
 Plug 'tpope/vim-commentary' "visual select and comment stuff out
@@ -37,53 +41,19 @@ Plug 'vim-scripts/CSApprox' "provide better colorscheme color support
 Plug 'bronson/vim-trailing-whitespace' "FixWhiteSpace for trailing whitespace!
 Plug 'Raimondi/delimitMate' "provide automatic closing of quotes, parenthesis, brackets, etc...
 Plug 'scrooloose/syntastic' "syntax checking
-Plug 'avelino/vim-bootstrap-updater' "just for update vim-boostrap
 Plug 'sheerun/vim-polyglot' "collection of language packs
-Plug 'morhetz/gruvbox'
-
-if isdirectory('/usr/local/opt/fzf')
-  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-  Plug 'junegunn/fzf.vim' "async command-line finder
-endif
-let g:make = 'gmake'
-if exists('make')
-        let g:make = 'make'
-endif
-Plug 'Shougo/vimproc.vim', {'do': g:make} "idk
-
-"" Vim-Session
-Plug 'xolox/vim-misc' "pack of miscellaneous common plugin scripts
-Plug 'xolox/vim-session' "save and restore your vim-sessions, if you want
-
-if v:version >= 703
-  Plug 'Shougo/vimshell.vim' "provide shell snippets help-commands tab when using vimshell
-endif
-
-if v:version >= 704
-  "" Snippets
-  Plug 'SirVer/ultisnips' "provide snippets solution. better with *.py files
-endif
-
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 "***************************************************************************rr
 "" Custom bundles
 "*****************************************************************************
 " EditorConfig
 Plug 'editorconfig/editorconfig-vim' " .editorconfig rules
 
-"" Json Bundle
-Plug 'elzr/vim-json'
-
 " python
 "" Python Bundle
 Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
-"*****************************************************************************
-"*****************************************************************************
-if filereadable(expand("~/.config/nvim/local_bundles.vim"))
-  source ~/.config/nvim/local_bundles.vim
-endif
 
 call plug#end()
 
@@ -135,13 +105,6 @@ if exists('$SHELL')
 else
     set shell=/bin/sh
 endif
-
-" session management
-let g:session_directory = "~/.config/nvim/session"
-let g:session_autoload = "no"
-let g:session_autosave = "no"
-let g:session_command_aliases = 1
-
 "*****************************************************************************
 "" Visual Settings
 "*****************************************************************************
@@ -216,18 +179,6 @@ nnoremap <silent> <leader>f :Rgrep<CR>
 let Grep_Default_Options = '-iR'
 let Grep_Skip_Files = '*.log *.db *.pyc'
 let Grep_Skip_Dirs = '.git node_modules venv env .tox __pycache__'
-
-" vimshell.vim
-let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-let g:vimshell_prompt =  '$ '
-
-" terminal emulation
-if g:vim_bootstrap_editor == 'nvim'
-  nnoremap <silent> <leader>sh :terminal<CR>
-  tnoremap <Esc> <C-\><C-n>
-else
-  nnoremap <silent> <leader>sh :VimShellCreate<CR>
-endif
 "*****************************************************************************
 "" Functions
 "*****************************************************************************
@@ -354,12 +305,6 @@ nnoremap <silent> <leader>gr :Rg<CR>
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>e :FZF -m<CR>
-
-" snippets
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-let g:UltiSnipsEditSplit="vertical"
 
 " syntastic
 let g:syntastic_always_populate_loc_list=1
@@ -509,61 +454,89 @@ if executable(s:clip)
     augroup END
 endif
 
-"completion-nvim
-let g:completion_enable_snippet = 'UltiSnips'
-let g:completion_enable_auto_hover = 0
-let g:completion_trigger_keyword_length = 3
-let g:completion_timer_cycle = 200
-
 "" LSP CONFIG
 lua << EOF
-local nvim_lsp = require('lspconfig')
-local on_attach = function(client, bufnr)
-    require('completion').on_attach(client)
+    local nvim_lsp = require('lspconfig')
+    local cmp = require('cmp')
 
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-    -- Enable completion triggered by <c-x><c-o>
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Mappings.
-    local opts = { noremap=true, silent=true }
-
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-    buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-    buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
-end
-
--- nvim_lsp.rust_analyzer.setup({
---     on_attach = on_attach,
---     flags = {
---         debounce_text_changes = 150,
---     }
--- })
-local servers = { 'rust_analyzer', 'vuels'}
-for _, server in ipairs(servers) do
-    nvim_lsp[server].setup({
-        on_attach = on_attach,
-        flags = {
-            debounce_text_changes = 150,
-        }
+    cmp.setup({
+        snippet = {
+                expand = function(args)
+                    vim.fn["vsnip#anonymous"](args.body)
+                end,
+        },
+        sources = cmp.config.sources(
+            {
+                { name = 'nvim_lsp' },
+                { name = 'vsnip' },
+            },
+            {
+                { name = 'buffer' }
+            }
+        )
     })
-end
+    -- cmp.setup.cmdline('/', {
+    --     sources = {
+    --         { name = 'buffer' }
+    --     }
+    -- })
+    -- cmp.setup.cmdline(':', {
+    --     sources = cmp.config.sources(
+    --         {
+    --             { name = 'buffer' }
+    --         },
+    --         {
+    --             { name = 'cmdline' }
+    --         }
+    --     )
+    -- })
+
+    local on_attach = function(client, bufnr)
+        local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+        local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+        -- Enable completion triggered by <c-x><c-o>
+        buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+        -- Mappings.
+        local opts = { noremap=true, silent=true }
+
+        -- See `:help vim.lsp.*` for documentation on any of the below functions
+        buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+        buf_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+        buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+        buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+        buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+        buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+        buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+        buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+        buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+        buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+        buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+        buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+        buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+        buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+        buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+        buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    end
+
+    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    -- nvim_lsp.rust_analyzer.setup({
+    --     on_attach = on_attach,
+    --     flags = {
+    --         debounce_text_changes = 150,
+    --     },
+    --     capabilities = capabilities,
+    -- })
+    local servers = { 'rust_analyzer', 'vuels'}
+    for _, server in ipairs(servers) do
+        nvim_lsp[server].setup({
+            on_attach = on_attach,
+            flags = {
+                debounce_text_changes = 150,
+            },
+            capabilities = capabilities
+        })
+    end
 EOF
