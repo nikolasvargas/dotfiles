@@ -126,7 +126,7 @@ set background=dark
 let g:gruvbox_contrast_light = "soft"
 let g:gruvbox_contrast_dark = "hard"
 
-colorscheme monokai
+colorscheme handmade-hero
 
 set termguicolors
 
@@ -431,7 +431,7 @@ let g:syntastic_python_checkers=['flake8']
 
 " GitGutter
 " Start disabled
-let g:gitgutter_enabled = 1
+let g:gitgutter_enabled = 0
 let g:gitgutter_set_sign_backgrounds = 1
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
