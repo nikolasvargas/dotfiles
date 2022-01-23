@@ -40,14 +40,14 @@ let s:bright_yellow = { "cterm": 11, "gui": "yellow" }
 " Monochrome in order light -> dark
 " let s:white = { "cterm": 231, "gui": "#ffffff" }
 " @nikolasvargas
-let s:white = { "cterm": 231, "gui": "#f2ebdd" }
+let s:white = { "cterm": 231, "gui": "#f3f0e8" }
 let s:light_grey = { "cterm": 250, "gui": "#bcbcbc" }
 let s:grey = { "cterm": 245, "gui": "#8a8a8a" }
 let s:dark_grey = { "cterm": 59, "gui": "#5f5f5f" }
 let s:darker_grey = { "cterm": 238, "gui": "#444444" }
 let s:light_charcoal = { "cterm": 238, "gui": "#2b2b2b" }
 " modified by @nikolasvargas
-let s:charcoal = { "cterm": 235, "gui": "#191919" }
+let s:charcoal = { "cterm": 235, "gui": "#161616" }
 
 " Git diff colours.
 let s:danger = { "cterm": 197, "gui": "#ff005f" }
