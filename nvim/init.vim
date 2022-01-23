@@ -123,10 +123,7 @@ endif
 
 set background=dark
 
-let g:gruvbox_contrast_light = "soft"
-let g:gruvbox_contrast_dark = "hard"
-
-colorscheme handmade-hero
+colorscheme monokai
 
 set termguicolors
 
@@ -405,8 +402,8 @@ augroup vimrc-python
 augroup END
 
 " jedi-vim
-let g:python_host_prog = "/usr/local/bin/python2.7"
-let g:python3_host_prog = "/usr/bin/python3.8"
+let g:python_host_prog = "/home/niko/.pyenv/shims/python2"
+let g:python3_host_prog = "/home/niko/.pyenv/shims/python3"
 " let g:python3_host_prog = "/usr/local/bin/python3.9"
 let g:jedi#popup_on_dot = 1
 let g:jedi#goto_assignments_command = "<leader>g"

@@ -56,7 +56,7 @@ endfunction
 
 " Colors
 
-let s:back = ['#161616', 233]
+let s:back = ['#191919', 233]
 let s:default = ['#A08563', 137]
 
 let s:margin = ["#262626", 235]
