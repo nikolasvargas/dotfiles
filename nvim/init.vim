@@ -1,5 +1,5 @@
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
-let g:polyglot_disabled = ['vue']
+" let g:polyglot_disabled = ['vue']
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -123,7 +123,7 @@ endif
 
 set background=dark
 
-colorscheme monokai
+colorscheme forest
 
 set termguicolors
 
@@ -146,11 +146,10 @@ set laststatus=2
 set modeline
 set modelines=10
 
-" set title
+set title
 " set titlestring=%f
 
-set statusline=%f%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
-" set statusline=%f%m%r%h%w%=%y\ (line\ %l\/%L,\ col\ %c)
+set statusline=%f%m%r%h%w%=(%{&ff}/%Y)\ (LINE\ %l\/%L\ \[%P\],\ c%c)
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -310,7 +309,7 @@ let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 let g:syntastic_auto_loc_list=1
-let g:syntastic_aggregate_errors = 1
+let g:syntastic_aggregate_errors=1
 
 noremap <leader>m :SyntasticToggleMode<CR>
 
@@ -389,7 +388,8 @@ let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
 augroup vimrc-javascript
   autocmd!
   autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
-  autocmd FileType vue setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2 syntax=javascript
+  " autocmd FileType vue setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2 syntax=javascript
+  autocmd FileType vue setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
 augroup END
 
 " python
@@ -526,7 +526,8 @@ lua << EOF
     --     },
     --     capabilities = capabilities,
     -- })
-    local servers = { 'rust_analyzer', 'vuels'}
+    -- local servers = { 'rust_analyzer', 'vuels'}
+    local servers = { 'rust_analyzer' }
     for _, server in ipairs(servers) do
         nvim_lsp[server].setup({
             on_attach = on_attach,
