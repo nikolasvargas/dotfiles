@@ -526,8 +526,7 @@ lua << EOF
     --     },
     --     capabilities = capabilities,
     -- })
-    -- local servers = { 'rust_analyzer', 'vuels'}
-    local servers = { 'rust_analyzer' }
+    local servers = { 'rust_analyzer', 'vuels'}
     for _, server in ipairs(servers) do
         nvim_lsp[server].setup({
             on_attach = on_attach,
@@ -537,4 +536,19 @@ lua << EOF
             capabilities = capabilities
         })
     end
+
+    local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
+
+    for type, icon in pairs(signs) do
+      local hl = "DiagnosticSign" .. type
+      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    end
+
+    vim.diagnostic.config({
+        virtual_text = true,
+        signs = false,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = false,
+    })
 EOF
