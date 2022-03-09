@@ -41,7 +41,7 @@ Plug 'vim-scripts/CSApprox' "provide better colorscheme color support
 Plug 'bronson/vim-trailing-whitespace' "FixWhiteSpace for trailing whitespace!
 Plug 'Raimondi/delimitMate' "provide automatic closing of quotes, parenthesis, brackets, etc...
 Plug 'scrooloose/syntastic' "syntax checking
-Plug 'sheerun/vim-polyglot' "collection of language packs
+Plug 'nikolasvargas/vim-polyglot' "collection of language packs
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 "***************************************************************************rr
@@ -133,9 +133,10 @@ set mousemodel=popup
 set guioptions=egmrti
 
 "" Disable the blinking cursor.
-" set guicursor="a:blinkon0"
+set guicursor=
+" set guicursor=a:blinkoff0
 set guicursor=n-v-c:block-blinkwait300-blinkon200-blinkoff150
-set guicursor+=i-ci:ver30-iCursor-blinkwait300-blinkon200-blinkoff150
+set guicursor+=i-ci:blinkwait300-blinkon200-blinkoff150
 
 set scrolloff=3
 
@@ -398,7 +399,7 @@ augroup vimrc-python
   autocmd!
   autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
       \ formatoptions+=croq softtabstop=4
-      \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+      \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with,match
 augroup END
 
 " jedi-vim
