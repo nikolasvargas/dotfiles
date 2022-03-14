@@ -136,7 +136,7 @@ set guioptions=egmrti
 set guicursor=
 " set guicursor=a:blinkoff0
 set guicursor=n-v-c:block-blinkwait300-blinkon200-blinkoff150
-set guicursor+=i-ci:blinkwait300-blinkon200-blinkoff150
+set guicursor+=i-ci:blinkoff0
 
 set scrolloff=3
 
