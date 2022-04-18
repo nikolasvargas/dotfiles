@@ -44,7 +44,7 @@ Plug 'scrooloose/syntastic' "syntax checking
 Plug 'nikolasvargas/vim-polyglot' "collection of language packs
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-"***************************************************************************rr
+"*****************************************************************************
 "" Custom bundles
 "*****************************************************************************
 " EditorConfig
@@ -62,6 +62,8 @@ filetype plugin indent on
 "*****************************************************************************
 "" Basic Setup
 "*****************************************************************************"
+set autoread
+
 "" Encoding
 set encoding=utf-8
 set fileencoding=utf-8
@@ -110,8 +112,7 @@ endif
 "*****************************************************************************
 syntax on
 set ruler
-set nowrap
-" set cursorline
+set wrap
 " set nu
 
 set t_Co=256
@@ -141,16 +142,18 @@ set guicursor+=i-ci:blinkoff0
 set scrolloff=3
 
 "" Status bar
-set laststatus=2
+set laststatus=3
+highlight WinSeparator guibg=None
 
 "" Use modeline overrides
 set modeline
 set modelines=10
 
-set title
+" set title
 " set titlestring=%f
 
-set statusline=%f%m%r%h%w%=(%{&ff}/%Y)\ (LINE\ %l\/%L\ \[%P\],\ c%c)
+set statusline=%f%m%r%h%w%=(%{&ff}/%Y)\ (LINE\ %l\/%L,\ COL\ %c)
+" set statusline=%f%m%r%h%w%=%y\ (line\ %l\/%L,\ col\ %c)
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -269,7 +272,7 @@ nnoremap <silent> <S-t> :tabnew<CR>
 nnoremap <leader>. :lcd %:p:h<CR>
 
 "" Opens an edit command with the path of the currently edited file filled in
-noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+noremap <Leader>a :e <C-R>=expand("%:p:h") . "/" <CR>
 
 "" Opens a tab edit command with the path of the currently edited file filled
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
@@ -297,7 +300,7 @@ endif
 nnoremap <silent> <leader>gr :Rg<CR>
 
 " preview window
-" let g:fzf_preview_window = ['up:70%', 'ctrl-/']
+let g:fzf_preview_window = ['up:70%', 'ctrl-/']
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
@@ -397,15 +400,13 @@ augroup END
 " vim-python
 augroup vimrc-python
   autocmd!
-  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
-      \ formatoptions+=croq softtabstop=4
-      \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with,match
+  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 cinwords=if,elif,else,for,while,try,except,finally,def,class,with,match
 augroup END
 
 " jedi-vim
-let g:python_host_prog = "/home/niko/.pyenv/shims/python2"
-let g:python3_host_prog = "/home/niko/.pyenv/shims/python3"
-" let g:python3_host_prog = "/usr/local/bin/python3.9"
+let g:python_host_prog = "/usr/local/bin/python2.7"
+" let g:python3_host_prog = "/usr/bin/python3.8"
+let g:python3_host_prog = "/usr/local/bin/python3.10"
 let g:jedi#popup_on_dot = 1
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
@@ -467,10 +468,10 @@ lua << EOF
             {
                 { name = 'nvim_lsp' },
                 { name = 'vsnip' },
-            },
-            {
-                { name = 'buffer' }
             }
+            -- {
+            --     { name = 'buffer' }
+            -- }
         )
     })
     -- cmp.setup.cmdline('/', {
@@ -520,6 +521,7 @@ lua << EOF
     end
 
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
     -- nvim_lsp.rust_analyzer.setup({
     --     on_attach = on_attach,
     --     flags = {
@@ -527,7 +529,9 @@ lua << EOF
     --     },
     --     capabilities = capabilities,
     -- })
+
     local servers = { 'rust_analyzer', 'vuels'}
+
     for _, server in ipairs(servers) do
         nvim_lsp[server].setup({
             on_attach = on_attach,
