@@ -1,5 +1,5 @@
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
-" let g:polyglot_disabled = ['vue']
+let g:polyglot_disabled = ['vue']
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -29,6 +29,8 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 "********************************
 Plug 'simrat39/rust-tools.nvim'
 "********************************
@@ -42,8 +44,6 @@ Plug 'bronson/vim-trailing-whitespace' "FixWhiteSpace for trailing whitespace!
 Plug 'Raimondi/delimitMate' "provide automatic closing of quotes, parenthesis, brackets, etc...
 Plug 'scrooloose/syntastic' "syntax checking
 Plug 'nikolasvargas/vim-polyglot' "collection of language packs
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 "*****************************************************************************
 "" Custom bundles
 "*****************************************************************************
@@ -112,7 +112,7 @@ endif
 "*****************************************************************************
 syntax on
 set ruler
-set wrap
+set nowrap
 " set nu
 
 set t_Co=256
@@ -174,6 +174,8 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
 
+iabbrev pdb __import__('pdb').set_trace()jj
+
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
 let Grep_Default_Options = '-iR'
@@ -217,7 +219,6 @@ augroup vimrc-make-cmake
   autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
 augroup END
 
-set autoread
 
 "*****************************************************************************
 "" Mappings
@@ -272,39 +273,20 @@ nnoremap <silent> <S-t> :tabnew<CR>
 nnoremap <leader>. :lcd %:p:h<CR>
 
 "" Opens an edit command with the path of the currently edited file filled in
-noremap <Leader>a :e <C-R>=expand("%:p:h") . "/" <CR>
+noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 "" Opens a tab edit command with the path of the currently edited file filled
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
-"" fzf.vim
+"" TELESCOPE.vim
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,venv,__pycache__
 
-let FZF_DIR_EXCLUDE = "-prune -o -path 'venv/**' -prune -o -path '**/__pycache__/**' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o"
-let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' " . FZF_DIR_EXCLUDE . " -type f -print -o -type l -print 2> /dev/null"
-
-" The Silver Searcher
-if executable('ag')
-  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g -l""'
-  set grepprg=ag\ --nogroup\ --nocolor
-endif
-
-" ripgrep
-if executable('rg')
-  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-  set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --line-number --no-heading --fixed-strings --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-endif
-
-nnoremap <silent> <leader>gr :Rg<CR>
-
-" preview window
-let g:fzf_preview_window = ['up:70%', 'ctrl-/']
-
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>e :FZF -m<CR>
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " syntastic
 let g:syntastic_always_populate_loc_list=1
@@ -313,7 +295,7 @@ let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 let g:syntastic_auto_loc_list=1
-let g:syntastic_aggregate_errors=1
+let g:syntastic_aggregate_errors = 1
 
 noremap <leader>m :SyntasticToggleMode<CR>
 
@@ -392,8 +374,7 @@ let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
 augroup vimrc-javascript
   autocmd!
   autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
-  " autocmd FileType vue setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2 syntax=javascript
-  autocmd FileType vue setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
+  autocmd FileType vue        setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2 syntax=javascript
 augroup END
 
 " python
@@ -404,7 +385,6 @@ augroup vimrc-python
 augroup END
 
 " jedi-vim
-let g:python_host_prog = "/usr/local/bin/python2.7"
 " let g:python3_host_prog = "/usr/bin/python3.8"
 let g:python3_host_prog = "/usr/local/bin/python3.10"
 let g:jedi#popup_on_dot = 1
