@@ -112,7 +112,7 @@ endif
 "*****************************************************************************
 syntax on
 set ruler
-set nowrap
+set wrap
 " set nu
 
 set t_Co=256
@@ -178,9 +178,9 @@ iabbrev pdb __import__('pdb').set_trace()jj
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
-let Grep_Default_Options = '-iR'
-let Grep_Skip_Files = '*.log *.db *.pyc'
-let Grep_Skip_Dirs = '.git node_modules venv env .tox __pycache__'
+let Grep_Default_Options = '-R'
+let Grep_Skip_Files = '*.log *.db *.pyc *.o *.exe *.min.js *.csv'
+let Grep_Skip_Dirs = '.git node_modules venv env .tox __pycache__ target'
 "*****************************************************************************
 "" Functions
 "*****************************************************************************
@@ -273,7 +273,7 @@ nnoremap <silent> <S-t> :tabnew<CR>
 nnoremap <leader>. :lcd %:p:h<CR>
 
 "" Opens an edit command with the path of the currently edited file filled in
-noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+noremap <Leader>a :e <C-R>=expand("%:p:h") . "/" <CR>
 
 "" Opens a tab edit command with the path of the currently edited file filled
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
@@ -283,10 +283,11 @@ set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,venv,__pycache__
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>e <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>rg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>gr <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
+" nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " syntastic
 let g:syntastic_always_populate_loc_list=1
