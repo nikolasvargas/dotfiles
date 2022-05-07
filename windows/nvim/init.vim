@@ -117,12 +117,14 @@ set termguicolors
 " For Windows
 if has('win32')
 	set guifont=Liberation\ Mono:h12:l
+    set guioptions=egmrLT
+else
+	set guioptions=egmrti
 endif
 
 let no_buffers_menu=1
 
 set mousemodel=popup
-set guioptions=egmrti
 
 "" Disable the blinking cursor.
 set guicursor=
@@ -374,30 +376,16 @@ augroup END
 " python
 let g:python3_host_prog = "C:/Program Files/Python310/python.exe"
 
+" node
+"let g:loaded_node_provider = 0 # use this to avoid trigger node loader
+let g:node_host_prog = "C:/Program Files/nodejs/node_modules/neovim/bin/cli.js"
+
 " vim-python
 augroup vimrc-python
   autocmd!
   autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 cinwords=if,elif,else,for,while,try,except,finally,def,class,with,match
 augroup END
 
-" jedi-vim
-" let g:python3_host_prog = "/usr/local/bin/python3.9"
-" let g:jedi#popup_on_dot = 1
-" let g:jedi#goto_assignments_command = "<leader>g"
-" let g:jedi#goto_definitions_command = "<leader>d"
-" let g:jedi#documentation_command = "K"
-" let g:jedi#usages_command = "<leader>n"
-" let g:jedi#rename_command = "<leader>r"
-" let g:jedi#show_call_signatures = 0
-" let g:jedi#completions_command = "<C-Space>"
-" let g:jedi#smart_auto_mappings = 0
-" let g:jedi#use_splits_not_buffers = "right"
-" let g:jedi#use_tabs_not_buffers = 1
-
-"" Remove preview docstring window on top
-""" https://github.com/davidhalter/jedi-vim/blob/master/doc/jedi-vim.txti
-""" 6.2. `g:jedi#auto_vim_configuration` && 6.5. `g:jedi#auto_close_doc`
-" set completeopt-=preview
 set completeopt=menuone,noinsert,noselect
 
 " syntastic
