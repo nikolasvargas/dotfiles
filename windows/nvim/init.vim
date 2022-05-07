@@ -116,10 +116,10 @@ set termguicolors
 
 " For Windows
 if has('win32')
-	set guifont=Liberation\ Mono:h12:l
+    set guifont=Liberation\ Mono:h11
     set guioptions=egmrLT
 else
-	set guioptions=egmrti
+    set guioptions=egmrti
 endif
 
 let no_buffers_menu=1
