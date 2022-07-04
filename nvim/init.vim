@@ -1,5 +1,5 @@
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
-let g:polyglot_disabled = ['vue']
+" let g:polyglot_disabled = ['vue']
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -44,6 +44,7 @@ Plug 'bronson/vim-trailing-whitespace' "FixWhiteSpace for trailing whitespace!
 Plug 'Raimondi/delimitMate' "provide automatic closing of quotes, parenthesis, brackets, etc...
 Plug 'scrooloose/syntastic' "syntax checking
 Plug 'nikolasvargas/vim-polyglot' "collection of language packs
+Plug 'nikolasvargas/forest' "my colorscheme
 "*****************************************************************************
 "" Custom bundles
 "*****************************************************************************
@@ -112,7 +113,7 @@ endif
 "*****************************************************************************
 syntax on
 set ruler
-set wrap
+set nowrap
 " set nu
 
 set t_Co=256
@@ -152,8 +153,10 @@ set modelines=10
 " set title
 " set titlestring=%f
 
-set statusline=%f%m%r%h%w%=(%{&ff}/%Y)\ (LINE\ %l\/%L,\ COL\ %c)
-" set statusline=%f%m%r%h%w%=%y\ (line\ %l\/%L,\ col\ %c)
+" full_path|modified_flag|readonly_flag|help_flag|preview_window_flag = XXX
+" set statusline=%f%m%r%h%w%=(%{&ff}/%Y)\ (LINE\ %l\/%L,\ COL\ %c)
+" set statusline=%f%m%r%h%w%=(LINE\ %l\/%L,\ COL\ %c)%=[%{&ff}/%Y]
+set statusline=%f%m%r%h\ \ \ \ \ \ \ \ (LINE\ %l\/%L,\ COL\ %c)%=[%{&ff}/%Y]
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -270,7 +273,7 @@ nnoremap <S-Tab> gT
 nnoremap <silent> <S-t> :tabnew<CR>
 
 "" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
+" nnoremap <leader>. :lcd %:p:h<CR>
 
 "" Opens an edit command with the path of the currently edited file filled in
 noremap <Leader>a :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -375,6 +378,7 @@ let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
 augroup vimrc-javascript
   autocmd!
   autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
+  " autocmd FileType vue        setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
   autocmd FileType vue        setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2 syntax=javascript
 augroup END
 
@@ -382,7 +386,7 @@ augroup END
 " vim-python
 augroup vimrc-python
   autocmd!
-  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 cinwords=if,elif,else,for,while,try,except,finally,def,class,with,match
+  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 cinwords=if,elif,else,for,while,try,except,finally,def,class,with,match,case
 augroup END
 
 " jedi-vim
@@ -537,4 +541,16 @@ lua << EOF
         update_in_insert = false,
         severity_sort = false,
     })
+
+    require('telescope').setup {
+        defaults = {
+            layout_strategy = 'vertical',
+            layout_config = { height = 0.95 },
+        },
+        pickers = {
+            find_files = {
+                hidden = true,
+            },
+        },
+    }
 EOF
