@@ -53,7 +53,6 @@ Plug 'editorconfig/editorconfig-vim' " .editorconfig rules
 
 " python
 "" Python Bundle
-Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
 call plug#end()
@@ -125,7 +124,7 @@ endif
 
 set background=dark
 
-colorscheme forest
+colorscheme codedark
 
 set termguicolors
 
@@ -384,25 +383,12 @@ augroup END
 
 " python
 " vim-python
+let g:python3_host_prog = "/usr/local/bin/python3.10"
+
 augroup vimrc-python
   autocmd!
   autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 cinwords=if,elif,else,for,while,try,except,finally,def,class,with,match,case
 augroup END
-
-" jedi-vim
-" let g:python3_host_prog = "/usr/bin/python3.8"
-let g:python3_host_prog = "/usr/local/bin/python3.10"
-let g:jedi#popup_on_dot = 1
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = 0
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#smart_auto_mappings = 0
-" let g:jedi#use_splits_not_buffers = "right"
-" let g:jedi#use_tabs_not_buffers = 1
 
 "" Remove preview docstring window on top
 """ https://github.com/davidhalter/jedi-vim/blob/master/doc/jedi-vim.txti
@@ -497,11 +483,8 @@ lua << EOF
         buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
         buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
         buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+        buf_set_keymap('n', 'ge', '<cmd>lua vim.diagnostic.open_float(0, { scope = "line", border = "single" })<CR>', opts)
         buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-        buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-        buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-        buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-        buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
         buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     end
 
@@ -515,7 +498,7 @@ lua << EOF
     --     capabilities = capabilities,
     -- })
 
-    local servers = { 'rust_analyzer', 'vuels'}
+    local servers = { 'rust_analyzer', 'vuels', 'jedi_language_server'}
 
     for _, server in ipairs(servers) do
         nvim_lsp[server].setup({
@@ -540,6 +523,9 @@ lua << EOF
         underline = true,
         update_in_insert = false,
         severity_sort = false,
+        float = {
+            source = 'always'
+        },
     })
 
     require('telescope').setup {
