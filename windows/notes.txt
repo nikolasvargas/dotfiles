@@ -4,4 +4,3 @@
 install:
 - https://cmake.org/download/
 - https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16
--

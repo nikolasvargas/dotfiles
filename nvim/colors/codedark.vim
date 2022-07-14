@@ -69,7 +69,7 @@ let s:cdNone = {'gui': 'NONE', 'cterm': 'NONE', 'cterm256': 'NONE'}
 let s:cdFront = {'gui': '#D4D4D4', 'cterm': s:cterm05, 'cterm256': '188'}
 " Background color
 " let s:cdBack = {'gui': '#0A0A0A', 'cterm': s:cterm00, 'cterm256': '234'}
-let s:cdBack = {'gui': '#141414', 'cterm': s:cterm00, 'cterm256': '234'}
+let s:cdBack = {'gui': '#111111', 'cterm': s:cterm00, 'cterm256': '234'}
 
 let s:cdTabCurrent = {'gui': '#1E1E1E', 'cterm': s:cterm00, 'cterm256': '234'}
 let s:cdTabOther = {'gui': '#2D2D2D', 'cterm': s:cterm01, 'cterm256': '236'}
@@ -412,6 +412,8 @@ call <sid>hi('goSingleDecl', s:cdLightBlue, {}, 'none', {})
 
 " Python:
 call <sid>hi('pythonStatement', s:cdBlue, {}, 'none', {})
+call <sid>hi('pythonAssignmentOperator', s:cdFront, {}, 'none', {})
+call <sid>hi('pythonLogicalOperator', s:cdBlue, {}, 'none', {})
 call <sid>hi('pythonOperator', s:cdBlue, {}, 'none', {})
 call <sid>hi('pythonException', s:cdPink, {}, 'none', {})
 call <sid>hi('pythonExClass', s:cdBlueGreen, {}, 'none', {})
@@ -421,7 +423,6 @@ call <sid>hi('pythonBoolean', s:cdBlue, {}, 'none', {})
 call <sid>hi('pythonNone', s:cdBlue, {}, 'none', {})
 call <sid>hi('pythonTodo', s:cdBlue, {}, 'none', {})
 call <sid>hi('pythonClassVar', s:cdBlue, {}, 'none', {})
-call <sid>hi('pythonClassDef', s:cdBlueGreen, {}, 'none', {})
 
 " TeX:
 call <sid>hi('texStatement', s:cdBlue, {}, 'none', {})

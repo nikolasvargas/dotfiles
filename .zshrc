@@ -40,14 +40,6 @@ alias sv="source ./venv/bin/activate"
 alias v="nvim"
 alias vim="nvim"
 
-########## Django ###########
-#####################################################
-alias pms="python manage.py shell -i ipython"
-alias mkm="python manage.py makemigrations"
-alias mm="python manage.py migrate"
-alias pmr="python manage.py runserver"
-alias pmt="python manage.py test -p '*test.py' -v 2"
-
 ########## httpie ###########
 #####################################################
 alias hg="http -f GET"
