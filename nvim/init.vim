@@ -124,7 +124,7 @@ endif
 
 set background=dark
 
-colorscheme codedark
+colorscheme forest
 
 set termguicolors
 
@@ -532,6 +532,7 @@ lua << EOF
         defaults = {
             layout_strategy = 'vertical',
             layout_config = { height = 0.95 },
+            file_ignore_patterns = { ".git", "venv" }
         },
         pickers = {
             find_files = {
