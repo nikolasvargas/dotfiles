@@ -429,37 +429,24 @@ lua << EOF
     local nvim_lsp = require('lspconfig')
     local cmp = require('cmp')
 
-    cmp.setup({
+    cmp.setup {
         snippet = {
                 expand = function(args)
                     vim.fn["vsnip#anonymous"](args.body)
                 end,
         },
-        sources = cmp.config.sources(
-            {
-                { name = 'nvim_lsp' },
-                { name = 'vsnip' },
-            }
-            -- {
-            --     { name = 'buffer' }
-            -- }
-        )
-    })
-    -- cmp.setup.cmdline('/', {
-    --     sources = {
-    --         { name = 'buffer' }
-    --     }
-    -- })
-    -- cmp.setup.cmdline(':', {
-    --     sources = cmp.config.sources(
-    --         {
-    --             { name = 'buffer' }
-    --         },
-    --         {
-    --             { name = 'cmdline' }
-    --         }
-    --     )
-    -- })
+
+        sources = {
+			{ name = 'nvim_lsp' },
+			{ name = 'vsnip' },
+		},
+
+        mapping = {
+            ['<CR>'] = cmp.mapping.confirm({ select = true }),
+            ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
+            ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+        }
+    }
 
     local on_attach = function(client, bufnr)
         local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -489,14 +476,6 @@ lua << EOF
     end
 
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-    -- nvim_lsp.rust_analyzer.setup({
-    --     on_attach = on_attach,
-    --     flags = {
-    --         debounce_text_changes = 150,
-    --     },
-    --     capabilities = capabilities,
-    -- })
 
     local servers = { 'rust_analyzer', 'vuels', 'jedi_language_server'}
 
@@ -532,10 +511,11 @@ lua << EOF
         defaults = {
             layout_strategy = 'vertical',
             layout_config = { height = 0.95 },
-            file_ignore_patterns = { ".git", "venv" }
+            file_ignore_patterns = { ".git", "venv", "^core/static/core/js/"}
         },
         pickers = {
             find_files = {
+                previewer = false,
                 hidden = true,
             },
         },
