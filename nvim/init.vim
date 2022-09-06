@@ -142,7 +142,7 @@ set guicursor+=i-ci:blinkoff0
 set scrolloff=3
 
 "" Status bar
-set laststatus=3
+" set laststatus=3
 highlight WinSeparator guibg=None
 
 "" Use modeline overrides
@@ -154,8 +154,8 @@ set modelines=10
 
 " full_path|modified_flag|readonly_flag|help_flag|preview_window_flag = XXX
 " set statusline=%f%m%r%h%w%=(%{&ff}/%Y)\ (LINE\ %l\/%L,\ COL\ %c)
-set statusline=%f%m%r%h%w\ \ \ LINE\ %l\/%L\ COL\ %c\ \ \ (%{&ff}/%Y)
-" set statusline=%f%m%r%h\ \ \ \ \ \ \ \ (LINE\ %l\/%L,\ COL\ %c)%=[%{&ff}/%Y]
+" set statusline=%f%m%r%h%w\ \ \ LINE\ %l\/%L\ COL\ %c\ \ \ (%{&ff}/%Y)
+set statusline=%t%m%r%h%w\ \ \ \ \ \ \ \ \ LINE\ %l\/%L\ COL\ %c\ \ \ \ \ \ \ \ \ (%{&ff}/%Y)
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -509,15 +509,24 @@ lua << EOF
 
     require('telescope').setup {
         defaults = {
-            layout_strategy = 'vertical',
-            layout_config = { height = 0.95 },
             file_ignore_patterns = { ".git", "venv", "^core/static/core/js/"}
         },
         pickers = {
             find_files = {
                 previewer = false,
                 hidden = true,
+                layout_config = {
+                    width = 0.7
+                },
             },
+            live_grep = {
+                layout_strategy = 'vertical',
+                layout_config = {
+                    preview_height = 0.65,
+                    width = 0.9,
+                    height = 0.95
+                },
+            }
         },
     }
 EOF
