@@ -1,5 +1,5 @@
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
-" let g:polyglot_disabled = ['vue']
+let g:polyglot_disabled = ['vue']
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -112,7 +112,7 @@ endif
 "*****************************************************************************
 syntax on
 set ruler
-set nowrap
+set wrap
 " set nu
 
 set t_Co=256
@@ -124,8 +124,7 @@ endif
 
 set background=dark
 
-colorscheme forest
-
+colorscheme forest2
 set termguicolors
 
 let no_buffers_menu=1
@@ -374,11 +373,10 @@ autocmd Filetype groovy,html,scala setlocal ts=2 sw=2 expandtab
 let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
 
 " vim-javascript
+au BufRead,BufNewFile *.vue set filetype=javascript
 augroup vimrc-javascript
   autocmd!
   autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
-  " autocmd FileType vue        setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
-  autocmd FileType vue        setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2 syntax=javascript
 augroup END
 
 " python
@@ -516,13 +514,16 @@ lua << EOF
                 previewer = false,
                 hidden = true,
                 layout_config = {
+                    -- prompt_position = "top",
                     width = 0.7
                 },
             },
             live_grep = {
                 layout_strategy = 'vertical',
                 layout_config = {
-                    preview_height = 0.65,
+                    -- prompt_position = "top",
+                    -- mirror = true,
+                    preview_height = 0.5,
                     width = 0.9,
                     height = 0.95
                 },
