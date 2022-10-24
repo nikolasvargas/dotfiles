@@ -112,7 +112,7 @@ endif
 "*****************************************************************************
 syntax on
 set ruler
-set wrap
+set nowrap
 " set nu
 
 set t_Co=256
@@ -141,7 +141,7 @@ set guicursor+=i-ci:blinkoff0
 set scrolloff=3
 
 "" Status bar
-set winbar=%f
+" set winbar=%=%m\ %f
 set laststatus=3
 highlight WinSeparator guibg=None
 
@@ -153,10 +153,8 @@ set modelines=10
 " set titlestring=%f
 
 " full_path|modified_flag|readonly_flag|help_flag|preview_window_flag = XXX
-" set statusline=%f%m%r%h%w%=(%{&ff}/%Y)\ (LINE\ %l\/%L,\ COL\ %c)
-" set statusline=%f%m%r%h%w\ \ \ LINE\ %l\/%L\ COL\ %c\ \ \ (%{&ff}/%Y)
-" set statusline=%f%m%r%h%w\ \ \ \ \ \ \ \ \ LINE\ %l\/%L\ COL\ %c\ \ \ \ \ \ \ \ \ (%{&ff}/%Y)
-set statusline=%t%m%r%h%w%=LINE\ %l\/%L\ COL\ %c%=(%{&ff}/%Y)
+" set statusline=%t%m%r%h%w%=LINE\ %l\/%L\ COL\ %c%=(%{&ff}/%Y)
+set statusline=%{expand('%:p:h:t')}/%t%m%r%h%w%=LINE\ %l\/%L\ COL\ %c%=(%{&ff}/%Y)
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
