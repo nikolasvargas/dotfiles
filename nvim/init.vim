@@ -1,4 +1,5 @@
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
+let g:loaded_perl_provider = 0
 let g:polyglot_disabled = ['vue']
 
 if !filereadable(vimplug_exists)
@@ -118,14 +119,12 @@ set nowrap
 set t_Co=256
 set t_ut=
 
-if (has("nvim"))
-    let $NVIM_TUI_ENABLE_TRE_COLOR=1
-endif
+colorscheme forest
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set termguicolors
 
 set background=dark
-
-colorscheme forest2
-set termguicolors
 
 let no_buffers_menu=1
 
@@ -142,7 +141,7 @@ set scrolloff=3
 
 "" Status bar
 " set winbar=%=%m\ %f
-set laststatus=3
+set laststatus=2
 highlight WinSeparator guibg=None
 
 "" Use modeline overrides
@@ -308,10 +307,10 @@ if has('autocmd')
 endif
 
 "" Copy/Paste/Cut
-" if has('unnamedplus')
-"   set clipboard=unnamed,unnamedplus
-" endif
-set clipboard+=unnamedplus
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+endif
+" set clipboard+=unnamedplus
 
 noremap YY "+y<CR>
 noremap <leader>p "+gP<CR>
@@ -381,7 +380,7 @@ augroup END
 
 " python
 " vim-python
-let g:python3_host_prog = "/usr/local/bin/python3.10"
+let g:python3_host_prog = "/usr/bin/python3.10"
 
 augroup vimrc-python
   autocmd!
@@ -408,18 +407,6 @@ highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 "" Include user's local vim config
 if filereadable(expand("~/.config/nvim/local_init.vim"))
   source ~/.config/nvim/local_init.vim
-endif
-
-"" Windows clipboard workaround
-let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
-if executable(s:clip)
-    augroup WSLYank
-        autocmd!
-        " WSL 1
-        " autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
-        " WSL 2
-        autocmd TextYankPost * if v:event.operator ==# 'y' | call system('cat |' . s:clip, @0) | endif
-    augroup END
 endif
 
 "" LSP CONFIG
@@ -473,9 +460,10 @@ lua << EOF
         buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     end
 
-    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-    local servers = { 'rust_analyzer', 'vuels', 'jedi_language_server'}
+    -- local servers = { 'rust_analyzer', 'vuels', 'jedi_language_server'}
+    local servers = { 'rust_analyzer', 'jedi_language_server'}
 
     for _, server in ipairs(servers) do
         nvim_lsp[server].setup({
@@ -507,7 +495,8 @@ lua << EOF
 
     require('telescope').setup {
         defaults = {
-            file_ignore_patterns = { ".git", "venv", "^core/static/core/js/"}
+            file_ignore_patterns = { ".git", "venv", "^core/static/core/js/"},
+            layout_strategy = 'vertical',
         },
         pickers = {
             find_files = {
@@ -515,7 +504,7 @@ lua << EOF
                 hidden = true,
                 layout_config = {
                     -- prompt_position = "top",
-                    width = 0.7
+                    width = 0.8
                 },
             },
             live_grep = {
@@ -524,7 +513,7 @@ lua << EOF
                     -- prompt_position = "top",
                     -- mirror = true,
                     preview_height = 0.5,
-                    width = 0.9,
+                    width = 0.8,
                     height = 0.95
                 },
             }
