@@ -119,7 +119,7 @@ set nowrap
 set t_Co=256
 set t_ut=
 
-colorscheme forest
+colorscheme forest2
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
@@ -307,10 +307,10 @@ if has('autocmd')
 endif
 
 "" Copy/Paste/Cut
-if has('unnamedplus')
-  set clipboard=unnamed,unnamedplus
-endif
-" set clipboard+=unnamedplus
+" if has('unnamedplus')
+"   set clipboard=unnamed,unnamedplus
+" endif
+set clipboard+=unnamedplus
 
 noremap YY "+y<CR>
 noremap <leader>p "+gP<CR>
@@ -463,17 +463,47 @@ lua << EOF
     local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
     -- local servers = { 'rust_analyzer', 'vuels', 'jedi_language_server'}
-    local servers = { 'rust_analyzer', 'jedi_language_server'}
+    -- for _, server in ipairs(servers) do
+    --     nvim_lsp[server].setup({
+    --         on_attach = on_attach,
+    --         flags = {
+    --             debounce_text_changes = 150,
+    --         },
+    --         capabilities = capabilities
+    --     })
+    -- end
 
-    for _, server in ipairs(servers) do
-        nvim_lsp[server].setup({
-            on_attach = on_attach,
-            flags = {
-                debounce_text_changes = 150,
+    nvim_lsp.rust_analyzer.setup {
+        on_attach = on_attach,
+        settings = {
+            ["rust-analyzer"] = {
+                granularity = {
+                    group = "module"
+                },
+                prefix = "self"
             },
-            capabilities = capabilities
-        })
-    end
+            cargo = {
+                buildScripts = {
+                    enable = true
+                },
+            },
+            procMacro = {
+                enable = true
+            },
+        },
+        flags = {
+            debounce_text_changes = 150,
+        },
+        capabilities = capabilities
+    }
+
+    nvim_lsp.jedi_language_server.setup {
+        on_attach = on_attach,
+        flags = {
+            debounce_text_changes = 150,
+        },
+        capabilities = capabilities
+    }
 
     local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
 
