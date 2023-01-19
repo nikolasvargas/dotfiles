@@ -24,9 +24,10 @@ require("vscode").setup {
   italic_comments = false
 }
 
+
 vim.o.termguicolors = true
 vim.o.background = "dark"
-vim.cmd('colorscheme vscode')
+vim.cmd('colorscheme gruvbox')
 
 -- Enable Comment.nvim
 require('Comment').setup()

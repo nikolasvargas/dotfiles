@@ -40,12 +40,11 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 
 -- close buffer
--- vim.keymap.set("n", "<leader>c", ":bp<bar>sp<bar>bn<bar>bd<CR>")
-vim.keymap.set("n", "<leader>c", ":bd<CR>")
+vim.keymap.set("n", "<leader>q", ":bp<bar>sp<bar>bn<bar>bd<CR>")
+-- vim.keymap.set("n", "<leader>q", ":bd<CR>")
 
 -- buffer navigation
 vim.keymap.set("n", "<leader>z", ":bp<CR>")
-vim.keymap.set("n", "<leader>q", ":bp<CR>")
 vim.keymap.set("n", "<leader>x", ":bn<CR>")
 -- vim.keymap.set("n", "<leader>w", ":bn<CR>")
 
