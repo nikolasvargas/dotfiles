@@ -58,6 +58,10 @@ vim.keymap.set("n", "<Leader><space>", ":noh<CR>", { silent = true })
 -- See `:help vim.o`
 -- clipboard
 vim.opt.clipboard = 'unnamedplus'
+vim.opt.cursorline = true
+
+-- set colorcolumn
+vim.opt.colorcolumn = "120"
 
 -- Set highlight on search
 vim.o.hlsearch = true
@@ -116,6 +120,7 @@ vim.keymap.set('n', '<Tab>', 'gt')
 vim.keymap.set('n', ';t', ':tabnew<CR>')
 
 -- setup statusline old mode
-vim.cmd("set statusline=%{expand('%:p:h:t')}/%t%m%r%h%w%=LINE\\ %l\\/%L\\ COL\\ %c%=(%{&ff}/%Y)")
+-- vim.cmd("set statusline=%{expand('%:p:h:t')}/%t%m%r%h%w%=LINE\\ %l\\/%L\\ COL\\ %c%=(%{&ff}/%Y)")
+vim.cmd("set statusline=%{expand('%:p:h:t')}/%t%m%r%h%w%=L\\%l\\:%L\\ %c\\ (%{&ff}/%Y)")
 
 require("nikolas")
