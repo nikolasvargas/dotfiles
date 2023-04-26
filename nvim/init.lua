@@ -58,10 +58,10 @@ vim.keymap.set("n", "<Leader><space>", ":noh<CR>", { silent = true })
 -- See `:help vim.o`
 -- clipboard
 vim.opt.clipboard = 'unnamedplus'
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 -- set colorcolumn
-vim.opt.colorcolumn = "120"
+vim.opt.colorcolumn = "0"
 
 -- Set highlight on search
 vim.o.hlsearch = true
@@ -70,7 +70,7 @@ vim.o.hlsearch = true
 vim.wo.number = false
 
 -- Wrap lines at all.
-vim.wo.wrap = false
+vim.wo.wrap = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'

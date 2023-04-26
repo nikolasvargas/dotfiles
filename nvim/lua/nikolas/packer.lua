@@ -49,11 +49,15 @@ require('packer').startup(function(use)
   -- Themes
   use 'ellisonleao/gruvbox.nvim' -- https://github.com/ellisonleao/gruvbox.nvim
   use 'Mofiqul/vscode.nvim' -- https://github.com/Mofiqul/vscode.nvim
+  use 'Mofiqul/adwaita.nvim' -- https://github.com/Mofiqul/adwaita.nvim
+  use 'nikolasvargas/melange-nvim' -- https://github.com/nikolasvargas/melange-nvim
+  use 'p00f/alabaster.nvim' -- https://github.com/p00f/alabaster.nvim
+
 
   -- use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
-  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+  -- use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }

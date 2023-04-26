@@ -84,6 +84,16 @@ _G.packer_plugins = {
     path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["adwaita.nvim"] = {
+    loaded = true,
+    path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/adwaita.nvim",
+    url = "https://github.com/Mofiqul/adwaita.nvim"
+  },
+  ["alabaster.nvim"] = {
+    loaded = true,
+    path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/alabaster.nvim",
+    url = "https://github.com/p00f/alabaster.nvim"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -109,11 +119,6 @@ _G.packer_plugins = {
     path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
     url = "https://github.com/ellisonleao/gruvbox.nvim"
   },
-  ["indent-blankline.nvim"] = {
-    loaded = true,
-    path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
-    url = "https://github.com/lukas-reineke/indent-blankline.nvim"
-  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -123,6 +128,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["melange-nvim"] = {
+    loaded = true,
+    path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/melange-nvim",
+    url = "https://github.com/nikolasvargas/melange-nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,

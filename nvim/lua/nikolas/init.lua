@@ -5,7 +5,11 @@ require("gruvbox").setup {
   undercurl = true,
   underline = false,
   bold = true,
-  italic = false,
+  italic = {
+    strings = false,
+    operators = false,
+    comments = false
+  },
   strikethrough = true,
   invert_selection = false,
   invert_signs = false,
@@ -24,9 +28,13 @@ require("vscode").setup {
   italic_comments = false
 }
 
+-- adwait theme configuration
+vim.g.adwaita_darker = true
+vim.g.adwaita_disable_cursorline = true
+
 vim.o.termguicolors = true
 vim.o.background = "dark"
-vim.cmd('colorscheme vscode')
+vim.cmd('colorscheme melange')
 
 -- Enable Comment.nvim
 require('Comment').setup()
@@ -34,10 +42,10 @@ require('Comment').setup()
 -- vim.opt.list = true
 -- vim.opt.listchars:append "space:⋅"
 
-require("indent_blankline").setup {
-  -- space_char_blankline = " ",
-  show_trailing_blankline_indent = false
-}
+-- require("indent_blankline").setup {
+--   -- space_char_blankline = " ",
+--   show_trailing_blankline_indent = false
+-- }
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -162,8 +170,8 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua' }
-local servers_auto_setup = { 'clangd', 'rust_analyzer', 'tsserver', 'sumneko_lua' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls' }
+local servers_auto_setup = { 'clangd', 'rust_analyzer', 'tsserver', 'lua_ls' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
@@ -210,7 +218,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-require('lspconfig').sumneko_lua.setup {
+require('lspconfig').lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
