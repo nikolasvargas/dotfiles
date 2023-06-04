@@ -3,6 +3,7 @@
 local t = require('telescope')
 t.setup {
   defaults = {
+    layout_strategy = "vertical",
     file_ignore_patterns = { ".git", "venv", "^core/static/core/js/"},
     mappings = {
       i = {
