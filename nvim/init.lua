@@ -123,4 +123,6 @@ vim.keymap.set('n', ';t', ':tabnew<CR>')
 -- vim.cmd("set statusline=%{expand('%:p:h:t')}/%t%m%r%h%w%=LINE\\ %l\\/%L\\ COL\\ %c%=(%{&ff}/%Y)")
 vim.cmd("set statusline=%{expand('%:p:h:t')}/%t%m%r%h%w%=L\\%l\\:%L\\ %c\\ (%{&ff}/%Y)")
 
+vim.api.nvim_command('autocmd FileType c setlocal tabstop=4')
+
 require("nikolas")
