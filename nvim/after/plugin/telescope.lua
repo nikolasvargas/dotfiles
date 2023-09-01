@@ -3,6 +3,8 @@
 local t = require('telescope')
 t.setup {
   defaults = {
+    wrap_results = true,
+    layout_strategy = "vertical",
     file_ignore_patterns = { ".git", "venv", "^core/static/core/js/"},
     mappings = {
       i = {
@@ -13,18 +15,12 @@ t.setup {
   },
   pickers = {
     find_files = {
-      layout_config = {
-        height = 0.95
-      },
+      previewer = false
     },
-    live_grep = {
-      layout_strategy = "vertical",
-      layout_config = {
-        height = 0.95,
-        width = 0.75,
-      },
-    },
-  },
+    git_files = {
+      previewer = false
+    }
+  }
 }
 -- Enable telescope fzf native, if installed
 pcall(t.load_extension, 'fzf')
@@ -33,17 +29,20 @@ pcall(t.load_extension, 'fzf')
 local builtin = require('telescope.builtin')
 
 vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader>/', function()
+vim.keymap.set('n', '<C-f>', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
+    winblend = 8,
+    layout_strategy = "bottom_pane",
+    layout_config = {
+      height = 40,
+    },
+    previewer = true,
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
 
 vim.keymap.set('n', '<leader>e',  builtin.find_files, {})
 vim.keymap.set('n', '<leader>gr', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 vim.keymap.set('n', '<leader>b',  builtin.buffers,     { desc = '[S]earch existing [B]uffers' })
 vim.keymap.set('n', '<C-p>',      builtin.git_files,   { desc = 'Search only git files'	      })
