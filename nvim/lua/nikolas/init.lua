@@ -16,7 +16,7 @@ require("gruvbox").setup {
   invert_tabline = false,
   invert_intend_guides = false,
   inverse = true, -- invert background for search, diffs, statuslines and errors
-  contrast = "hard", -- can be "hard", "soft" or empty string
+  contrast = "", -- can be "hard", "soft" or empty string
   palette_overrides = {},
   overrides = {},
   dim_inactive = false,
@@ -29,30 +29,30 @@ require("vscode").setup {
 }
 
 -- adwait theme configuration
-vim.g.adwaita_darker = true
+vim.g.adwaita_darker = false
 vim.g.adwaita_disable_cursorline = true
 
 vim.o.termguicolors = true
 vim.o.background = "dark"
 vim.cmd('colorscheme melange')
+-- vim.cmd('colorscheme alabaster')
+-- vim.cmd('colorscheme lunaperche')
 
 -- Enable Comment.nvim
 require('Comment').setup()
 
--- vim.opt.list = true
+vim.opt.list = true
 -- vim.opt.listchars:append "space:⋅"
---
--- require("indent_blankline").setup {
---   -- space_char_blankline = " ",
---   show_trailing_blankline_indent = false
--- }
+vim.opt.listchars = { tab = '>~', lead = '⋅', trail = '⋅', extends = '>' }
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = { 'c', 'cpp', 'lua', 'python', 'rust', 'typescript', 'help' },
-
+  sync_install = false,
+  auto_install = false,
+  ignore_install = {},
   highlight = { enable = false },
   indent = { enable = true },
   incremental_selection = {
@@ -193,16 +193,27 @@ require('lspconfig').pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
-    pyright = {
-      autoImportCompletion = false,
-      python = {
-        analysis = {
-          autoSearchPaths = true,
-          diagnosticMode = 'openFilesOnly',
-          -- diagnosticMode = 'workspace',
-          useLibraryCodeForTypes = true,
-          -- typeCheckingMode = 'off'
-        }
+    -- pyright = {
+    --   autoImportCompletion = false,
+    --   reportGeneralTypeIssues = false,
+    --   python = {
+    --     analysis = {
+    --       autoSearchPaths = true,
+    --       diagnosticMode = 'openFilesOnly',
+    --       -- diagnosticMode = 'workspace',
+    --       useLibraryCodeForTypes = true,
+    --       typeCheckingMode = 'off',
+    --       logLevel = "Error"
+    --     }
+    --   }
+    -- }
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = 'openFilesOnly',
+        useLibraryCodeForTypes = true,
+        typeCheckingMode = 'off',
+        logLevel = "Error"
       }
     }
   }

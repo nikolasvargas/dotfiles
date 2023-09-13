@@ -35,7 +35,7 @@ vim.keymap.set('n', '<C-f>', function()
     winblend = 8,
     layout_strategy = "bottom_pane",
     layout_config = {
-      height = 40,
+      height = 30,
     },
     previewer = true,
   })

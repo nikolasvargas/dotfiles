@@ -56,7 +56,6 @@ require('packer').startup(function(use)
   use 'nikolasvargas/melange-nvim' -- https://github.com/nikolasvargas/melange-nvim
   use 'p00f/alabaster.nvim' -- https://github.com/p00f/alabaster.nvim
 
-
   -- use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically

@@ -29,7 +29,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- split window 
+-- split window
 vim.keymap.set("n", "<Leader>h", ":<C-u>split<CR>")
 vim.keymap.set("n", "<Leader>v", ":<C-u>vsplit<CR>")
 
@@ -70,7 +70,7 @@ vim.o.hlsearch = true
 vim.wo.number = false
 
 -- Wrap lines at all.
-vim.wo.wrap = true
+vim.wo.wrap = false
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -125,4 +125,17 @@ vim.cmd("set statusline=%{expand('%:p:h:t')}/%t%m%r%h%w%=L\\%l\\:%L\\ %c\\ (%{&f
 
 vim.api.nvim_command('autocmd FileType c setlocal tabstop=4')
 
+-- Removing trailing spaces on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  command = [[%s/\s\+$//e]],
+})
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+--   group = vim.api.nvim_create_augroup('BuildOnSave', { clear = true }),
+--   pattern  = "*.rs",
+--   callback = function()
+--     vim.cmd("!cargo build")
+--   end,
+-- })
+--
 require("nikolas")
