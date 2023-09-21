@@ -119,9 +119,14 @@ vim.keymap.set('n', '<Leader>te', ':tabe <C-R>=expand("%:p:h") . "/" <CR>')
 vim.keymap.set('n', '<Tab>', 'gt')
 vim.keymap.set('n', ';t', ':tabnew<CR>')
 
--- setup statusline old mode
+-- disable statusline
+vim.o.laststatus = 0
 -- vim.cmd("set statusline=%{expand('%:p:h:t')}/%t%m%r%h%w%=LINE\\ %l\\/%L\\ COL\\ %c%=(%{&ff}/%Y)")
 vim.cmd("set statusline=%{expand('%:p:h:t')}/%t%m%r%h%w%=L\\%l\\:%L\\ %c\\ (%{&ff}/%Y)")
+
+-- winbar (statusline on top)
+vim.api.nvim_set_hl(0, "WinSeparator", { bg = nil, fg = "#ffffff" })
+vim.cmd("set winbar=%f\\ %m\\ L%l\\:%L\\ %c\\ (%{&ff}/%Y)")
 
 vim.api.nvim_command('autocmd FileType c setlocal tabstop=4')
 

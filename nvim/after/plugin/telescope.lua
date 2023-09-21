@@ -54,5 +54,5 @@ vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iag
 vim.keymap.set('n', '<leader>sr', builtin.resume,      { desc = '[S]earch on [R]esume'        })
 
 -- vim.keymap.set('n', '<leader>f', function ()
--- 	builtin.grep_string( { search = vim.fn.input("Grep > ") });
+  -- builtin.grep_string( { search = vim.fn.input("Grep > ") });
 -- end)
