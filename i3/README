@@ -1,21 +1,22 @@
-Installation:
 -------------
-sudo apt install i3 i3blocks i3lock xorg     # i3 base
-sudo apt install xfce4-terminal curl         # basic terminal setup
-sudo apt install sxiv feh                    # image viewer & background display control
-sudo apt install xfce4-notifyd               # notification service
-sudo apt install arandr
-sudo apt install network-manager             # network service manager
-sudo apt install xfce4-powermanager acpi     # for laptop power management
-sudo apt install pulseaudio pulseaudio-utils # audio support
-sudo apt install pavucontrol                 # audio control
-sudo apt install scrot imagemagick xautolock # screen lock
-sudo apt install thunar or nautilus          # file manager
-sudo apt install zsh neovim git bat geany    # developer tools
-sudo apt install firefox                     # browser
-sudo apt install gdebi htop                  # operations tools
+i3 i3blocks i3status i3lock xorg     # i3 base
+xfce4-terminal curl                  # basic terminal setup
+sxiv feh                             # image viewer & background display control
+xfce4-notifyd                        # xfce4 notification daemon
+dunst                                # lightweight notification daemon
+arandr                               # monitor/display UI settings
+network-manager                      # network service manager
+network-manager-applet               # network applet
+xfce4-powermanager acpi              # for laptop power management
+pulseaudio pulseaudio-utils          # audio support
+pavucontrol                          # audio control
+scrot imagemagick xautolock          # screen lock
+thunar or nautilus                   # file manager
+zsh neovim git bat geany             # developer tools
+firefox                              # browser
+gdebi htop                           # operations tools
 
-Install whatever login display manager:
+login display manager:
 ---------------------------------------
 sudo apt install slim (does not need any dependency)
 
@@ -25,15 +26,7 @@ enable screen lock script:
 -------------------------
 chmod +x ~/.config/i3/scripts/lock
 
-virtual machine? Install these additional packages to have a better experience:
--------------------------------------------------------------------------------
-sudo apt-install virtualbox-dkms virtualbox-guest-dkms virtualbox-guest-x11
-
-install docker (https://docs.docker.com/engine/install/ubuntu/) & enable use without sudo:
------------------------------------------------------------------------------------------
-sudo usermod -aG docker ${USER}               # logout and logon or run su - ${USER}
-
-# easy run
+# easy run ubuntu
 sudo apt install i3 i3blocks i3lock xorg \
     xfce4-terminal curl \
     sxiv feh \
@@ -48,3 +41,16 @@ sudo apt install i3 i3blocks i3lock xorg \
     zsh neovim git bat geany \
     firefox \
     gdebi htop
+
+# easy run fedora
+sudo dnf install i3 i3blocks i3status i3lock \
+    alsa-lib alsa-utils \
+    sxiv feh ImageMagick \
+    arandr \
+    dunst \
+    xclip \
+    scrot xautolock \
+    light brightnessctl \
+    network-manager-applet \
+    git-cola \
+    ripgrep fd-find

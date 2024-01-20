@@ -18,6 +18,21 @@ markup=none
 # interval=1
 # signal=10
 
+# Battery indicator
+# The battery instance defaults to 0.
+
+[iface]
+color=#00FF00
+interval=10
+
+[wifi]
+interval=10
+separator=false
+
+[battery]
+label=⚡
+interval=30
+
 [cpu_usage]
 label=CPU:
 interval=10
@@ -30,7 +45,7 @@ interval=5
 color=#FEC925
 
 [DISK]
-command=df -h / | awk '/\//{ printf("💾 %4s/%s \n", $4, $2) }'
+command=df -h / | awk '/\//{ printf("💾 %3s/%s \n", $3, $2) }'
 interval=60
 color=#C9E3DB
 
