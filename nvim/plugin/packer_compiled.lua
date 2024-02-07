@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/nvargas/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/nvargas/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/nvargas/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/nvargas/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/nvargas/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/nvargas/.cache/nvim/packer_hererocks/2.1.1692716794/share/lua/5.1/?.lua;/home/nvargas/.cache/nvim/packer_hererocks/2.1.1692716794/share/lua/5.1/?/init.lua;/home/nvargas/.cache/nvim/packer_hererocks/2.1.1692716794/lib/luarocks/rocks-5.1/?.lua;/home/nvargas/.cache/nvim/packer_hererocks/2.1.1692716794/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/nvargas/.cache/nvim/packer_hererocks/2.1.1692716794/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -84,16 +84,6 @@ _G.packer_plugins = {
     path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ["adwaita.nvim"] = {
-    loaded = true,
-    path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/adwaita.nvim",
-    url = "https://github.com/Mofiqul/adwaita.nvim"
-  },
-  ["alabaster.nvim"] = {
-    loaded = true,
-    path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/alabaster.nvim",
-    url = "https://github.com/p00f/alabaster.nvim"
-  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -113,6 +103,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/fidget.nvim",
     url = "https://github.com/j-hui/fidget.nvim"
+  },
+  ["github-nvim-theme"] = {
+    loaded = true,
+    path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/github-nvim-theme",
+    url = "https://github.com/projekt0n/github-nvim-theme"
   },
   ["gruvbox.nvim"] = {
     loaded = true,

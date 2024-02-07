@@ -52,9 +52,8 @@ require('packer').startup(function(use)
   -- Themes
   use 'ellisonleao/gruvbox.nvim' -- https://github.com/ellisonleao/gruvbox.nvim
   use 'Mofiqul/vscode.nvim' -- https://github.com/Mofiqul/vscode.nvim
-  use 'Mofiqul/adwaita.nvim' -- https://github.com/Mofiqul/adwaita.nvim
   use 'nikolasvargas/melange-nvim' -- https://github.com/nikolasvargas/melange-nvim
-  use 'p00f/alabaster.nvim' -- https://github.com/p00f/alabaster.nvim
+  use 'projekt0n/github-nvim-theme' -- https://github.com/projekt0n/github-nvim-theme
 
   -- use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines

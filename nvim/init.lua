@@ -1,3 +1,4 @@
+require("nikolas")
 -- [[ Basic Keymaps ]]
 -- Set <space> as the leader key
 -- See `:help mapleader`
@@ -12,17 +13,8 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
-
--- vim.keymap.set("x", "\"",         "<ESC>`>a\"<ESC>`<i\"<ESC>")
--- vim.keymap.set("x", "\'",         "<ESC>`>a'<ESC>`<i'<ESC>")
--- vim.keymap.set("x", "(",          "<ESC>`>a)<ESC>`<i(<ESC>")
--- vim.keymap.set("x", "[",          "<ESC>`>a]<ESC>`<i[<ESC>")
--- vim.keymap.set("x", "<Leader>\"", "<ESC>`>a\"<ESC>`<i\"<ESC>")
--- vim.keymap.set("x", "<Leader>\'", "<ESC>`>a'<ESC>`<i'<ESC>")
--- vim.keymap.set("x", "<Leader>(",  "<ESC>`>a)<ESC>`<i(<ESC>")
--- vim.keymap.set("x", "<Leader>[",  "<ESC>`>a]<ESC>`<i[<ESC>")
-
 vim.keymap.set("n", "J", "mzJ`z")
+
 vim.keymap.set("n", "<C-a>", "<esc>ggVG<CR>")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -53,6 +45,7 @@ vim.keymap.set("x", "<leader>y", [["_dP]])
 
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", "<Leader><space>", ":noh<CR>", { silent = true })
+vim.keymap.set("n", "q", "<Nop>")
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -61,16 +54,16 @@ vim.opt.clipboard = 'unnamedplus'
 vim.opt.cursorline = false
 
 -- set colorcolumn
-vim.opt.colorcolumn = "0"
+vim.opt.colorcolumn = "100"
 
 -- Set highlight on search
 vim.o.hlsearch = true
 
 -- Make line numbers default
-vim.wo.number = false
+vim.wo.number = true
 
 -- Wrap lines at all.
-vim.wo.wrap = false
+vim.wo.wrap = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -100,17 +93,6 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
--- local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
--- vim.api.nvim_create_autocmd('TextYankPost', {
---   callback = function()
---     vim.highlight.on_yank()
---   end,
---   group = highlight_group,
---   pattern = '*',
--- })
-
 -- Opens an edit command with the path of the currently edited file filled in
 vim.keymap.set('n', ';e', ':e <C-R>=expand("%:p:h") . "/" <CR>')
 
@@ -122,13 +104,18 @@ vim.keymap.set('n', ';t', ':tabnew<CR>')
 -- disable statusline
 vim.o.laststatus = 0
 -- vim.cmd("set statusline=%{expand('%:p:h:t')}/%t%m%r%h%w%=LINE\\ %l\\/%L\\ COL\\ %c%=(%{&ff}/%Y)")
-vim.cmd("set statusline=%{expand('%:p:h:t')}/%t%m%r%h%w%=L\\%l\\:%L\\ %c\\ (%{&ff}/%Y)")
+-- vim.cmd("set statusline=%f%m%r%h%w\\ \\ \\ L\\%l\\:%L\\ %c\\ (%{&ff}/%Y)")
+-- vim.cmd("set statusline=%f%m%r%h%w%=L\\%l\\:%L\\ %c\\ (%{&ff}/%Y)")
 
 -- winbar (statusline on top)
+-- vim.cmd("set winbar=%f\\ %m\\ L%l\\:%L\\ %c\\ (%{&ff}/%Y)")
+vim.api.nvim_set_hl(0, "WinBar", { bg = nil, fg = "#ff44ff" })
 vim.api.nvim_set_hl(0, "WinSeparator", { bg = nil, fg = "#ffffff" })
-vim.cmd("set winbar=%f\\ %m\\ L%l\\:%L\\ %c\\ (%{&ff}/%Y)")
+vim.api.nvim_set_hl(0, "StatusLine", { bg = nil, fg = "#ffffff" })
+vim.cmd("set winbar=%f\\ %m\\ (%{&ff}/%Y)")
 
-vim.api.nvim_command('autocmd FileType c setlocal tabstop=4')
+vim.api.nvim_command('autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab')
+vim.api.nvim_command('autocmd FileType html setlocal tabstop=2 shiftwidth=2 expandtab')
 
 -- Removing trailing spaces on save
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -143,4 +130,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 --   end,
 -- })
 --
-require("nikolas")

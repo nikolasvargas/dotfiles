@@ -34,14 +34,31 @@ vim.g.adwaita_disable_cursorline = true
 
 vim.o.termguicolors = true
 vim.o.background = "dark"
-vim.cmd('colorscheme melange')
--- vim.cmd('colorscheme alabaster')
--- vim.cmd('colorscheme lunaperche')
+
+require('github-theme').setup({
+  options = {
+    hide_nc_statusline = false,
+    styles = {                 -- Style to be applied to different syntax groups
+      comments = 'NONE',       -- Value is any valid attr-list value `:help attr-list`
+      functions = 'NONE',
+      keywords = 'bold',
+      variables = 'NONE',
+      conditionals = 'bold',
+      constants = 'bold',
+      numbers = 'NONE',
+      operators = 'bold',
+      strings = 'NONE',
+      types = 'NONE',
+    }
+  }
+})
+
+vim.cmd('colorscheme github_dark_tritanopia')
 
 -- Enable Comment.nvim
 require('Comment').setup()
 
-vim.opt.list = true
+-- vim.opt.list = true
 -- vim.opt.listchars:append "space:⋅"
 vim.opt.listchars = { tab = '>~', lead = '⋅', trail = '⋅', extends = '>' }
 
@@ -170,7 +187,7 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'emmet_language_server' }
 local servers_auto_setup = { 'clangd', 'rust_analyzer', 'tsserver', 'lua_ls' }
 
 -- Ensure the servers above are installed
@@ -188,6 +205,28 @@ for _, lsp in ipairs(servers_auto_setup) do
     capabilities = capabilities,
   }
 end
+
+require('lspconfig').emmet_language_server.setup({
+  filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue" },
+  -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
+  -- **Note:** only the options listed in the table are supported.
+  init_options = {
+    --- @type string[]
+    excludeLanguages = {},
+    --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/preferences/)
+    preferences = {},
+    --- @type boolean Defaults to `true`
+    showAbbreviationSuggestions = true,
+    --- @type "always" | "never" Defaults to `"always"`
+    showExpandedAbbreviation = "always",
+    --- @type boolean Defaults to `false`
+    showSuggestionsAsSnippets = true,
+    --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/syntax-profiles/)
+    syntaxProfiles = {},
+    --- @type table<string, string> [Emmet Docs](https://docs.emmet.io/customization/snippets/#variables)
+    variables = {},
+  },
+})
 
 require('lspconfig').pyright.setup {
   on_attach = on_attach,
@@ -258,9 +297,9 @@ local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 
 cmp.setup {
-  completion = {
-    autocomplete = false
-  },
+  -- completion = {
+  --   autocomplete = false
+  -- },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
