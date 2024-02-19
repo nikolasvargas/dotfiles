@@ -39,7 +39,7 @@ require('github-theme').setup({
   options = {
     hide_nc_statusline = false,
     styles = {                 -- Style to be applied to different syntax groups
-      comments = 'NONE',       -- Value is any valid attr-list value `:help attr-list`
+      comments = 'italic',       -- Value is any valid attr-list value `:help attr-list`
       functions = 'NONE',
       keywords = 'bold',
       variables = 'NONE',
@@ -47,12 +47,13 @@ require('github-theme').setup({
       constants = 'bold',
       numbers = 'NONE',
       operators = 'bold',
-      strings = 'NONE',
+      strings = 'bold',
       types = 'NONE',
     }
   }
 })
 
+-- vim.cmd('colorscheme github_light_tritanopia')
 vim.cmd('colorscheme github_dark_tritanopia')
 
 -- Enable Comment.nvim

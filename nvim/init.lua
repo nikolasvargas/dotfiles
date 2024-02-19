@@ -109,7 +109,7 @@ vim.o.laststatus = 0
 
 -- winbar (statusline on top)
 -- vim.cmd("set winbar=%f\\ %m\\ L%l\\:%L\\ %c\\ (%{&ff}/%Y)")
-vim.api.nvim_set_hl(0, "WinBar", { bg = nil, fg = "#ff44ff" })
+vim.api.nvim_set_hl(0, "WinBar", { bg = nil, fg = "#b288cf", bold=true })
 vim.api.nvim_set_hl(0, "WinSeparator", { bg = nil, fg = "#ffffff" })
 vim.api.nvim_set_hl(0, "StatusLine", { bg = nil, fg = "#ffffff" })
 vim.cmd("set winbar=%f\\ %m\\ (%{&ff}/%Y)")
