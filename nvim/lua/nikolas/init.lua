@@ -59,9 +59,10 @@ vim.cmd('colorscheme github_dark_tritanopia')
 -- Enable Comment.nvim
 require('Comment').setup()
 
--- vim.opt.list = true
+vim.opt.list = true
 -- vim.opt.listchars:append "space:⋅"
-vim.opt.listchars = { tab = '>~', lead = '⋅', trail = '⋅', extends = '>' }
+-- vim.opt.listchars = { tab = '>~', lead = '⋅', trail = '⋅', extends = '>' }
+vim.opt.listchars = { tab = '>~', trail = '⋅', extends = '>' }
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`

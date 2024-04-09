@@ -47,6 +47,9 @@ vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", "<Leader><space>", ":noh<CR>", { silent = true })
 vim.keymap.set("n", "q", "<Nop>")
 
+-- file_browser mapping
+vim.keymap.set("n", "<Leader>fb", ":Telescope file_browser<CR>")
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- clipboard
@@ -54,13 +57,13 @@ vim.opt.clipboard = 'unnamedplus'
 vim.opt.cursorline = false
 
 -- set colorcolumn
-vim.opt.colorcolumn = "100"
+vim.opt.colorcolumn = "0"
 
 -- Set highlight on search
 vim.o.hlsearch = true
 
 -- Make line numbers default
-vim.wo.number = true
+vim.wo.number = false
 
 -- Wrap lines at all.
 vim.wo.wrap = true
@@ -102,17 +105,17 @@ vim.keymap.set('n', '<Tab>', 'gt')
 vim.keymap.set('n', ';t', ':tabnew<CR>')
 
 -- disable statusline
-vim.o.laststatus = 0
+vim.o.laststatus = 2
 -- vim.cmd("set statusline=%{expand('%:p:h:t')}/%t%m%r%h%w%=LINE\\ %l\\/%L\\ COL\\ %c%=(%{&ff}/%Y)")
 -- vim.cmd("set statusline=%f%m%r%h%w\\ \\ \\ L\\%l\\:%L\\ %c\\ (%{&ff}/%Y)")
--- vim.cmd("set statusline=%f%m%r%h%w%=L\\%l\\:%L\\ %c\\ (%{&ff}/%Y)")
+vim.cmd("set statusline=%f%m%r%h%w\\ \\LINE\\ \\%l\\ (%P)\\ COL\\ %c\\ (%{&ff}/%Y)")
 
 -- winbar (statusline on top)
 -- vim.cmd("set winbar=%f\\ %m\\ L%l\\:%L\\ %c\\ (%{&ff}/%Y)")
-vim.api.nvim_set_hl(0, "WinBar", { bg = nil, fg = "#b288cf", bold=true })
+-- vim.api.nvim_set_hl(0, "WinBar", { bg = nil, fg = "#b288cf", bold=true })
 vim.api.nvim_set_hl(0, "WinSeparator", { bg = nil, fg = "#ffffff" })
 vim.api.nvim_set_hl(0, "StatusLine", { bg = nil, fg = "#ffffff" })
-vim.cmd("set winbar=%f\\ %m\\ (%{&ff}/%Y)")
+-- vim.cmd("set winbar=%f\\ %m\\ (%{&ff}/%Y)")
 
 vim.api.nvim_command('autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab')
 vim.api.nvim_command('autocmd FileType html setlocal tabstop=2 shiftwidth=2 expandtab')
@@ -129,4 +132,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 --     vim.cmd("!cargo build")
 --   end,
 -- })
---

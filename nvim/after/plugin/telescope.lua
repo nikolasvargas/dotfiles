@@ -3,6 +3,16 @@
 local t = require('telescope')
 t.setup {
   defaults = {
+    extensions = {
+      file_browser = {
+        theme = "ivy",
+        hijack_netrw = true,
+        hidden = true,
+        no_ignore = true,
+        depth = 2,
+        auto_depth = true,
+      }
+    },
     wrap_results = true,
     layout_strategy = "vertical",
     file_ignore_patterns = { ".git", "venv", "^core/static/core/js/"},
@@ -15,15 +25,20 @@ t.setup {
   },
   pickers = {
     find_files = {
-      previewer = false
+      hidden=true,
+      no_ignore=true,
+      previewer = false,
     },
     git_files = {
+      hidden=true,
+      no_ignore=true,
       previewer = false
     }
   }
 }
 -- Enable telescope fzf native, if installed
 pcall(t.load_extension, 'fzf')
+pcall(t.load_extension, 'file_browser')
 
 -- See `:help telescope.builtin`
 local builtin = require('telescope.builtin')
