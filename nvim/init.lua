@@ -112,10 +112,17 @@ vim.cmd("set statusline=%f%m%r%h%w\\ \\LINE\\ \\%l\\ (%P)\\ COL\\ %c\\ (%{&ff}/%
 
 -- winbar (statusline on top)
 -- vim.cmd("set winbar=%f\\ %m\\ L%l\\:%L\\ %c\\ (%{&ff}/%Y)")
+-- vim.cmd("set winbar=%f\\ %m\\ (%{&ff}/%Y)")
 -- vim.api.nvim_set_hl(0, "WinBar", { bg = nil, fg = "#b288cf", bold=true })
 vim.api.nvim_set_hl(0, "WinSeparator", { bg = nil, fg = "#ffffff" })
 vim.api.nvim_set_hl(0, "StatusLine", { bg = nil, fg = "#ffffff" })
--- vim.cmd("set winbar=%f\\ %m\\ (%{&ff}/%Y)")
+
+if vim.g.colors_name == "melange" then
+  vim.api.nvim_set_hl(0, "StatusLine", { bg = "#3c3836", fg = "#ebdbb2" })
+  vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#3c3836", fg = "#928374" })
+else
+  vim.api.nvim_set_hl(0, "StatusLine", { bg = nil, fg = "#ffffff" })
+end
 
 vim.api.nvim_command('autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab')
 vim.api.nvim_command('autocmd FileType html setlocal tabstop=2 shiftwidth=2 expandtab')
@@ -125,10 +132,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   command = [[%s/\s\+$//e]],
 })
--- vim.api.nvim_create_autocmd("BufWritePost", {
---   group = vim.api.nvim_create_augroup('BuildOnSave', { clear = true }),
---   pattern  = "*.rs",
---   callback = function()
---     vim.cmd("!cargo build")
---   end,
--- })

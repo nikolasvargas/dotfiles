@@ -53,8 +53,8 @@ require('github-theme').setup({
   }
 })
 
--- vim.cmd('colorscheme github_light_tritanopia')
-vim.cmd('colorscheme github_dark_tritanopia')
+-- vim.cmd('colorscheme github_dark_tritanopia')
+vim.cmd('colorscheme melange')
 
 -- Enable Comment.nvim
 require('Comment').setup()
@@ -299,9 +299,9 @@ local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 
 cmp.setup {
-  -- completion = {
-  --   autocomplete = false
-  -- },
+  completion = {
+    autocomplete = false
+  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)

@@ -15,7 +15,7 @@ t.setup {
     },
     wrap_results = true,
     layout_strategy = "vertical",
-    file_ignore_patterns = { ".git", "venv", "^core/static/core/js/"},
+    file_ignore_patterns = { ".git", "venv", "^core/static/core/js/", "node_modules", ".cache", "*.pyc", "*.min.js" },
     mappings = {
       i = {
         ['<C-u>'] = false,
@@ -27,7 +27,7 @@ t.setup {
     find_files = {
       hidden=true,
       no_ignore=true,
-      previewer = false,
+      previewer=false,
     },
     git_files = {
       hidden=true,
