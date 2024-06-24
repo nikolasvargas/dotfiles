@@ -38,10 +38,12 @@ vim.keymap.set("n", "<leader>q", ":bp<bar>sp<bar>bn<bar>bd<CR>")
 -- buffer navigation
 vim.keymap.set("n", "<leader>z", ":bp<CR>")
 vim.keymap.set("n", "<leader>x", ":bn<CR>")
--- vim.keymap.set("n", "<leader>w", ":bn<CR>")
 
 -- greatest remap ever
 vim.keymap.set("x", "<leader>y", [["_dP]])
+vim.keymap.set("x", "d", [["_d]])
+vim.keymap.set("n", "d", [["_d]])
+vim.keymap.set("x", "dd", [["_dd]])
 
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", "<Leader><space>", ":noh<CR>", { silent = true })
@@ -54,19 +56,21 @@ vim.keymap.set("n", "<Leader>fb", ":Telescope file_browser<CR>")
 -- See `:help vim.o`
 -- clipboard
 vim.opt.clipboard = 'unnamedplus'
-vim.opt.cursorline = false
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = 'number'
+-- vim.opt.cursorbind = true
 
 -- set colorcolumn
-vim.opt.colorcolumn = "0"
+vim.opt.colorcolumn = "120"
 
 -- Set highlight on search
 vim.o.hlsearch = true
 
 -- Make line numbers default
-vim.wo.number = false
+vim.wo.number = true
 
 -- Wrap lines at all.
-vim.wo.wrap = true
+vim.wo.wrap = false
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -102,7 +106,15 @@ vim.keymap.set('n', ';e', ':e <C-R>=expand("%:p:h") . "/" <CR>')
 -- Opens a tab edit command with the path of the currently edited file filled
 vim.keymap.set('n', '<Leader>te', ':tabe <C-R>=expand("%:p:h") . "/" <CR>')
 vim.keymap.set('n', '<Tab>', 'gt')
+vim.keymap.set('n', '<S-Tab>', 'gT')
 vim.keymap.set('n', ';t', ':tabnew<CR>')
+
+-- Define colorscheme
+-- vim.cmd('colorscheme github_dark_tritanopia')
+-- vim.cmd('colorscheme github_dark_default')
+vim.cmd('colorscheme gruvbox')
+-- vim.cmd('colorscheme melange')
+-- vim.cmd('colorscheme vscode')
 
 -- disable statusline
 vim.o.laststatus = 2
@@ -115,13 +127,15 @@ vim.cmd("set statusline=%f%m%r%h%w\\ \\LINE\\ \\%l\\ (%P)\\ COL\\ %c\\ (%{&ff}/%
 -- vim.cmd("set winbar=%f\\ %m\\ (%{&ff}/%Y)")
 -- vim.api.nvim_set_hl(0, "WinBar", { bg = nil, fg = "#b288cf", bold=true })
 vim.api.nvim_set_hl(0, "WinSeparator", { bg = nil, fg = "#ffffff" })
-vim.api.nvim_set_hl(0, "StatusLine", { bg = nil, fg = "#ffffff" })
 
-if vim.g.colors_name == "melange" then
+-- vim.api.nvim_set_hl(0, "StatusLine", { bg = "#3c3836", fg = "#ebdbb2" })
+-- vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#3c3836", fg = "#928374" })
+
+if vim.g.colors_name == "melange" or vim.g.colors_name == "gruvbox" then
   vim.api.nvim_set_hl(0, "StatusLine", { bg = "#3c3836", fg = "#ebdbb2" })
   vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#3c3836", fg = "#928374" })
 else
-  vim.api.nvim_set_hl(0, "StatusLine", { bg = nil, fg = "#ffffff" })
+  vim.api.nvim_set_hl(0, "StatusLine", { bg = nil, fg = "#BFBFBF" })
 end
 
 vim.api.nvim_command('autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab')

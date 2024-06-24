@@ -14,25 +14,33 @@ t.setup {
       }
     },
     wrap_results = true,
-    layout_strategy = "vertical",
-    file_ignore_patterns = { ".git", "venv", "^core/static/core/js/", "node_modules", ".cache", "*.pyc", "*.min.js" },
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
+    layout_strategy = "horizontal",
+    file_ignore_patterns = { ".git", "venv", "^core/static/core/js/", "node_modules", ".cache", "*.pyc", "*.min.js", "target"},
   },
   pickers = {
     find_files = {
       hidden=true,
       no_ignore=true,
-      previewer=false,
+      previewer=true,
+      mappings = {
+        i = {
+          ['<C-d>'] = require('telescope.actions').select_default,
+          ['<C-u>'] = false,
+          ['<CR>'] = require('telescope.actions').select_tab,
+        },
+      },
     },
     git_files = {
       hidden=true,
       no_ignore=true,
-      previewer = false
+      previewer = true,
+      mappings = {
+        i = {
+          ['<C-d>'] = require('telescope.actions').select_default,
+          ['<C-u>'] = false,
+          ['<CR>'] = require('telescope.actions').select_tab,
+        },
+      },
     }
   }
 }

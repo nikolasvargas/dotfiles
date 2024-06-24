@@ -8,7 +8,7 @@ require("gruvbox").setup {
   italic = {
     strings = false,
     operators = false,
-    comments = false
+    comments = true
   },
   strikethrough = true,
   invert_selection = false,
@@ -16,7 +16,7 @@ require("gruvbox").setup {
   invert_tabline = false,
   invert_intend_guides = false,
   inverse = true, -- invert background for search, diffs, statuslines and errors
-  contrast = "", -- can be "hard", "soft" or empty string
+  contrast = "hard", -- can be "hard", "soft" or empty string
   palette_overrides = {},
   overrides = {},
   dim_inactive = false,
@@ -53,9 +53,6 @@ require('github-theme').setup({
   }
 })
 
--- vim.cmd('colorscheme github_dark_tritanopia')
-vim.cmd('colorscheme melange')
-
 -- Enable Comment.nvim
 require('Comment').setup()
 
@@ -71,9 +68,10 @@ require('nvim-treesitter.configs').setup {
   ensure_installed = { 'c', 'cpp', 'lua', 'python', 'rust', 'typescript', 'help' },
   sync_install = false,
   auto_install = false,
+  modules = {},
   ignore_install = {},
   highlight = { enable = false },
-  indent = { enable = true },
+  -- indent = { enable = true },
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -207,6 +205,31 @@ for _, lsp in ipairs(servers_auto_setup) do
     capabilities = capabilities,
   }
 end
+
+require('lspconfig').rust_analyzer.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    ["rust-analyzer"] = {
+      inlayHints = {
+        typeHints = true,
+        parameterHints = true,
+        chainingHints = false,
+        maxLength = 120,
+      },
+      assist = {
+        importGranularity = "module",
+        importPrefix = "by_self",
+      },
+      cargo = {
+        loadOutDirsFromCheck = true
+      },
+      procMacro = {
+        enable = true
+      },
+    }
+  }
+}
 
 require('lspconfig').emmet_language_server.setup({
   filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue" },
