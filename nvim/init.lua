@@ -57,17 +57,18 @@ vim.keymap.set("n", "<Leader>fb", ":Telescope file_browser<CR>")
 -- clipboard
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.cursorline = true
-vim.opt.cursorlineopt = 'number'
--- vim.opt.cursorbind = true
+-- vim.opt.cursorlineopt = 'number'
+-- Set cursor blinking
+vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 
 -- set colorcolumn
-vim.opt.colorcolumn = "120"
+vim.opt.colorcolumn = "100"
 
 -- Set highlight on search
 vim.o.hlsearch = true
 
 -- Make line numbers default
-vim.wo.number = true
+vim.wo.number = false
 
 -- Wrap lines at all.
 vim.wo.wrap = false
@@ -109,34 +110,36 @@ vim.keymap.set('n', '<Tab>', 'gt')
 vim.keymap.set('n', '<S-Tab>', 'gT')
 vim.keymap.set('n', ';t', ':tabnew<CR>')
 
--- Define colorscheme
--- vim.cmd('colorscheme github_dark_tritanopia')
--- vim.cmd('colorscheme github_dark_default')
-vim.cmd('colorscheme gruvbox')
--- vim.cmd('colorscheme melange')
--- vim.cmd('colorscheme vscode')
+
+vim.o.termguicolors = true
+vim.o.background = "dark"
+vim.cmd('colorscheme gruber-darker')
+vim.cmd("highlight ColorColumn guibg=#1d1d1d ctermbg=7")
+vim.cmd("highlight cursorline guibg=#252525 ctermbg=7")
 
 -- disable statusline
-vim.o.laststatus = 2
+vim.o.laststatus = 0
 -- vim.cmd("set statusline=%{expand('%:p:h:t')}/%t%m%r%h%w%=LINE\\ %l\\/%L\\ COL\\ %c%=(%{&ff}/%Y)")
--- vim.cmd("set statusline=%f%m%r%h%w\\ \\ \\ L\\%l\\:%L\\ %c\\ (%{&ff}/%Y)")
 vim.cmd("set statusline=%f%m%r%h%w\\ \\LINE\\ \\%l\\ (%P)\\ COL\\ %c\\ (%{&ff}/%Y)")
 
 -- winbar (statusline on top)
 -- vim.cmd("set winbar=%f\\ %m\\ L%l\\:%L\\ %c\\ (%{&ff}/%Y)")
--- vim.cmd("set winbar=%f\\ %m\\ (%{&ff}/%Y)")
--- vim.api.nvim_set_hl(0, "WinBar", { bg = nil, fg = "#b288cf", bold=true })
-vim.api.nvim_set_hl(0, "WinSeparator", { bg = nil, fg = "#ffffff" })
+vim.cmd("set winbar=%f\\ %m\\ (%{&ff}/%Y)")
+vim.api.nvim_set_hl(0, "WinBar", { bg = "#252525", fg = "#ebdbb2", bold=true })
+vim.api.nvim_set_hl(0, "WinBarNC", { bg = nil, fg = "#928374", bold=false })
+vim.api.nvim_set_hl(0, "WinSeparator", { bg = nil, fg = "#3a3a3a" })
 
 -- vim.api.nvim_set_hl(0, "StatusLine", { bg = "#3c3836", fg = "#ebdbb2" })
 -- vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#3c3836", fg = "#928374" })
 
-if vim.g.colors_name == "melange" or vim.g.colors_name == "gruvbox" then
-  vim.api.nvim_set_hl(0, "StatusLine", { bg = "#3c3836", fg = "#ebdbb2" })
-  vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#3c3836", fg = "#928374" })
-else
-  vim.api.nvim_set_hl(0, "StatusLine", { bg = nil, fg = "#BFBFBF" })
-end
+-- if vim.g.colors_name ~= "gruvbox" then
+--   if vim.g.colors_name == "melange" then
+--     vim.api.nvim_set_hl(0, "StatusLine", { bg = "#3c3836", fg = "#ebdbb2" })
+--     vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#3c3836", fg = "#928374" })
+--   else
+--     vim.api.nvim_set_hl(0, "StatusLine", { bg = nil, fg = "#BFBFBF" })
+--   end
+-- end
 
 vim.api.nvim_command('autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab')
 vim.api.nvim_command('autocmd FileType html setlocal tabstop=2 shiftwidth=2 expandtab')

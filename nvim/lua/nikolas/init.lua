@@ -25,15 +25,15 @@ require("gruvbox").setup {
 
 require("vscode").setup {
   transparent = false,
-  italic_comments = false
+  italic_comments = false,
+  color_overrides = {
+    vscBack = "#101010",
+  },
 }
 
 -- adwait theme configuration
 vim.g.adwaita_darker = false
 vim.g.adwaita_disable_cursorline = true
-
-vim.o.termguicolors = true
-vim.o.background = "dark"
 
 require('github-theme').setup({
   options = {
@@ -53,6 +53,18 @@ require('github-theme').setup({
   }
 })
 
+require('gruber-darker').setup {
+  invert = {
+    signs = false,
+    tabline = false,
+    visual = false
+  },
+  italic = {
+    strings = false,
+    folds = false
+  }
+}
+
 -- Enable Comment.nvim
 require('Comment').setup()
 
@@ -71,7 +83,7 @@ require('nvim-treesitter.configs').setup {
   modules = {},
   ignore_install = {},
   highlight = { enable = false },
-  -- indent = { enable = true },
+  indent = { enable = true },
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -211,22 +223,19 @@ require('lspconfig').rust_analyzer.setup {
   capabilities = capabilities,
   settings = {
     ["rust-analyzer"] = {
-      inlayHints = {
-        typeHints = true,
-        parameterHints = true,
-        chainingHints = false,
-        maxLength = 120,
-      },
-      assist = {
-        importGranularity = "module",
-        importPrefix = "by_self",
-      },
-      cargo = {
-        loadOutDirsFromCheck = true
-      },
-      procMacro = {
-        enable = true
-      },
+      -- inlayHints = {
+      --   typeHints = true,
+      --   parameterHints = true,
+      --   chainingHints = false,
+      --   maxLength = 120,
+      -- },
+      -- assist = {
+      --   importGranularity = "module",
+      --   importPrefix = "by_self",
+      -- },
+      cargo = { loadOutDirsFromCheck = true },
+      procMacro = { enable = true },
+      checkOnSave = { command = "clippy" }
     }
   }
 }
@@ -322,9 +331,7 @@ local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 
 cmp.setup {
-  completion = {
-    autocomplete = false
-  },
+  -- completion = { autocomplete = false },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -372,9 +379,9 @@ end
 
 vim.diagnostic.config({
     virtual_text = true,
-    signs = false,
+    signs = true,
     underline = true,
-    update_in_insert = false,
+    update_in_insert = true,
     severity_sort = false,
     float = {
         source = 'always'
