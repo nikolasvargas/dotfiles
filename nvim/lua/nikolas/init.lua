@@ -1,57 +1,6 @@
 require('nikolas.packer')
 
--- Set colorscheme
-require("gruvbox").setup {
-  undercurl = true,
-  underline = false,
-  bold = true,
-  italic = {
-    strings = false,
-    operators = false,
-    comments = true
-  },
-  strikethrough = true,
-  invert_selection = false,
-  invert_signs = false,
-  invert_tabline = false,
-  invert_intend_guides = false,
-  inverse = true, -- invert background for search, diffs, statuslines and errors
-  contrast = "hard", -- can be "hard", "soft" or empty string
-  palette_overrides = {},
-  overrides = {},
-  dim_inactive = false,
-  transparent_mode = false,
-}
-
-require("vscode").setup {
-  transparent = false,
-  italic_comments = false,
-  color_overrides = {
-    vscBack = "#101010",
-  },
-}
-
--- adwait theme configuration
-vim.g.adwaita_darker = false
-vim.g.adwaita_disable_cursorline = true
-
-require('github-theme').setup({
-  options = {
-    hide_nc_statusline = false,
-    styles = {                 -- Style to be applied to different syntax groups
-      comments = 'italic',       -- Value is any valid attr-list value `:help attr-list`
-      functions = 'NONE',
-      keywords = 'bold',
-      variables = 'NONE',
-      conditionals = 'bold',
-      constants = 'bold',
-      numbers = 'NONE',
-      operators = 'bold',
-      strings = 'bold',
-      types = 'NONE',
-    }
-  }
-})
+vim.o.termguicolors = true
 
 require('gruber-darker').setup {
   invert = {
@@ -67,6 +16,9 @@ require('gruber-darker').setup {
 
 -- Enable Comment.nvim
 require('Comment').setup()
+
+-- Enable Comment.nvim
+require('colorizer').setup()
 
 vim.opt.list = true
 -- vim.opt.listchars:append "space:⋅"
@@ -199,8 +151,8 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'emmet_language_server' }
-local servers_auto_setup = { 'clangd', 'rust_analyzer', 'tsserver', 'lua_ls' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'emmet_language_server', 'volar' }
+local servers_auto_setup = { 'clangd', 'rust_analyzer', 'tsserver', 'lua_ls', 'volar' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {

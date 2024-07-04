@@ -50,11 +50,6 @@ require('packer').startup(function(use)
   use 'gpanders/editorconfig.nvim'
 
   -- Themes
-  use 'ellisonleao/gruvbox.nvim' -- https://github.com/ellisonleao/gruvbox.nvim
-  use 'Mofiqul/vscode.nvim' -- https://github.com/Mofiqul/vscode.nvim
-  use 'nikolasvargas/melange-nvim' -- https://github.com/nikolasvargas/melange-nvim
-  use 'projekt0n/github-nvim-theme' -- https://github.com/projekt0n/github-nvim-theme
-  use { "briones-gabriel/darcula-solid.nvim", requires = "rktjmp/lush.nvim" }
   use 'nikolasvargas/gruber-darker.nvim' -- https://github.com/nikolasvargas/gruber-darker.nvim
 
   -- use 'nvim-lualine/lualine.nvim' -- Fancier statusline
@@ -69,6 +64,9 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
   use { "nvim-telescope/telescope-file-browser.nvim", requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" } }
+
+  -- color highlighter
+  use 'norcalli/nvim-colorizer.lua'
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')

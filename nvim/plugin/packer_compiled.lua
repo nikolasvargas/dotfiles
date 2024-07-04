@@ -94,11 +94,6 @@ _G.packer_plugins = {
     path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  ["darcula-solid.nvim"] = {
-    loaded = true,
-    path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/darcula-solid.nvim",
-    url = "https://github.com/briones-gabriel/darcula-solid.nvim"
-  },
   ["editorconfig.nvim"] = {
     loaded = true,
     path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/editorconfig.nvim",
@@ -109,25 +104,10 @@ _G.packer_plugins = {
     path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/fidget.nvim",
     url = "https://github.com/j-hui/fidget.nvim"
   },
-  ["github-nvim-theme"] = {
-    loaded = true,
-    path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/github-nvim-theme",
-    url = "https://github.com/projekt0n/github-nvim-theme"
-  },
   ["gruber-darker.nvim"] = {
     loaded = true,
     path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/gruber-darker.nvim",
-    url = "https://github.com/blazkowolf/gruber-darker.nvim"
-  },
-  ["gruvbox.nvim"] = {
-    loaded = true,
-    path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
-    url = "https://github.com/ellisonleao/gruvbox.nvim"
-  },
-  ["lush.nvim"] = {
-    loaded = true,
-    path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/lush.nvim",
-    url = "https://github.com/rktjmp/lush.nvim"
+    url = "https://github.com/nikolasvargas/gruber-darker.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
@@ -139,15 +119,15 @@ _G.packer_plugins = {
     path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
-  ["melange-nvim"] = {
-    loaded = true,
-    path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/melange-nvim",
-    url = "https://github.com/nikolasvargas/melange-nvim"
-  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-colorizer.lua"] = {
+    loaded = true,
+    path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
+    url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -203,11 +183,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/vim-sleuth",
     url = "https://github.com/tpope/vim-sleuth"
-  },
-  ["vscode.nvim"] = {
-    loaded = true,
-    path = "/home/nvargas/.local/share/nvim/site/pack/packer/start/vscode.nvim",
-    url = "https://github.com/Mofiqul/vscode.nvim"
   }
 }
 

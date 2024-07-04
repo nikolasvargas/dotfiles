@@ -16,31 +16,21 @@ t.setup {
     wrap_results = true,
     layout_strategy = "vertical",
     file_ignore_patterns = { ".git", "venv", "^core/static/core/js/", "node_modules", ".cache", "*.pyc", "*.min.js", "target"},
+    mappings = {
+      i = { ['<M-CR>'] = "select_tab" },
+      n = { ['<M-CR>'] = "select_tab" },
+    }
   },
   pickers = {
     find_files = {
       hidden=true,
       no_ignore=true,
       previewer=true,
-      -- mappings = {
-      --   i = {
-      --     ['<C-d>'] = require('telescope.actions').select_default,
-      --     ['<C-u>'] = false,
-      --     ['<CR>'] = require('telescope.actions').select_tab,
-      --   },
-      -- },
     },
     git_files = {
       hidden=true,
       no_ignore=true,
       previewer = true,
-      -- mappings = {
-      --   i = {
-      --     ['<C-d>'] = require('telescope.actions').select_default,
-      --     ['<C-u>'] = false,
-      --     ['<CR>'] = require('telescope.actions').select_tab,
-      --   },
-      -- },
     },
     lsp_references = {
       fname_width = 50,
