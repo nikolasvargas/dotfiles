@@ -151,8 +151,8 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'emmet_language_server', 'volar' }
-local servers_auto_setup = { 'clangd', 'rust_analyzer', 'tsserver', 'lua_ls', 'volar' }
+local servers = { 'clangd', 'cssls', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'emmet_language_server', 'volar' }
+local servers_auto_setup = { 'clangd', 'cssls', 'rust_analyzer', 'tsserver', 'lua_ls', 'volar' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
@@ -218,20 +218,6 @@ require('lspconfig').pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
-    -- pyright = {
-    --   autoImportCompletion = false,
-    --   reportGeneralTypeIssues = false,
-    --   python = {
-    --     analysis = {
-    --       autoSearchPaths = true,
-    --       diagnosticMode = 'openFilesOnly',
-    --       -- diagnosticMode = 'workspace',
-    --       useLibraryCodeForTypes = true,
-    --       typeCheckingMode = 'off',
-    --       logLevel = "Error"
-    --     }
-    --   }
-    -- }
     python = {
       analysis = {
         autoSearchPaths = true,

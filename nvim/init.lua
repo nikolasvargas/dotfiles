@@ -117,8 +117,8 @@ vim.keymap.set('n', ';t', ':tabnew<CR>')
 vim.o.termguicolors = true
 vim.o.background = "dark"
 vim.cmd('colorscheme blackout')
-vim.cmd("highlight ColorColumn guibg=#1d1d1d ctermbg=7")
-vim.cmd("highlight cursorline guibg=#252525 ctermbg=7")
+vim.cmd("highlight ColorColumn guibg=#1c1c1c ctermbg=7")
+vim.cmd("highlight cursorline guibg=#2b2b2b ctermbg=7")
 
 -- disable statusline
 vim.o.laststatus = 0
@@ -143,7 +143,8 @@ vim.api.nvim_set_hl(0, "WinSeparator", { bg = nil, fg = "#3a3a3a" })
 -- end
 
 vim.api.nvim_command('autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab')
-vim.api.nvim_command('autocmd FileType html setlocal tabstop=2 shiftwidth=2 expandtab')
+vim.api.nvim_command('autocmd FileType html,css,scss,less setlocal tabstop=2 shiftwidth=2 expandtab')
+vim.api.nvim_command('autocmd FileType javascript,vue,jsx,typescript setlocal tabstop=2 shiftwidth=2 expandtab')
 
 -- Removing trailing spaces on save
 vim.api.nvim_create_autocmd("BufWritePre", {
