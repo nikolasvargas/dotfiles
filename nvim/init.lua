@@ -62,10 +62,10 @@ vim.opt.cursorline = true
 vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 
 -- set colorcolumn
-vim.opt.colorcolumn = "100"
+vim.opt.colorcolumn = "0"
 
 -- always show tab_line
-vim.opt.showtabline = 2
+vim.opt.showtabline = 1
 
 -- Set highlight on search
 vim.o.hlsearch = true
@@ -74,13 +74,15 @@ vim.o.hlsearch = true
 vim.wo.number = false
 
 -- Wrap lines at all.
-vim.wo.wrap = false
+vim.wo.wrap = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
 -- Enable break indent
-vim.o.breakindent = true
+vim.o.breakindent = false
+-- vim.opt.breakindentopt = "min:0,shift:0,sbr"
+vim.opt.showbreak = "↪\\"
 
 -- Save undo history
 vim.o.undofile = false
@@ -151,3 +153,16 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   command = [[%s/\s\+$//e]],
 })
+
+-- function for using prettierd to format html and css on save
+function _G.format_with_prettier()
+  vim.cmd("silent! %!prettierd --stdin-filepath " .. vim.api.nvim_buf_get_name(0))
+end
+
+vim.api.nvim_create_user_command('Prettierd', format_with_prettier, {})
+
+-- Auto-format HTML and CSS files on save
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--     pattern = {"*.html", "*.css"},
+--     callback = format_with_prettier,
+-- })
