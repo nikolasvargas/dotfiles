@@ -177,7 +177,7 @@ else
   hi Ignore guifg=#080808 guibg=NONE gui=NONE cterm=NONE
   hi PreProc guifg=#080808 guibg=NONE gui=NONE cterm=NONE
   hi Special guifg=#080808 guibg=NONE gui=NONE cterm=NONE
-  hi Statement guifg=#080808 guibg=NONE gui=NONE cterm=NONE
+  hi Statement guifg=#080808 guibg=NONE gui=bold cterm=NONE
   hi Todo guifg=#00ffaf guibg=#080808 gui=bold,reverse cterm=bold,reverse
   hi Type guifg=#080808 guibg=NONE gui=NONE cterm=NONE
   hi Underlined guifg=#080808 guibg=NONE gui=underline cterm=underline

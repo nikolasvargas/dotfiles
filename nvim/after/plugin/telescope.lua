@@ -15,7 +15,7 @@ t.setup {
     },
     wrap_results = true,
     layout_strategy = "vertical",
-    file_ignore_patterns = { ".git", "venv", "^core/static/core/js/", "node_modules", ".cache", "*.pyc", "*.min.js", "target"},
+    file_ignore_patterns = { ".git", ".github", "venv", "^core/static/core/js/", "node_modules", ".cache", "*.pyc", "*.min.js", "target"},
     mappings = {
       i = { ['<M-CR>'] = "select_tab" },
       n = { ['<M-CR>'] = "select_tab" },

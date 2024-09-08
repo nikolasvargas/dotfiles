@@ -57,7 +57,7 @@ vim.keymap.set("n", "<Leader>fb", ":Telescope file_browser<CR>")
 -- clipboard
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.cursorline = true
--- vim.opt.cursorlineopt = 'number'
+vim.opt.cursorlineopt = 'number'
 -- Set cursor blinking
 vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 
@@ -72,6 +72,7 @@ vim.o.hlsearch = true
 
 -- Make line numbers default
 vim.wo.number = false
+vim.wo.relativenumber = false
 
 -- Wrap lines at all.
 vim.wo.wrap = true
