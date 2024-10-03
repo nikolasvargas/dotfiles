@@ -25,12 +25,12 @@ t.setup {
     find_files = {
       hidden=true,
       no_ignore=true,
-      previewer=true,
+      previewer=false,
     },
     git_files = {
       hidden=true,
       no_ignore=true,
-      previewer = true,
+      previewer=false,
     },
     lsp_references = {
       fname_width = 50,

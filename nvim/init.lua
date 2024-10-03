@@ -62,7 +62,7 @@ vim.opt.cursorlineopt = 'number'
 vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 
 -- set colorcolumn
-vim.opt.colorcolumn = "0"
+vim.opt.colorcolumn = "100"
 
 -- always show tab_line
 vim.opt.showtabline = 1
@@ -71,7 +71,7 @@ vim.opt.showtabline = 1
 vim.o.hlsearch = true
 
 -- Make line numbers default
-vim.wo.number = false
+vim.wo.number = true
 vim.wo.relativenumber = false
 
 -- Wrap lines at all.
@@ -133,8 +133,8 @@ vim.api.nvim_set_hl(0, "WinBar", { bg = "#252525", fg = "#ebdbb2", bold=true })
 vim.api.nvim_set_hl(0, "WinBarNC", { bg = nil, fg = "#928374", bold=false })
 vim.api.nvim_set_hl(0, "WinSeparator", { bg = nil, fg = "#3a3a3a" })
 
--- vim.api.nvim_set_hl(0, "StatusLine", { bg = "#3c3836", fg = "#ebdbb2" })
--- vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#3c3836", fg = "#928374" })
+vim.api.nvim_set_hl(0, "StatusLine", { bg = "#3c3836", fg = "#ebdbb2" })
+vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#3c3836", fg = "#928374" })
 
 -- if vim.g.colors_name ~= "gruvbox" then
 --   if vim.g.colors_name == "melange" then
@@ -145,7 +145,7 @@ vim.api.nvim_set_hl(0, "WinSeparator", { bg = nil, fg = "#3a3a3a" })
 --   end
 -- end
 
-vim.api.nvim_command('autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab')
+vim.api.nvim_command('autocmd FileType c setlocal tabstop=2 shiftwidth=2 expandtab')
 vim.api.nvim_command('autocmd FileType html,css,scss,less setlocal tabstop=2 shiftwidth=2 expandtab')
 vim.api.nvim_command('autocmd FileType javascript,vue,jsx,typescript setlocal tabstop=2 shiftwidth=2 expandtab')
 
@@ -167,3 +167,7 @@ vim.api.nvim_create_user_command('Prettierd', format_with_prettier, {})
 --     pattern = {"*.html", "*.css"},
 --     callback = format_with_prettier,
 -- })
+
+-- Toggle nvim-tree with <C-b>
+-- vim.keymap.set("n", "<C-b>", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<C-b>", ":NvimTreeFindFileToggle<CR>")

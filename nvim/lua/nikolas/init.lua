@@ -91,6 +91,25 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
+-- Enable nvim-tree
+--
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+require("nvim-tree").setup({
+  sort = {
+    sorter = "case_sensitive",
+  },
+  view = {
+    width = 40,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
@@ -151,8 +170,8 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'clangd', 'cssls', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'emmet_language_server', 'volar'}
-local servers_auto_setup = { 'clangd', 'cssls', 'rust_analyzer', 'tsserver', 'lua_ls', 'volar'}
+local servers = { 'clangd', 'cssls', 'rust_analyzer', 'pyright', 'ts_ls', 'lua_ls', 'emmet_language_server', 'volar'}
+local servers_auto_setup = { 'clangd', 'cssls', 'rust_analyzer', 'ts_ls', 'lua_ls', 'volar'}
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
@@ -269,7 +288,7 @@ local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 
 cmp.setup {
-  -- completion = { autocomplete = false },
+  completion = { autocomplete = false },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
