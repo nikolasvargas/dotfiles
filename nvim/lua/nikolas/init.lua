@@ -29,9 +29,9 @@ vim.opt.listchars = { tab = '>~', trail = '⋅', extends = '>' }
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'lua', 'python', 'rust', 'typescript', 'help' },
-  sync_install = false,
-  auto_install = false,
+  ensure_installed = { 'c', 'cpp', 'lua', 'python', 'rust', 'typescript' },
+  sync_install = true,
+  auto_install = true,
   modules = {},
   ignore_install = {},
   highlight = { enable = false },
@@ -170,13 +170,14 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'clangd', 'cssls', 'rust_analyzer', 'pyright', 'ts_ls', 'lua_ls', 'emmet_language_server', 'volar'}
-local servers_auto_setup = { 'clangd', 'cssls', 'rust_analyzer', 'ts_ls', 'lua_ls', 'volar'}
+local servers = { 'clangd', 'cssls', 'rust_analyzer', 'pyright', 'ts_ls', 'lua_ls'}
+local servers_auto_setup = { 'clangd', 'cssls', 'rust_analyzer', 'ts_ls', 'lua_ls'}
 
 -- Ensure the servers above are installed
-require('mason-lspconfig').setup {
+require('mason-lspconfig').setup({
   ensure_installed = servers,
-}
+  automatic_enable = false
+})
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -344,6 +345,16 @@ vim.diagnostic.config({
         source = 'always'
     },
 })
+
+-- colorscheme
+local monokai_opts = {
+  dark_style_background = "dark"
+  -- hl_styles = {
+  --   comments = { italic = false }
+  -- }
+}
+require('monokai-nightasty').setup(monokai_opts)
+require('monokai-nightasty').load()
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

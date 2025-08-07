@@ -1,8 +1,21 @@
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
-local t = require('telescope')
-t.setup {
+
+---@diagnostic disable-next-line: redundant-parameter
+require('telescope').setup {
   defaults = {
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--fixed-strings',
+      '--trim',
+      '-g', '!.git/',
+    },
     extensions = {
       file_browser = {
         theme = "ivy",
@@ -39,8 +52,13 @@ t.setup {
   }
 }
 -- Enable telescope fzf native, if installed
-pcall(t.load_extension, 'fzf')
-pcall(t.load_extension, 'file_browser')
+-- pcall(t.load_extension, 'fzf')
+-- pcall(t.load_extension, 'file_browser')
+
+---@diagnostic disable-next-line: undefined-field
+require('telescope').load_extension('fzf')
+---@diagnostic disable-next-line: undefined-field
+require('telescope').load_extension('file_browser')
 
 -- See `:help telescope.builtin`
 local builtin = require('telescope.builtin')
@@ -49,11 +67,22 @@ vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently o
 vim.keymap.set('n', '<C-f>', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 8,
-    layout_strategy = "bottom_pane",
-    layout_config = {
-      height = 30,
+    defauls = {
+      mappings = {
+        i = {
+          ["<C-Down>"] = require('telescope.actions').cycle_history_next,
+          ["<C-Up>"] = require('telescope.actions').cycle_history_prev,
+        },
+      },
     },
+    winblend = 1,
+    layout_strategy = "vertical",
+    layout_config = {
+      height = 0.9,
+      width = 0.95,
+      prompt_position = "bottom"
+    },
+    wrap_results = true,
     previewer = true,
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
