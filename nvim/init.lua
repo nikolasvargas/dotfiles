@@ -72,15 +72,14 @@ vim.opt.showtabline = 1
 vim.o.hlsearch = true
 
 -- Make line numbers default
-vim.wo.number = true
+vim.wo.number = false
 vim.wo.relativenumber = false
-
--- Wrap lines at all.
-vim.wo.wrap = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
+-- Wrap lines at all.
+vim.wo.wrap = false
 -- Enable break indent
 vim.o.breakindent = false
 -- vim.opt.breakindentopt = "min:0,shift:0,sbr"
@@ -120,7 +119,7 @@ vim.keymap.set('n', ';t', ':tabnew<CR>')
 
 vim.o.termguicolors = true
 vim.o.background = "dark"
-vim.cmd('colorscheme blackout')
+vim.cmd('colorscheme unokai')
 
 if vim.g.colors_name == "blackout" then
   vim.cmd("highlight ColorColumn guibg=#1c1c1c ctermbg=7")

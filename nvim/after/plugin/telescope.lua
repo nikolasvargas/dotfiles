@@ -27,8 +27,9 @@ require('telescope').setup {
       }
     },
     wrap_results = true,
-    layout_strategy = "vertical",
+    layout_strategy = "bottom_pane",
     file_ignore_patterns = { ".git", ".github", "venv", "^core/static/core/js/", "node_modules", ".cache", "*.pyc", "*.min.js", "target"},
+    -- file_ignore_patterns = { ".git", ".github", "^core/static/core/js/", "node_modules", ".cache", "*.pyc", "*.min.js", "target"},
     mappings = {
       i = { ['<M-CR>'] = "select_tab" },
       n = { ['<M-CR>'] = "select_tab" },
@@ -44,6 +45,9 @@ require('telescope').setup {
       hidden=true,
       no_ignore=true,
       previewer=false,
+    },
+    live_grep = {
+      layout_strategy = "vertical"
     },
     lsp_references = {
       fname_width = 50,
@@ -89,7 +93,6 @@ end, { desc = '[/] Fuzzily search in current buffer]' })
 
 vim.keymap.set('n', '<leader>e',  builtin.find_files, {})
 vim.keymap.set('n', '<leader>gr', builtin.live_grep, {})
-
 vim.keymap.set('n', '<leader>b',  builtin.buffers,     { desc = '[S]earch existing [B]uffers' })
 vim.keymap.set('n', '<C-p>',      builtin.git_files,   { desc = 'Search only git files'	      })
 vim.keymap.set('n', '<leader>sf', builtin.find_files,  { desc = '[S]earch [F]iles'	      })
