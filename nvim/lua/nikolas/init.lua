@@ -184,13 +184,13 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 for _, lsp in ipairs(servers_auto_setup) do
-    require('lspconfig')[lsp].setup {
+    vim.lsp.config(lsp, {
         on_attach = on_attach,
         capabilities = capabilities,
-    }
+    })
 end
 
-require('lspconfig').rust_analyzer.setup {
+vim.lsp.config('rust_analyzer', {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -210,7 +210,7 @@ require('lspconfig').rust_analyzer.setup {
             checkOnSave = { command = "clippy" }
         }
     }
-}
+})
 
 -- require('lspconfig').emmet_language_server.setup({
 --     filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue" },
@@ -260,7 +260,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-require('lspconfig').lua_ls.setup {
+vim.lsp.config('lua_ls', {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -282,7 +282,7 @@ require('lspconfig').lua_ls.setup {
             telemetry = { enable = false },
         },
     },
-}
+})
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
