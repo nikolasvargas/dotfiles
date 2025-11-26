@@ -72,7 +72,7 @@ vim.opt.showtabline = 1
 vim.o.hlsearch = true
 
 -- Make line numbers default
-vim.wo.number = false
+vim.wo.number = true
 vim.wo.relativenumber = false
 
 -- Enable mouse mode
@@ -119,7 +119,7 @@ vim.keymap.set('n', ';t', ':tabnew<CR>')
 
 vim.o.termguicolors = true
 vim.o.background = "dark"
-vim.cmd('colorscheme unokai')
+vim.cmd('colorscheme retrobox')
 
 if vim.g.colors_name == "blackout" then
   vim.cmd("highlight ColorColumn guibg=#1c1c1c ctermbg=7")
@@ -149,7 +149,9 @@ vim.o.statusline = "%{%v:lua.winbar_path()%}%m%r%h%w (%{&ft}/%{&ff}) L/C %l/%c (
 
 -- winbar (statusline on top)
 vim.o.winbar = "%{%v:lua.winbar_path()%}%m%r%h%w (%{&ft}/%{&ff}) L/C %l/%c (%P) %m"
-vim.api.nvim_set_hl(0, "WinBar", { bg = "#252525", fg = "#ebdbb2", bold=true })
+if vim.o.background == "dark" then
+  vim.api.nvim_set_hl(0, "WinBar", { bg = "#252525", fg = "#ebdbb2", bold=true })
+end
 vim.api.nvim_set_hl(0, "WinBarNC", { bg = nil, fg = "#928374", bold=false })
 vim.api.nvim_set_hl(0, "WinSeparator", { bg = nil, fg = "#3a3a3a" })
 

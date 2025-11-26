@@ -170,13 +170,13 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'clangd', 'cssls', 'rust_analyzer', 'pyright', 'ts_ls', 'lua_ls' }
-local servers_auto_setup = { 'clangd', 'cssls', 'rust_analyzer', 'pyright', 'ts_ls', 'lua_ls' }
+local servers = { 'clangd', 'cssls', 'rust_analyzer', 'basedpyright', 'ts_ls', 'lua_ls' }
+local servers_auto_setup = { 'clangd', 'cssls', 'rust_analyzer', 'basedpyright', 'ts_ls', 'lua_ls' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup({
     ensure_installed = servers,
-    automatic_enable = false
+    automatic_enable = true
 })
 
 -- nvim-cmp supports additional completion capabilities
@@ -234,21 +234,22 @@ vim.lsp.config('rust_analyzer', {
 --     },
 -- })
 
--- require('lspconfig').pyright.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
---   settings = {
---     python = {
---       analysis = {
---         autoSearchPaths = true,
---         diagnosticMode = 'openFilesOnly',
---         useLibraryCodeForTypes = true,
---         typeCheckingMode = 'off',
---         logLevel = "Error"
---       }
---     }
---   }
--- }
+vim.lsp.enable('basedpyright')
+vim.lsp.config('basedpyright', {
+  -- on_attach = on_attach,
+  -- capabilities = capabilities,
+  settings = {
+    basedpyright = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = 'openFilesOnly',
+        useLibraryCodeForTypes = true,
+        typeCheckingMode = 'off',
+        logLevel = "Error"
+      };
+    };
+  };
+})
 
 -- Turn on lsp status information
 require('fidget').setup()
